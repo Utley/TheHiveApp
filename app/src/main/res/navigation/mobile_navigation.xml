@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/havigation_hive_diagram"
         android:name="com.example.thehiveapp_android.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
@@ -22,4 +22,10 @@
         android:name="com.example.thehiveapp_android.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_hive_form"
+        android:name="com.example.thehiveapp_android.ui.dashboard.HiveFormFragment"
+        android:label="HiveForm"
+        tools:layout="@layout/hive_form_fragment" />
 </navigation>
