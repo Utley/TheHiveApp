@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
@@ -14,7 +15,7 @@ import android.view.View
  */
 class HiveDiagramView : View {
 
-    private var _exampleString: String? = null // TODO: use a default from R.string...
+    private var _exampleString: String? = "something" // TODO: use a default from R.string...
     private var _exampleColor: Int = Color.RED // TODO: use a default from R.color...
     private var _exampleDimension: Float = 0f // TODO: use a default from R.dimen...
 
@@ -79,9 +80,9 @@ class HiveDiagramView : View {
             attrs, R.styleable.HiveDiagramView, defStyle, 0
         )
 
-        _exampleString = a.getString(
-            R.styleable.HiveDiagramView_exampleString
-        )
+//        _exampleString = a.getString(
+//            R.styleable.HiveDiagramView_exampleString
+//        )
         _exampleColor = a.getColor(
             R.styleable.HiveDiagramView_exampleColor,
             exampleColor
@@ -121,8 +122,43 @@ class HiveDiagramView : View {
         }
     }
 
+    fun testDraw(canvas: Canvas) {
+
+        val textX: String = "test string here"
+        val shadowBounds: RectF = RectF(3F, 3F, 300F, 30F)
+        val shadowPaint: Paint = Paint()
+
+        val color: Int = 0xFF_FF_00_FF.toInt()
+        shadowPaint.setColor(color)
+
+
+
+        canvas.apply {
+            // Draw the shadow
+            drawOval(shadowBounds, shadowPaint)
+
+            // Draw the label text
+//            drawText(data[mCurrentItem].mLabel, textX, textY, textPaint)
+
+            // Draw the pie slices
+//            data.forEach {
+//                piePaint.shader = it.mShader
+//                drawArc(bounds,
+//                    360 - it.endAngle,
+//                    it.endAngle - it.startAngle,
+//                    true, piePaint)
+//            }
+
+            // Draw the pointer
+//            drawLine(textX, pointerY, pointerX, pointerY, textPaint)
+//            drawCircle(pointerX, pointerY, pointerSize, mTextPaint)
+        }
+    }
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
+        testDraw(canvas)
 
         // TODO: consider storing these as member variables to reduce
         // allocations per draw cycle.
@@ -134,13 +170,15 @@ class HiveDiagramView : View {
         val contentWidth = width - paddingLeft - paddingRight
         val contentHeight = height - paddingTop - paddingBottom
 
+        val testPaint: Paint = Paint()
+
         exampleString?.let {
             // Draw the text.
             canvas.drawText(
                 it,
                 paddingLeft + (contentWidth - textWidth) / 2,
                 paddingTop + (contentHeight + textHeight) / 2,
-                textPaint
+                testPaint
             )
         }
 
