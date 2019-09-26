@@ -26,7 +26,7 @@ class DataManager {
         //If we make the RealmObject first,
         //we should (in theory) pass it in and then use copyToRealm to save it to the database.
         realm.executeTransactionAsync { realm ->
-            realm.copyToRealm()
+            realm.copyToRealm(saveMe)
         }
     }
 
