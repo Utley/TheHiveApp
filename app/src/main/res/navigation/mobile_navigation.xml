@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/havigation_hive_diagram"
+        android:id="@+id/navigation_hive_diagram"
         android:name="com.example.thehiveapp_android.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
