@@ -6,14 +6,14 @@ import io.realm.RealmObject
 class DataManager {
     //Let's make this a singleton class...
     companion object {
-        private lateinit var managerInstance : DataManager
+        private var managerInstance : DataManager? = null
 
         val instance: DataManager
             get() {
                 if (managerInstance == null){
                     managerInstance = DataManager()
                 }
-                return managerInstance
+                return managerInstance!!
             }
 
     }
