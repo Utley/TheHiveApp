@@ -15,6 +15,6 @@ interface HiveNoteViewInterface {
 
 }
 
-class HiveNoteView(layoutInflater: LayoutInflater) : HiveNoteViewInterface, View.OnClickListener {
+// class HiveNoteView(layoutInflater: LayoutInflater) : HiveNoteViewInterface, View.OnClickListener {
     //private var mRootView = layoutInflater.inflate(thehiveapp)
-}
+// }
