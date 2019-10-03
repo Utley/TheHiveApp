@@ -27,13 +27,14 @@ class HiveRealmListAdapter(
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        if (convertView == null){
-            var view = layoutInflater.inflate(R.layout.hive_selection_list_item, null)
-
+        return if (convertView == null){
+            var view = layoutInflater.inflate(R.layout.hive_selection_list_item, null) as HiveListItemView
+            view.populate(getItem(position)!!) //Warning: Force unwrap happens here! See if we can convert this to something that doesn't do that.
+            view //In a block like this "return if", the last expression is returned as a value.
         } else {
-
+            (convertView as HiveListItemView).populate(getItem(position)!!)
+            convertView
         }
-        return View(context)
     }
 
 }

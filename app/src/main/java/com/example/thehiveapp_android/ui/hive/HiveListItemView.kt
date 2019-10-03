@@ -31,14 +31,14 @@ class HiveListItemView : LinearLayout {
         hiveNameTextView = this.findViewById(R.id.hive_name_text) as TextView
         hiveLastInspectedAtTextView = this.findViewById(R.id.hive_last_inspected_text) as TextView
 
-        hiveNameTextView.setText(hive.name)
+        hiveNameTextView.text = hive.name
 
         var hiveDateString = "Not Yet Inspected"
-        if (hive.hiveLogs.last() != null) {
+        if (hive.hiveLogs.size > 0) {
             hiveDateString = hive.hiveLogs.last()!!.date.toString()
         }
 
-        hiveLastInspectedAtTextView.setText(hiveDateString)
+        hiveLastInspectedAtTextView.text = hiveDateString
     }
 
 }
