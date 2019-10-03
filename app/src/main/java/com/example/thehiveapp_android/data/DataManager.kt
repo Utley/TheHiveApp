@@ -2,6 +2,7 @@ package com.example.thehiveapp_android.data
 
 import io.realm.Realm
 import io.realm.RealmObject
+import io.realm.RealmResults
 
 class DataManager {
     //Let's make this a singleton class...
@@ -20,6 +21,10 @@ class DataManager {
 
     private var realm : Realm = Realm.getDefaultInstance()
 
+    //Get all hives from the database, synchronously.
+    fun getAllHives() : RealmResults<HiveRealmObject> {
+        return realm.where(HiveRealmObject::class.java).findAll()
+    }
 
     fun saveObject(saveMe: RealmObject){
 
