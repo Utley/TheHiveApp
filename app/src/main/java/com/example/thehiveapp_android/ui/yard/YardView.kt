@@ -1,4 +1,4 @@
-package com.example.thehiveapp_android
+package com.example.thehiveapp_android.ui.yard
 
 import android.content.Context
 import android.graphics.*
@@ -6,11 +6,12 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
+import com.example.thehiveapp_android.R
 
 /**
  * TODO: document your custom view class.
  */
-class HiveDiagramView : View {
+class YardView : View {
 
     private var _exampleString: String? = "something" // TODO: use a default from R.string...
     private var _exampleColor: Int = Color.RED // TODO: use a default from R.color...
@@ -74,26 +75,26 @@ class HiveDiagramView : View {
     private fun init(attrs: AttributeSet?, defStyle: Int) {
         // Load attributes
         val a = context.obtainStyledAttributes(
-            attrs, R.styleable.HiveDiagramView, defStyle, 0
+            attrs, R.styleable.YardView, defStyle, 0
         )
 
 //        _exampleString = a.getString(
 //            R.styleable.HiveDiagramView_exampleString
 //        )
         _exampleColor = a.getColor(
-            R.styleable.HiveDiagramView_exampleColor,
+            R.styleable.YardView_exampleColor,
             exampleColor
         )
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
         // values that should fall on pixel boundaries.
         _exampleDimension = a.getDimension(
-            R.styleable.HiveDiagramView_exampleDimension,
+            R.styleable.YardView_exampleDimension,
             exampleDimension
         )
 
-        if (a.hasValue(R.styleable.HiveDiagramView_exampleDrawable)) {
+        if (a.hasValue(R.styleable.YardView_exampleDrawable)) {
             exampleDrawable = a.getDrawable(
-                R.styleable.HiveDiagramView_exampleDrawable
+                R.styleable.YardView_exampleDrawable
             )
             exampleDrawable?.callback = this
         }

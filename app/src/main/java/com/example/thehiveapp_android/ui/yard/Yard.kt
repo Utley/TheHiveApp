@@ -1,4 +1,4 @@
-package com.example.thehiveapp_android
+package com.example.thehiveapp_android.ui.yard
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,15 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.thehiveapp_android.R
 
 
-class HiveDiagram : Fragment() {
+class Yard : Fragment() {
 
     companion object {
-        fun newInstance() = HiveDiagram()
+        fun newInstance() = Yard()
     }
 
-    private lateinit var viewModel: HiveDiagramViewModel
+    private lateinit var viewModel: YardViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +26,7 @@ class HiveDiagram : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HiveDiagramViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(YardViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
