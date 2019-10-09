@@ -1,8 +1,29 @@
 <resources>
+    <!-- main title strings -->
     <string name="app_name">TheHiveApp_Android</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_hive_form">Hive Form</string>
     <string name="hive_form_title_default">Some Hive</string>
+    <!-- basic -->
+    <string name="notes">Notes</string>
+    <string name="hello">Hello!</string>
+    <!-- numbers-->
+    <string name="text_one">One</string>
+    <string name="text_two">Two</string>
+    <string name="text_three">Three</string>
+    <string name="text_four">Four</string>
+    <string name="text_five">Five</string>
+    <!-- inspection log titles-->
+    <string name="honey_count">Honey count</string>
+    <string name="pollen_count">Pollen count</string>
+    <string name="brood_count">Brood count</string>
+    <string name="seen_queen">Did you see the queen?</string>
+    <string name="seen_eggs">Did you see new eggs?</string>
+    <string name="mite_check">Did you check for mites?</string>
+    <string name="overall_health">Overall hive health</string>
+
+
+
 </resources>
