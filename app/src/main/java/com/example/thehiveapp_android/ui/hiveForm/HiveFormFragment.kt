@@ -1,4 +1,4 @@
-package com.example.thehiveapp_android.ui.dashboard
+package com.example.thehiveapp_android.ui.hiveForm
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
