@@ -1,10 +1,7 @@
 package com.example.thehiveapp_android
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
@@ -122,37 +119,23 @@ class HiveDiagramView : View {
         }
     }
 
-    fun testDraw(canvas: Canvas) {
+    fun drawTestHives(canvas: Canvas) {
+        val hive_width: Float = 150F
+        val hive_height: Float = 150F
 
-        val textX: String = "test string here"
-        val shadowBounds: RectF = RectF(3F, 3F, 300F, 30F)
-        val shadowPaint: Paint = Paint()
-
-        val color: Int = 0xFF_FF_00_FF.toInt()
-        shadowPaint.setColor(color)
-
-
+        var hiveColor:Int = 0xFF_FF_00_FF.toInt()
+        var hivePaint:Paint = Paint(hiveColor)
 
         canvas.apply {
-            // Draw the shadow
-            drawOval(shadowBounds, shadowPaint)
-
-            // Draw the label text
-//            drawText(data[mCurrentItem].mLabel, textX, textY, textPaint)
-
-            // Draw the pie slices
-//            data.forEach {
-//                piePaint.shader = it.mShader
-//                drawArc(bounds,
-//                    360 - it.endAngle,
-//                    it.endAngle - it.startAngle,
-//                    true, piePaint)
-//            }
-
-            // Draw the pointer
-//            drawLine(textX, pointerY, pointerX, pointerY, textPaint)
-//            drawCircle(pointerX, pointerY, pointerSize, mTextPaint)
+            drawRect(0F,0F, hive_width, hive_height, hivePaint)
         }
+
+    }
+
+    fun testDraw(canvas: Canvas) {
+        drawTestHives(canvas)
+
+
     }
 
     override fun onDraw(canvas: Canvas) {
