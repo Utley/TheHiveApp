@@ -10,42 +10,63 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/hive_form_title_default"
+        <EditText
+            android:id="@+id/hiveNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hive_form_title_default"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Hive Name" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Creation Date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <EditText
+            android:id="@+id/editText7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Box Size"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <EditText
+            android:id="@+id/editText11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Box Size" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notes"
+            android:text="Frame Count"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editText10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine" />
+            android:inputType="number" />
 
-        <TextView
-            android:id="@+id/textView"
+        <Button
+            android:id="@+id/saveHIveButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Health"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:text="Save Hive" />
 
-        <RatingBar
-            android:id="@+id/ratingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:max="5"
-            android:numStars="5" />
     </LinearLayout>
 
 </FrameLayout>

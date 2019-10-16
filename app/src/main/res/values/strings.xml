@@ -5,4 +5,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_hive_form">Hive Form</string>
     <string name="hive_form_title_default">Some Hive</string>
+    <string name="add_hive_form_title">Add Hive</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
