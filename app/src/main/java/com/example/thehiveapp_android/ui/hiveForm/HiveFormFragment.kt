@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 
 import com.example.thehiveapp_android.R
@@ -24,7 +25,8 @@ class HiveFormFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.hive_form_fragment, container, false)
 
-        val textView: TextView = root.findViewById(R.id.hive_form_title_default)
+//        val textView: TextView = root.findViewById(R.id.hive_form_title_default)
+        val textView: EditText = root.findViewById(R.id.hiveNameTextInput)
         textView.setText("hive 1")
 
         return root
