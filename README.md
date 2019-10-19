@@ -8,17 +8,23 @@ The main features of our app (as of sprint 4) include
 listing existing hives, adding new hives, and adding 
 inspection logs to a hive. 
 
-* Adding hives is the responsibility of `hive_form_fragment.xml` 
-* Hive listing is contained in `hive_selection_list_item.xml` and `hive_selection_list_view.xml`
-* 
 
-Some files contain features not yet strictly supported, or accessible from the main view.
-These include:
+## Layouts
 
-* `hive_diagram_fragment.xml` and `sample_hive_diagram_view.xml`, which will eventually support 
-visualization of a yard
-
-
-
-
-
+* `TheHiveApp/app/src/main/res/layout/activity_main.xml`
+  - the main layout containing an android
+    [NavHostFragment](https://developer.android.com/reference/androidx/navigation/fragment/NavHostFragment)
+* `TheHiveApp/app/src/main/res/layout/fragment_dashboard.xml`
+  - one of the main tabs containing a `YardView`
+* `TheHiveApp/app/src/main/res/layout/fragment_notifications.xml`
+  - a main tab that remains from the default android template we used
+* `TheHiveApp/app/src/main/res/layout/hive_diagram_fragment.xml`
+  - planned feature showing diagram of hives in a yard
+* `TheHiveApp/app/src/main/res/layout/hive_form_fragment.xml`
+  - adds hives
+* `TheHiveApp/app/src/main/res/layout/hive_selection_list_item.xml`
+  - part of hive listing functionality
+* `TheHiveApp/app/src/main/res/layout/hive_selection_list_view.xml`
+  - part of hive listing functionality
+* `TheHiveApp/app/src/main/res/layout/sample_hive_diagram_view.xml`
+  - planned feature showing diagram of hives in a yard
