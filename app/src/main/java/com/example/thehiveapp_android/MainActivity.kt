@@ -7,6 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.thehiveapp_android.data.DataManager
+import com.example.thehiveapp_android.data.HiveRealmObject
 import io.realm.Realm
 
 //This is the main entrypoint for the app.
@@ -27,10 +29,11 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.havigation_hive_diagram, R.id.navigation_notifications, R.id.navigation_hive_form
+                R.id.navigation_home, R.id.navigation_notifications, R.id.navigation_hive_form, R.id.navigation_hive_list
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 }

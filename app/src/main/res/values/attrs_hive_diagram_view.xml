@@ -1,5 +1,5 @@
 <resources>
-    <declare-styleable name="HiveDiagramView">
+    <declare-styleable name="YardView">
         <attr name="exampleString" format="string" />
         <attr name="exampleDimension" format="dimension" />
         <attr name="exampleColor" format="color" />

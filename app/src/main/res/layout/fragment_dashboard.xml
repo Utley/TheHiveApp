@@ -15,7 +15,7 @@
 <!--        android:textAlignment="center"-->
 <!--        android:textSize="20sp" />-->
 
-    <com.example.thehiveapp_android.HiveDiagramView
+    <com.example.thehiveapp_android.ui.yard.YardView
         android:id="@+id/hiveDiagramView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

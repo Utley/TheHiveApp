@@ -7,9 +7,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/havigation_hive_diagram"
+        android:id="@+id/navigation_hive_list"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="List of Hives" />
 
     <item
         android:id="@+id/navigation_notifications"

@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HiveDiagram">
+    tools:context=".ui.yard.Yard">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:text="@string/hello" />
 
-    <com.example.thehiveapp_android.HiveDiagramView
+    <com.example.thehiveapp_android.ui.yard.YardView
         android:id="@+id/hiveDiagramView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
