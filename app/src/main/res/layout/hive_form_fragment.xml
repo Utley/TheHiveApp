@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--
+
             <TextView
                 android:id="@+id/hive_form_title_default"
                 android:layout_width="match_parent"
@@ -171,7 +171,7 @@
                 android:layout_width="216dp"
                 android:layout_height="wrap_content"
                 android:text="@string/mite_check" />
-                -->
+
 
             <EditText
                 android:id="@+id/hiveNameTextInput"
