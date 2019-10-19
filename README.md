@@ -14,6 +14,8 @@ inspection logs to a hive.
 * `TheHiveApp/app/src/main/res/layout/activity_main.xml`
   - the main layout containing an android
     [NavHostFragment](https://developer.android.com/reference/androidx/navigation/fragment/NavHostFragment)
+* `TheHiveApp/app/src/main/res/layout/fragment_add_hive_form.xml`
+  - blank fragment, TBD
 * `TheHiveApp/app/src/main/res/layout/fragment_dashboard.xml`
   - one of the main tabs containing a `YardView`
 * `TheHiveApp/app/src/main/res/layout/fragment_notifications.xml`
@@ -21,7 +23,7 @@ inspection logs to a hive.
 * `TheHiveApp/app/src/main/res/layout/hive_diagram_fragment.xml`
   - planned feature showing diagram of hives in a yard
 * `TheHiveApp/app/src/main/res/layout/hive_form_fragment.xml`
-  - adds hives
+  - adds hives, with inputs for frame count, size, creation date, etc.
 * `TheHiveApp/app/src/main/res/layout/hive_selection_list_item.xml`
   - part of hive listing functionality
 * `TheHiveApp/app/src/main/res/layout/hive_selection_list_view.xml`
