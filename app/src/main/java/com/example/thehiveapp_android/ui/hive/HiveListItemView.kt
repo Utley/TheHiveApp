@@ -2,10 +2,13 @@ package com.example.thehiveapp_android.ui.hive
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveRealmObject
+
 
 class HiveListItemView : LinearLayout {
     private lateinit var hiveNameTextView: TextView
@@ -40,5 +43,15 @@ class HiveListItemView : LinearLayout {
 
         hiveLastInspectedAtTextView.text = hiveDateString
     }
+
+    fun openHiveDetail(view: View) {
+
+    }
+
+
+    fun onClick(v: View) {
+        Log.d("HiveListItemView", "Clicked Hive")
+    }
+
 
 }
