@@ -28,28 +28,61 @@ more specific...)
 ### UI
 
 #### hive
+
+The `hive` files manage Realm-related functionality, which manages and displays
+our data. (Ask Zac about this.)
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hive/HiveEditorActivity.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hive/HiveListFragment.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hive/HiveListItemView.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hive/HiveNoteActivity.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hive/HiveNoteView.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hive/HiveRealmListAdapter.kt`
 
 #### hiveForm
-`TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/HiveFormFragment.kt`
-`TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/HiveFormViewModel.kt`
+
+The `HiveForm` fragment (will) carry out functions related to adding and
+modifying hive instances.
+
+* `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/HiveFormFragment.kt`
+
+* `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/HiveFormViewModel.kt`
 
 #### home
+
+The `Home` fragment is the landing screen for the app; as of Sprint 4, the plan
+is to fill it with some relevant graphs (# frames over time, etc.) .
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/home/HomeFragment.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/home/HomeViewModel.kt`
 
 #### notifications
+
+The `Notifications` fragment was originally part of the template, but we plan on
+repurposing it to manage reminders for routine beekeeping tasks such as hive
+inspections.
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/notifications/NotificationsFragment.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/notifications/NotificationsViewModel.kt`
 
 #### yard
+
+The `Yard` fragment provides a visual display of the user's beekeeping area,
+allowing them to select a hive based on its location rather than its name. This
+will not be implemented for a while (as of Sprint 4), so these files will remain
+stubs until then.
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/yard/Yard.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/yard/YardView.kt`
+
 `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/yard/YardViewModel.kt`
 
 ## Layouts
