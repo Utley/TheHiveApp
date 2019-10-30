@@ -7,6 +7,9 @@ import android.widget.TextView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveRealmObject
 
+/**
+ * Binds to XML file for single cell
+ */
 class HiveListItemView : LinearLayout {
     private lateinit var hiveNameTextView: TextView
     private lateinit var hiveLastInspectedAtTextView: TextView

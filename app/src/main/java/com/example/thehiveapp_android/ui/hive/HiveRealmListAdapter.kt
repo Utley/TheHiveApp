@@ -10,6 +10,11 @@ import com.example.thehiveapp_android.data.HiveRealmObject
 import io.realm.RealmBaseAdapter
 import io.realm.RealmResults
 
+/**
+ * Adapts a RealmResults object it;s given into something the HiveListItemView can understand
+ * data source for the list
+ * Acts like a wrapper
+ */
 class HiveRealmListAdapter(
     private val context: Context,
     private val realmResults: RealmResults<HiveRealmObject>,

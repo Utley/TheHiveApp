@@ -16,6 +16,13 @@ import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import io.realm.RealmBaseAdapter
 
+/**
+ * Displays a list of hives to the user.
+ *
+ * Displays a list of hives to the user which the user can select to inspect specific details.
+ *
+ * fragment in which the user views the list of hives (view controller)
+ */
 class HiveListFragment : Fragment() {
     private lateinit var hiveListView : ListView
 
