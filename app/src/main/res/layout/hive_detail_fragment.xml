@@ -3,15 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.yard.Yard">
+    tools:context=".ui.hive.HiveDetail">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello" />
-
-    <com.example.thehiveapp_android.ui.yard.YardView
-        android:id="@+id/hiveDiagramView"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </FrameLayout>

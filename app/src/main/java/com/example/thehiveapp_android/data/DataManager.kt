@@ -1,6 +1,9 @@
 package com.example.thehiveapp_android.data
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import io.realm.Realm
+import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
 
@@ -21,9 +24,25 @@ class DataManager {
 
     private var realm : Realm = Realm.getDefaultInstance()
 
+    private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
+
     //Get all hives from the database, synchronously.
     fun getAllHives() : RealmResults<HiveRealmObject> {
-        return realm.where(HiveRealmObject::class.java).findAll()
+        val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
+
+        // TODO: Remove - used for testing with empty database
+        Log.d("DataManager","Size of DB: ${hiveRealmResults.size}")
+        if (hiveRealmResults.size == 0) {
+            val newHive = HiveRealmObject()
+            newHive.name = "Test Hive"
+            this.saveObject(newHive)
+            Log.d("HiveListFragment","Saved an object.")
+        }
+        else {
+            Log.d("DataManager", "${hiveRealmResults[0]}")
+        }
+
+        return hiveRealmResults
     }
 
     fun saveObject(saveMe: RealmObject){
@@ -36,6 +55,5 @@ class DataManager {
     }
 
     // private constructor()
-
 
 }
