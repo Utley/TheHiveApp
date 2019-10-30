@@ -28,4 +28,6 @@ open class HiveLogRealmObject : RealmObject() {
 
     var noteString: String = "" //A pretty crappy default, but...
 
+
+
 }
