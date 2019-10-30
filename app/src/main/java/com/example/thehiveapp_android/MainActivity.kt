@@ -1,14 +1,12 @@
 package com.example.thehiveapp_android
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.thehiveapp_android.data.DataManager
-import com.example.thehiveapp_android.data.HiveRealmObject
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.realm.Realm
 
 //This is the main entrypoint for the app.
