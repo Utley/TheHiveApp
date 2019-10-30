@@ -18,6 +18,12 @@
         tools:layout="@layout/hive_selection_list_view" />
 
     <fragment
+        android:id="@+id/hive_detail"
+        android:name="com.example.thehiveapp_android.ui.hive.HiveDetail"
+        android:label="Hive List"
+        tools:layout="@layout/hive_detail_fragment" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.thehiveapp_android.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
