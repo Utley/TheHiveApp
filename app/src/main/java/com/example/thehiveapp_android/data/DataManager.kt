@@ -45,6 +45,8 @@ class DataManager {
         return hiveRealmResults
     }
 
+
+
     fun saveObject(saveMe: RealmObject){
 
         //If we make the RealmObject first,

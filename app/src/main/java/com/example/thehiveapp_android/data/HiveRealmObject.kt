@@ -1,3 +1,4 @@
+
 package com.example.thehiveapp_android.data
 
 import io.realm.RealmList
@@ -11,9 +12,19 @@ open class HiveRealmObject() : RealmObject() {
     @PrimaryKey
     var uuid: Long = 0
     var name: String = "My New Hive"
-    var createdAt: Date = Date()
+
+    private var createdAtDate: Date = Date()
+    val createdAt : Date
+        get() = createdAtDate
 
     var queenedAt: Date = Date()
 
-    var hiveLogs : RealmList<HiveLogRealmObject> = RealmList<HiveLogRealmObject>()
+    private var hiveLogsList : RealmList<HiveLogRealmObject> = RealmList<HiveLogRealmObject>()
+    val hiveLogs : RealmList<HiveLogRealmObject>
+        get() = hiveLogsList
+
+    fun addLog(newLog : HiveLogRealmObject) {
+        hiveLogs.add(newLog)
+    }
+
 }

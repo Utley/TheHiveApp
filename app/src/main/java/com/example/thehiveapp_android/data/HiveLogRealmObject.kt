@@ -27,5 +27,4 @@ open class HiveLogRealmObject : RealmObject() {
     var relativeMiteCount : Int? = null //This can be null if no inspection occurred, or it can have a value if one did.
 
     var noteString: String = "" //A pretty crappy default, but...
-
 }
