@@ -26,6 +26,9 @@ class DataManager {
 
     private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
 
+    //In case a generic version of this is needed.
+    fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
+
     //Get all hives from the database, synchronously.
     fun getAllHives() : RealmResults<HiveRealmObject> {
         val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
@@ -45,18 +48,33 @@ class DataManager {
         return hiveRealmResults
     }
 
-
+    fun getAllReminders() = realm.where(ReminderRealmObject::class.java).findAll()
 
     fun saveObject(saveMe: RealmObject){
-
         //If we make the RealmObject first,
         //we should (in theory) pass it in and then use copyToRealm to save it to the database.
         realm.executeTransactionAsync { realm ->
             realm.copyToRealm(saveMe)
         }
+        //If an object has already been fetched from Realm, generally, we shouldn't need to use this
+        //method as Realm will handle the changes we made (TODO: test to make sure this is true)
     }
 
-    // private constructor()
+    fun deleteObject(deleteMe: RealmObject){
+        //Similar to the method above; async block in which we call a delete operation.
+        realm.executeTransactionAsync { _ ->
+            deleteMe.deleteFromRealm()
+        }
+    }
+
+    fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>){
+        //Similar, again, to the method above; pass in a RealmResults containing all the objects
+        //we want to delete, and we'll delete them all.
+        realm.executeTransactionAsync { _ ->
+            deleteUs.deleteAllFromRealm()
+        }
+    }
+
 
 
 }
