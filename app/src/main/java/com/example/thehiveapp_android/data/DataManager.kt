@@ -59,6 +59,7 @@ class DataManager {
         return hiveRealmResults
     }
 
+
     /**
      * Saves the given RealmObject to the database
      *

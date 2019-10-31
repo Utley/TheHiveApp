@@ -9,23 +9,25 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.realm.Realm
 
-//This is the main entrypoint for the app.
+
 /**
- * App entrypoint
+ * App entrypoint.
  *
  * This class represents the main entrypoint for the app; it's similar in practice to the `main()`
- * method of a Java program
+ * method of a Java program.
  *
  * @author probably Zac?
  */
 class MainActivity : AppCompatActivity() {
 
     /**
-     * App entrypoint function
+     * App entrypoint function.
      *
-     * This function acts like the `main()` method of a Java program
+     * This function acts like the `main()` method of a Java program, performing the necessary operations to start up
+     * the app. In particular, this method guarantees the database connection will be initialized and the UI elements
+     * and managers (such as the NavControllers).
      *
-     * @param savedInstanceState ???
+     * @param savedInstanceState OS-provided object providing information to init the program's state
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

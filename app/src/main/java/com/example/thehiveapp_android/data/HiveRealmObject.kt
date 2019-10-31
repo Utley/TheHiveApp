@@ -5,7 +5,6 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.Date
 
-
 /**
  * Represents a single hive.
  *
@@ -19,15 +18,29 @@ import java.util.Date
  * @property hiveLogs List of objects representing this hive's inspection logs
  * @author Zac
  */
-// RealmObject() descendants must be open classes; Kotlin classes are final by default
+//RealmObject() descendants must be open classes; Kotlin classes are final by default
 open class HiveRealmObject() : RealmObject() {
-    // These do actually need default values, even if they're optional...
+    //These do actually need default values, even if they're optional...
     @PrimaryKey
     var uuid: Long = 0
     var name: String = "My New Hive"
-    var createdAt: Date = Date()
+
+    private var createdAtDate: Date = Date()
+    val createdAt : Date
+        get() = createdAtDate
 
     var queenedAt: Date = Date()
 
-    var hiveLogs : RealmList<HiveLogRealmObject> = RealmList<HiveLogRealmObject>()
+    private var hiveLogsList : RealmList<HiveLogRealmObject> = RealmList<HiveLogRealmObject>()
+    val hiveLogs : RealmList<HiveLogRealmObject>
+        get() = hiveLogsList
+
+    /**
+     * Addes a new hive log to this hive's list.
+     *
+     * @param newLog log to add
+     */
+    fun addLog(newLog : HiveLogRealmObject) {
+        hiveLogs.add(newLog)
+    }
 }
