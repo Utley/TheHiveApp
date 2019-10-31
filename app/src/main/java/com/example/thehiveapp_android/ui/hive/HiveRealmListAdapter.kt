@@ -11,10 +11,10 @@ import io.realm.RealmBaseAdapter
 import io.realm.RealmResults
 
 /**
- * Adapts a RealmResults object for the HiveListItemView.
+ * Adapts a RealmResults object for the HiveListFragment.
  *
  * This class acts like a wrapper for a RealmResults object, providing a modifier interface that can
- * then be used in a HiveListItemView.
+ * then be used in a HiveListFragment.
  *
  * @property layoutInflater the current context's layout inflater
  * @constructor creates a wrapper around the given RealmResults object with the given context

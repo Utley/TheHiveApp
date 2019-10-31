@@ -16,12 +16,13 @@ import com.example.thehiveapp_android.R.id.nav_host_fragment
 /**
  * Adapts a RealmResults object for the HiveListItemView.
  *
- * This class acts like a wrapper for a RealmResults object, providing a modifier interface that can
- * then be used in a HiveListItemView.
+ * This class is responsible for displaying a list of hives and listening for user input.
  *
- * @author ???
+ * @author Zac
  */
 class HiveListFragment : Fragment() {
+    // This class acts like a wrapper for a RealmResults object, providing a modifier interface that can
+    // then be used in a HiveListItemView.
 
     private lateinit var viewModel: HiveListViewModel
 
@@ -67,8 +68,6 @@ class HiveListFragment : Fragment() {
     }
 
     /**
-     * Specifies the object's behavior on creation.
-     *
      * Specifies the object's behavior on creation.
      *
      * @throws Exception The specified activity is invalid
