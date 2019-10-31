@@ -9,7 +9,11 @@ import android.widget.TextView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveRealmObject
 
-
+/**
+ * Provides an item view for our list?
+ *
+ * @constructor no-args constructor, I guess?
+ */
 class HiveListItemView : LinearLayout {
     private lateinit var hiveNameTextView: TextView
     private lateinit var hiveLastInspectedAtTextView: TextView
@@ -49,6 +53,13 @@ class HiveListItemView : LinearLayout {
     }
 
 
+    /**
+     * Specifies the view's behavior when clicked.
+     *
+     * Specifies the view's behavior when clicked.
+     *
+     * @param v the view
+     */
     fun onClick(v: View) {
         Log.d("HiveListItemView", "Clicked Hive")
     }

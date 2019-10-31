@@ -20,6 +20,9 @@ private const val ARG_PARAM2 = "param2"
  * to handle interaction events.
  * Use the [AddHiveForm.newInstance] factory method to
  * create an instance of this fragment.
+ *
+ *
+ * TODO determine if this a real class, or a tutorial no one's cleaned up?
  */
 class AddHiveForm : Fragment() {
     // TODO: Rename and change types of parameters
@@ -80,8 +83,9 @@ class AddHiveForm : Fragment() {
 
     companion object {
         /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
+         * Fragment factory method.
+         *
+         * Produces a new AddHiveForm fragment based on the given parameters
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.

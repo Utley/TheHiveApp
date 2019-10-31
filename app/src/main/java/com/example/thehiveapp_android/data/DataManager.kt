@@ -7,8 +7,16 @@ import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
 
+/**
+ * Manages the data stored in a Realm database.
+ *
+ * Singleton class which provides a common interface to access or modify the data stored in the
+ * app's Realm database.
+ *
+ * @author Zac
+ */
 class DataManager {
-    //Let's make this a singleton class...
+    // Let's make this a singleton class...
     companion object {
         private var managerInstance : DataManager? = null
 
@@ -19,14 +27,20 @@ class DataManager {
                 }
                 return managerInstance!!
             }
-
     }
 
     private var realm : Realm = Realm.getDefaultInstance()
 
     private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
 
-    //Get all hives from the database, synchronously.
+    /**
+     * Synchronously retrieves all hives from the database.
+     *
+     * Synchronously retrieves all hives from the database. If no hives have been entered, creates
+     * a dummy object and adds that; I assuuuuume that's just debug behavior?
+     *
+     * @return a list(?) of HiveRealmObjects
+     */
     fun getAllHives() : RealmResults<HiveRealmObject> {
         val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
 
@@ -45,15 +59,20 @@ class DataManager {
         return hiveRealmResults
     }
 
+    /**
+     * Saves the given RealmObject to the database
+     *
+     * @param saveMe RealmObject to save
+     */
     fun saveObject(saveMe: RealmObject){
 
-        //If we make the RealmObject first,
-        //we should (in theory) pass it in and then use copyToRealm to save it to the database.
+        // If we make the RealmObject first,
+        // we should (in theory) pass it in and then use copyToRealm to save it to the database.
         realm.executeTransactionAsync { realm ->
             realm.copyToRealm(saveMe)
         }
     }
 
     // private constructor()
-
+    // TODO?
 }
