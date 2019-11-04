@@ -2,13 +2,13 @@ package com.example.thehiveapp_android.data
 
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import java.util.Date
+import java.util.*
 
 //This is meant to be an object that stores a single note about a hive.
 open class HiveLogRealmObject : RealmObject() {
 
     @PrimaryKey
-    var uuid: Long = 0 //Database ID
+    var uuid: Long = UUID.randomUUID().mostSignificantBits  //Database ID
 
     //Better than just implementing a hive's ID: Realm lets us keep an actual reference to that object.
     var hiveLogged: HiveRealmObject? = null //Granted, to make Kotlin happy, I have to make it optional.
