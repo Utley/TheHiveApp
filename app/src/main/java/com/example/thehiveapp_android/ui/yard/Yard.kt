@@ -1,4 +1,4 @@
-package com.example.thehiveapp_android.ui.yard
+package  com.example.thehiveapp_android.ui.yard
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.thehiveapp_android.R
 
-
+/**
+ *
+ */
 class Yard : Fragment() {
 
     companion object {

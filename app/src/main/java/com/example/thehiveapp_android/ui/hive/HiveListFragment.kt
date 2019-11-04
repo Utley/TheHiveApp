@@ -13,12 +13,30 @@ import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.R.id.hive_selection_list_view
 import com.example.thehiveapp_android.R.id.nav_host_fragment
 
+/**
+ * Adapts a RealmResults object for the HiveListItemView.
+ *
+ * This class is responsible for displaying a list of hives and listening for user input.
+ *
+ * @author Zac
+ */
 class HiveListFragment : Fragment() {
+    // This class acts like a wrapper for a RealmResults object, providing a modifier interface that can
+    // then be used in a HiveListItemView.
 
     private lateinit var viewModel: HiveListViewModel
 
     private lateinit var hiveListView : ListView
 
+
+    /**
+     * Creates a new view object.
+     *
+     * @param inflater
+     * @param container the ViewGroup this view belongs to ???
+     * @param savedInstanceState
+     * @return an inflated layout
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,6 +67,11 @@ class HiveListFragment : Fragment() {
         return root
     }
 
+    /**
+     * Specifies the object's behavior on creation.
+     *
+     * @throws Exception The specified activity is invalid
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

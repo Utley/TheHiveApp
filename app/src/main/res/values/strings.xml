@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+<resources>
+    <string name="app_name">TheHiveApp_Android</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_hive_form">Hive Form</string>
+    <string name="hive_form_title_default">Some Hive</string>
+</resources>
+=======
 <resources>
     <!-- main title strings -->
     <string name="app_name">TheHiveApp_Android</string>
@@ -31,3 +41,4 @@
     <string name="overall_health">Overall hive health</string>
 
 </resources>
+>>>>>>> 4ff0008716f407765f9e5c41b3260111f4e6bfa7
