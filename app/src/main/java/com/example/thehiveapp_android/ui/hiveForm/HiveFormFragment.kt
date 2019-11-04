@@ -31,7 +31,6 @@ class HiveFormFragment : Fragment() {
         button.setOnClickListener{
             Log.d("HiveFormFragment", hiveName.text.toString());
             val newHive = HiveRealmObject()
-            newHive.uuid = UUID.randomUUID().mostSignificantBits
             newHive.name = hiveName.text.toString()
             DataManager.instance.saveObject(newHive)
         }
