@@ -1,5 +1,6 @@
 package com.example.thehiveapp_android.data
 
+import io.realm.Realm
 import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
@@ -41,6 +42,9 @@ open class HiveRealmObject() : RealmObject() {
      * @param newLog log to add
      */
     fun addLog(newLog : HiveLogRealmObject) {
+        var realm:Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
         hiveLogs.add(newLog)
+        realm.commitTransaction()
     }
 }
