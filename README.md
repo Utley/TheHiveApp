@@ -49,7 +49,7 @@ our data. (Ask Zac about this.)
 The `HiveForm` fragment (will) carry out functions related to adding and
 modifying hive instances.
 
-* `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/HiveFormFragment.kt`
+* `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/InspectionFormFragment.kt`
 
 * `TheHiveApp/app/src/main/java/com/example/thehiveapp_android/ui/hiveForm/HiveFormViewModel.kt`
 

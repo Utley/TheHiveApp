@@ -9,7 +9,11 @@ import android.widget.TextView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveRealmObject
 
-
+/**
+ * Displays individual hive info
+ *
+ * Displays the details of an individual hive in the context of a HiveListFragment.
+ */
 class HiveListItemView : LinearLayout {
     private lateinit var hiveNameTextView: TextView
     private lateinit var hiveLastInspectedAtTextView: TextView
@@ -29,6 +33,11 @@ class HiveListItemView : LinearLayout {
 
     }
 
+    /**
+     * Populates this object with hive information.
+     *
+     * Populates this object with the information for a single hive, including filling the appropriate views.
+     */
     fun populate(hive: HiveRealmObject){
         //This is where we actually populate the views in this item.
 
@@ -45,11 +54,19 @@ class HiveListItemView : LinearLayout {
         hiveLastInspectedAtTextView.text = hiveDateString
     }
 
+    /** TODO what does this do?? */
     fun openHiveDetail(view: View) {
 
     }
 
 
+    /**
+     * Specifies the view's behavior when clicked.
+     *
+     * Specifies the view's behavior when clicked.
+     *
+     * @param v the view
+     */
     fun onClick(v: View) {
         Log.d("HiveListItemView", "Clicked Hive")
     }

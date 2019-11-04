@@ -144,4 +144,5 @@ class NotificationsFragment : Fragment() {
         }
 
     }
+
 }
