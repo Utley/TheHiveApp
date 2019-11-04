@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/navigation_hive_form"
-        android:name="com.example.thehiveapp_android.ui.hiveForm.HiveFormFragment"
+        android:name="com.example.thehiveapp_android.ui.hiveForm.InspectionFormFragment"
         android:label="HiveForm"
         tools:layout="@layout/hive_form_fragment" />
 </navigation>

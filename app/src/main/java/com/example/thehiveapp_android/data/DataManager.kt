@@ -32,7 +32,7 @@ class DataManager {
 
     private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
 
-    
+
     /**
      * Synchronously retrieves all objects of a given type from the database.
      *
@@ -52,6 +52,9 @@ class DataManager {
      *
      * @return a list(?) of HiveRealmObjects
      */
+    fun getAllHiveLogs() : RealmResults<HiveLogRealmObject> = realm.where(HiveLogRealmObject::class.java).findAll()
+
+    //Get all hives from the database, synchronously.
     fun getAllHives() : RealmResults<HiveRealmObject> {
         val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
 
@@ -79,7 +82,7 @@ class DataManager {
     /**
      * Retrieves all reminders from the database.
      *
-     * Retrieves all reminder objects from the database. 
+     * Retrieves all reminder objects from the database.
      *
      * @return a list(?) of reminder objects
      */
@@ -113,7 +116,7 @@ class DataManager {
             deleteMe.deleteFromRealm()
         }
     }
-    
+
     /**
      * Removes a series of RealmObject from the database.
      *
