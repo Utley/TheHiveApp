@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "Welcome to HiveMind Reminders! Set the clock to the desired time below then click set to create your reminder."
     }
     val text: LiveData<String> = _text
 }

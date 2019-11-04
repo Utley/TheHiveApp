@@ -29,5 +29,8 @@
     <string name="seen_eggs">Did you see new eggs?</string>
     <string name="mite_check">Did you check for mites?</string>
     <string name="overall_health">Overall hive health</string>
-
+    <!-- reminders -->
+    <string name="notification">New Notification</string>
+    <string name="notification_channel_description">This is a sample notification channel for demonstration purpose.</string>
+    <string name="pick_time">Set reminder</string>
 </resources>
