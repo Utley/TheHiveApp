@@ -57,19 +57,35 @@
 
     <TimePicker
         android:id="@+id/notificationTimePicker"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner"/>
+        android:layout_marginTop="88dp"
+        android:layout_marginRight="60dp"
+        android:gravity="center"
+        android:timePickerMode="spinner"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
 
     <Button
         android:id="@+id/notificationTimePickerButton"
-        app:layout_constraintTop_toBottomOf="@+id/notificationTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pick_time" />
-       <!-- android:onClick="clickTest" /> -->
+        android:layout_marginStart="76dp"
+        android:gravity="center"
+        android:text="@string/pick_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notificationTimePicker" />
+
+    <Button
+        android:id="@+id/notificationCancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:text="@string/cancelNotification"
+        app:layout_constraintLeft_toRightOf="@+id/notificationTimePickerButton"
+        app:layout_constraintTop_toBottomOf="@+id/notificationTimePicker" />
+
+    <!-- android:onClick="clickTest" /> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

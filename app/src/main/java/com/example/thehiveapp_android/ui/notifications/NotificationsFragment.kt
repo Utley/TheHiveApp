@@ -48,15 +48,24 @@ class NotificationsFragment : Fragment() {
         val timeButton: Button = root.findViewById(R.id.notificationTimePickerButton)
         timeButton.setOnClickListener{
             clickTest(it, timePicker)
-            updateLst(root, timePicker)
+            updateLst(root, timePicker, "All notifications clear")
 
+        }
+
+        val cancelButton: Button = root.findViewById(R.id.notificationCancelButton)
+        cancelButton.setOnClickListener{
+            cancelNotificationFromPicker(timePicker)
+            val timeTextView: TextView = root.findViewById(R.id.time_notification) as TextView
+            timeTextView.text = "All notifications clear\n"
+
+            //clickTest(it, timePicker)
         }
 
 
         return root
     }
 
-    fun updateLst(root: View, timePicker: TimePicker){
+    fun updateLst(root: View, timePicker: TimePicker, rmvStr: String){
         val timeTextView: TextView = root.findViewById(R.id.time_notification) as TextView
 
         val calendar: Calendar = Calendar.getInstance().apply {
@@ -79,10 +88,11 @@ class NotificationsFragment : Fragment() {
 
         // do something with the rest of elements
         iterator.forEach {
-            //if(not removed)
-            string += it
-            string += "\n"
-            //println("The element is $it")
+            if(rmvStr != it){
+                string += it
+                string += "\n"
+            }
+
         }
         timeTextView.text = string
 //
@@ -141,6 +151,31 @@ class NotificationsFragment : Fragment() {
         var act = this@NotificationsFragment.activity
         if (!mNotified && act != null) {
             NotificationUtils().setNotification(mNotificationTime, act)
+        }
+
+    }
+
+    fun cancelNotificationFromPicker(timePicker: TimePicker){
+        println("Hello World 3")
+
+        val calendar: Calendar = Calendar.getInstance().apply {
+            //timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, timePicker.hour)
+            set(Calendar.MINUTE, timePicker.minute)
+            //set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE)+1)
+            set(Calendar.SECOND, 0)
+        }
+
+        // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
+        var mNotificationTime = calendar.timeInMillis //Set to 2:20 AM
+
+        println("Creating notification for ${calendar.time}")
+        println("Real time is ${Calendar.getInstance().time}")
+
+
+        var act = this@NotificationsFragment.activity
+        if (!mNotified && act != null) {
+            NotificationUtils().deleteNotification(mNotificationTime, act)
         }
 
     }
