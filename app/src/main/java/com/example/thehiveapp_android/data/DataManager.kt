@@ -28,7 +28,10 @@ class DataManager {
             }
     }
 
-    private var realm : Realm = Realm.getDefaultInstance()
+    constructor(testDB: Realm)
+
+    // made latinit so that Realm instances can be injected for testing
+    private lateinit var realm : Realm = Realm.getDefaultInstance()
 
     private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
 
