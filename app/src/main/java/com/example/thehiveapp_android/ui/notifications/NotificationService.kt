@@ -16,7 +16,7 @@ import com.example.thehiveapp_android.R
 
 
 /**
- *
+ * Specifies behavior on reception of a notification.
  *
  * @author I forgot how to check
  */
@@ -55,7 +55,11 @@ class NotificationService : IntentService("NotificationService") {
         const val CHANNEL_NAME = "Sample Notification"
     }
 
-
+    /**
+     * Responds to the notification's incoming intent.
+     *
+     * @param intent The new notification's intent
+     */
     override fun onHandleIntent(intent: Intent?) {
 
         //Create Channel
