@@ -5,6 +5,7 @@ import io.realm.Realm
 import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
+import java.lang.Exception
 
 /**
  * Manages the data stored in a Realm database.
@@ -14,32 +15,34 @@ import io.realm.RealmResults
  *
  * @author Zac
  */
-class DataManager {
+class DataManager private constructor (var realm : Realm) {
     // Let's make this a singleton class...
     companion object {
         private var managerInstance : DataManager? = null
 
+        fun getInstance(targetRealm : Realm?) : DataManager {
+            if (managerInstance == null) {
+                managerInstance = DataManager(targetRealm ?: Realm.getDefaultInstance())
+            }
+            return managerInstance!!
+        }
+
+
         val instance: DataManager
             get() {
                 if (managerInstance == null){
-                    managerInstance = DataManager()
+                    managerInstance = DataManager(Realm.getDefaultInstance())
                 }
                 return managerInstance!!
             }
+
     }
-
-    constructor(testDB: Realm)
-
-    // made latinit so that Realm instances can be injected for testing
-    private lateinit var realm : Realm = Realm.getDefaultInstance()
 
     private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
 
 
     /**
-     * Synchronously retrieves all objects of a given type from the database.
-     *
-     * Synchronously retrieves all Realm object of a given type from the database.
+     * Synchronously retrieves all Realm objects of a given type from the database.
      *
      * @param classz A class representing the object type to retrieve
      * @return a RealmResults containing all objects of the given type
@@ -83,9 +86,7 @@ class DataManager {
     }
 
     /**
-     * Retrieves all reminders from the database.
-     *
-     * Retrieves all reminder objects from the database.
+     * Retrieves all reminders objects from the database.
      *
      * @return a list of reminder objects
      */
