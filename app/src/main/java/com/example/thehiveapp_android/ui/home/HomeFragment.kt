@@ -26,11 +26,17 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
 
     /**
-     * Defines behavior on object creation.
+     * Called to have the fragment instantiate its user interface view. This will be called between
+     * `onCreate(Bundle)` and `onActivityCreated(Bundle)`.
      *
-     * @param inflater The LayoutInflater
-     * @param container The ViewGroup containing this fragment
-     * @param savedInstanceState A previously-saved instance state
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the
+     * fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be
+     * attached to.  The fragment should not add the view itself, but this can be used to generate
+     * the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous
+     * saved state as given here.
+     * @return Return the View for the fragment's UI, or null.
      */
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -28,7 +28,7 @@ class NotificationsFragment : Fragment() {
 
     /**
      * Called to have the fragment instantiate its user interface view. This will be called between
-     * onCreate(Bundle) and onActivityCreated(Bundle)
+     * `onCreate(Bundle)` and `onActivityCreated(Bundle)`.
      *
      * @param inflater The LayoutInflater object that can be used to inflate any views in the
      * fragment

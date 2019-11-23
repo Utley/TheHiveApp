@@ -7,6 +7,7 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import com.example.thehiveapp_android.R
+import org.jetbrains.annotations.TestOnly
 
 /**
  * More visual stuffs?
@@ -132,7 +133,7 @@ class YardView : View {
     }
 
     /**
-     *
+     * Test function
      */
     fun drawTestHives(canvas: Canvas) {
         val hive_width: Float = 150F
@@ -148,7 +149,7 @@ class YardView : View {
     }
 
     /**
-     * test function??
+     *
      */
     fun testDraw(canvas: Canvas) {
         drawTestHives(canvas)
@@ -157,15 +158,17 @@ class YardView : View {
     }
 
     /**
+     * Specifies the object's behavior when asked to draw itself; renders the object on the given
+     * canvas.
      *
+     * @param canvas The canvas to draw ourselves on
      */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         testDraw(canvas)
 
-        // TODO: consider storing these as member variables to reduce
-        // allocations per draw cycle.
+        // TODO: consider storing these as member variables to reduce allocations per draw cycle.
         val paddingLeft = paddingLeft
         val paddingTop = paddingTop
         val paddingRight = paddingRight
