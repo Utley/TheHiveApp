@@ -4,6 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+/**
+ *
+ *
+ * @author I forgot how to check
+ */
 class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {

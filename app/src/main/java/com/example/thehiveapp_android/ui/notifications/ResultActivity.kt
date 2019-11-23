@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 import com.example.thehiveapp_android.R
 
+/**
+ *
+ *
+ * @author I forgot how to check
+ */
 class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

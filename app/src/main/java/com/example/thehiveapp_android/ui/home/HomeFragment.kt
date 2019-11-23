@@ -16,10 +16,22 @@ import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import java.util.*
 
+/**
+ * Fragment to manage displaying the app home screen.
+ *
+ * @author I forgot how to check
+ */
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
+    /**
+     * Defines behavior on object creation.
+     *
+     * @param inflater The LayoutInflater
+     * @param container The ViewGroup containing this fragment
+     * @param savedInstanceState A previously-saved instance state
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,7 +39,7 @@ class HomeFragment : Fragment() {
     ): View? {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-//        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        // val root = inflater.inflate(R.layout.fragment_home, container, false)
         val root = inflater.inflate(R.layout.hive_form_fragment, container, false)
         val hiveName: EditText = root.findViewById(R.id.hiveNameTextInput)
         val button = root.findViewById(R.id.saveButton) as Button
@@ -38,6 +50,7 @@ class HomeFragment : Fragment() {
             newHive.name = hiveName.text.toString()
             DataManager.instance.saveObject(newHive)
         }
+
         return root
     }
 }

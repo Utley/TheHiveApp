@@ -13,6 +13,8 @@ import com.example.thehiveapp_android.data.HiveRealmObject
  * Displays individual hive info
  *
  * Displays the details of an individual hive in the context of a HiveListFragment.
+ *
+ * @author I forgot how to check
  */
 class HiveListItemView : LinearLayout {
     private lateinit var hiveNameTextView: TextView

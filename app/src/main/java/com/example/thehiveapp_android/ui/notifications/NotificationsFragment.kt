@@ -17,6 +17,11 @@ import com.example.thehiveapp_android.R
 
 import java.util.*
 
+/**
+ *
+ *
+ * @author I forgot how to check
+ */
 class NotificationsFragment : Fragment() {
 
     private lateinit var notificationsViewModel: NotificationsViewModel

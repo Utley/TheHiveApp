@@ -15,7 +15,11 @@ import com.example.thehiveapp_android.MainActivity
 import com.example.thehiveapp_android.R
 
 
-
+/**
+ *
+ *
+ * @author I forgot how to check
+ */
 class NotificationService : IntentService("NotificationService") {
     private lateinit var mNotification: Notification
     private val mNotificationId: Int = 1000

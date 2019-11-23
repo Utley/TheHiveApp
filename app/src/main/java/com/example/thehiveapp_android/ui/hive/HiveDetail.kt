@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
 
+/**
+ * Fragment which handles displaying a detailed display of a hive.
+ *
+ * @author I forgot how to check
+ */
 class HiveDetail : Fragment() {
 
     private lateinit var viewModel: HiveListViewModel

@@ -10,11 +10,14 @@ import java.util.*
 
 /**
  * Created based on example by devdeeds.com on 5/12/17.
+ *
+ * @author I forgot how to check
  */
-
 class NotificationUtils {
 
-
+    /**
+     *
+     */
     fun setNotification(timeInMilliSeconds: Long, activity: Activity) {
 
         //------------  alarm settings start  -----------------//
@@ -54,6 +57,9 @@ class NotificationUtils {
 
     }
 
+    /**
+     *
+     */
     fun deleteNotification(timeInMilliSeconds: Long, activity: Activity) {
 
         //------------  alarm settings start  -----------------//

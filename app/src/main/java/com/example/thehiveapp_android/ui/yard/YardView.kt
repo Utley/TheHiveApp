@@ -9,7 +9,9 @@ import android.view.View
 import com.example.thehiveapp_android.R
 
 /**
- * TODO: document your custom view class.
+ * More visual stuffs?
+ *
+ * @author ???
  */
 class YardView : View {
 
@@ -56,14 +58,23 @@ class YardView : View {
      */
     var exampleDrawable: Drawable? = null
 
+    /**
+     *
+     */
     constructor(context: Context) : super(context) {
         init(null, 0)
     }
 
+    /**
+     *
+     */
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(attrs, 0)
     }
 
+    /**
+     *
+     */
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(
         context,
         attrs,
@@ -120,6 +131,9 @@ class YardView : View {
         }
     }
 
+    /**
+     *
+     */
     fun drawTestHives(canvas: Canvas) {
         val hive_width: Float = 150F
         val hive_height: Float = 150F
@@ -133,12 +147,18 @@ class YardView : View {
 
     }
 
+    /**
+     * test function??
+     */
     fun testDraw(canvas: Canvas) {
         drawTestHives(canvas)
 
 
     }
 
+    /**
+     *
+     */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
