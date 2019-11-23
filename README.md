@@ -1,6 +1,10 @@
 # Main
 
-TODO: paste in some stuff from our docs about the background and intentions behind this app
+The Hive App is an attempt to create an apiary management app for Android, as part
+of a group project for Software Design and Development. The app helps beekeepers
+manage their bees by keeping all the relevant data easily accessible in a single
+place, as well as by setting reminders for them to perform regular maintenance 
+tasks such as inspections.
 
 # Organization
 
