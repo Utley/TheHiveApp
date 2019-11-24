@@ -146,4 +146,24 @@ class DataManager private constructor (private var realm : Realm) {
         }
     }
 
+    /**
+     * Performs cleanup for database operations.
+     *
+     * Performs cleanup for database operations, such as closing the connections. After this method
+     * is called, the current DataManager instance will be rendered invalid and cannot be used. This
+     * also resets the class's instance tracking, meaning the next call to getInstance will return a
+     * new valid DataManager instance.
+     *
+     *
+     * Note: I have no idea if this is even strictly necessary. I noticed that the online test cases
+     * I was looking at explicitly closed the connection and figured that was probably true for us
+     * too, but this is another thing which might not be true for the normal use case. Might remove
+     * this after testing or something, not sure.
+     *
+     * @author David
+     */
+    fun tearDown() {
+        realm.close()
+        managerInstance = null
+    }
 }

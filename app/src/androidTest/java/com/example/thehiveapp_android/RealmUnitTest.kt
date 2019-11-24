@@ -6,15 +6,21 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import org.junit.Test
 
+import androidx.test.runner.AndroidJUnit4
+import androidx.test.runner.AndroidJUnitRunner
+import org.junit.After
+
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.runner.RunWith
 
 
 /**
- * Unit test to monitor the correctness of our Realm database.
+ * Instrumented unit test to monitor the correctness of our Realm database.
  *
  * @author David
  */
+@RunWith(AndroidJUnit4::class)
 class RealmUnitTest {
 
     // dummy Realm object used for testing
@@ -29,8 +35,17 @@ class RealmUnitTest {
 
     }
 
+    /**
+     * TODO replace this with a real test once things start compiling
+     */
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+
+    @After
+    fun tearDown() {
+        manager.tearDown()
     }
 }
