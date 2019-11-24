@@ -14,7 +14,7 @@ class HiveListViewModel : ViewModel() {
     /**
      * Retrieves the list of hives currently stored in the database.
      */
-    var hives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
+    var hives: RealmResults<HiveRealmObject> = DataManager.getInstance().getAllHives()
 
     /**
      * The hive that is currently selected.

@@ -15,27 +15,35 @@ import java.lang.Exception
  *
  * @author Zac
  */
-class DataManager private constructor (var realm : Realm) {
+class DataManager private constructor (private var realm : Realm) {
     // Let's make this a singleton class...
     companion object {
         private var managerInstance : DataManager? = null
 
-        fun getInstance(targetRealm : Realm?) : DataManager {
+        /**
+         * Retrieves the single DataManager instance.
+         *
+         * Class-level function that retrieves the DataManager singleton. If a Realm object is
+         * supplied for the argument and DataManager has not been instantiated, said provided Realm
+         * object will be used for the DataManager instance. If no Realm object already exists, this
+         * function will use the default one. If an instance already exists, that will be returned
+         * and the Realm object will be ignored.
+         *
+         * NOTE: this function has been implemented purely for testing purposes, so we can use
+         * custom databases without affecting the primary one. It should probably be reverted, or we
+         * should find some other workaround; in a non-debugging environment, DataManager should
+         * always use the default Realm instance.
+         *
+         * @param targetRealm The Realm object to use to create the DataManager instance, if one
+         *  does not already exist. If this is null or if an instance already exists, it is ignored
+         * @return The singleton DataManager instance
+         */
+        fun getInstance(targetRealm : Realm? = null) : DataManager {
             if (managerInstance == null) {
                 managerInstance = DataManager(targetRealm ?: Realm.getDefaultInstance())
             }
             return managerInstance!!
         }
-
-
-        val instance: DataManager
-            get() {
-                if (managerInstance == null){
-                    managerInstance = DataManager(Realm.getDefaultInstance())
-                }
-                return managerInstance!!
-            }
-
     }
 
     private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
@@ -51,16 +59,17 @@ class DataManager private constructor (var realm : Realm) {
     fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
 
     /**
-     * Synchronously retrieves all hives from the database.
+     * Synchronously retrieves all hive logs from the database.
      *
-     * Synchronously retrieves all hives from the database. If no hives have been entered, creates
-     * a dummy object and adds that; I assuuuuume that's just debug behavior?
-     *
-     * @return a RealmResults containing all HiveRealmObjects
+     * @return a RealmResults containing all current hive logs
      */
     fun getAllHiveLogs() : RealmResults<HiveLogRealmObject> = realm.where(HiveLogRealmObject::class.java).findAll()
 
-    //Get all hives from the database, synchronously.
+    /**
+     * Synchronously retrieves all hive objects from the database.
+     *
+     * @return a RealmResults containing all current hives
+     */
     fun getAllHives() : RealmResults<HiveRealmObject> {
         val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
 
@@ -90,6 +99,7 @@ class DataManager private constructor (var realm : Realm) {
      *
      * @return a list of reminder objects
      */
+    // shouldn't this need a return value listed? Or is it implied?
     fun getAllReminders() = realm.where(ReminderRealmObject::class.java).findAll()
 
     /**
@@ -122,13 +132,13 @@ class DataManager private constructor (var realm : Realm) {
     }
 
     /**
-     * Removes a series of RealmObject from the database.
+     * Removes a series of RealmObjects from the database.
      *
      * Asynchronously removes all objects in the given RealmResults set from the database.
      *
      * @param deleteUs RealmResults containing objects to delete
      */
-    fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>){
+    fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>) {
         // Similar, again, to the method above; pass in a RealmResults containing all the objects
         // we want to delete, and we'll delete them all.
         realm.executeTransactionAsync { _ ->

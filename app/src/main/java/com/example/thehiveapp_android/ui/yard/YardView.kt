@@ -149,7 +149,7 @@ class YardView : View {
     }
 
     /**
-     *
+     * Test function
      */
     fun testDraw(canvas: Canvas) {
         drawTestHives(canvas)

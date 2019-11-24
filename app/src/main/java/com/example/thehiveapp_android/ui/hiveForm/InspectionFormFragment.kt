@@ -53,7 +53,7 @@ class InspectionFormFragment : Fragment() {
 
         val hiveNameSpinner: Spinner = root.findViewById(R.id.hiveNameSpinner)
 
-        var hives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
+        var hives: RealmResults<HiveRealmObject> = DataManager.getInstance().getAllHives()
         val hivesAdapter = HiveRealmListAdapter(requireContext(), hives, true)
         hiveNameSpinner.adapter = hivesAdapter
 
