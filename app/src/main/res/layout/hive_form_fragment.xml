@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="64dp"
     android:isScrollContainer="true"
-    tools:context=".ui.hiveForm.InspectionFormFragment">
+    tools:context=".ui.inspection.InspectionFormFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

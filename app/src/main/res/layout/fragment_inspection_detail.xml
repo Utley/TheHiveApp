@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.inspection.InspectionDetail">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/broodCount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="2"
+            android:textAlignment="gravity"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/broodLabel"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/broodLabel"
+            app:layout_constraintTop_toBottomOf="@+id/honeyCount"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/broodLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/left_padding"
+            android:text="@string/brood_count"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/honeyLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/honeyLabel" />
+
+        <TextView
+            android:id="@+id/eggLabel"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/left_padding"
+            android:text="New Eggs"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/honeyCount"
+            app:layout_constraintStart_toEndOf="@+id/honeyCount"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+
+        <TextView
+            android:id="@+id/miteLabel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/left_padding"
+            android:text="Mites"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/broodCount"
+            app:layout_constraintEnd_toEndOf="@+id/eggLabel"
+            app:layout_constraintStart_toEndOf="@+id/honeyCount"
+            app:layout_constraintTop_toBottomOf="@+id/eggLabel" />
+
+        <TextView
+            android:id="@+id/queenLabel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/left_padding"
+            android:text="Queen"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pollenCount"
+            app:layout_constraintEnd_toEndOf="@+id/miteLabel"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/miteLabel" />
+
+        <TextView
+            android:id="@+id/honeyLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/left_padding"
+            android:text="@string/honey_count"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+
+        <TextView
+            android:id="@+id/polenLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/left_padding"
+            android:text="@string/pollen_count"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
+
+        <TextView
+            android:id="@+id/honeyCount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="1"
+            android:textAlignment="gravity"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/honeyLabel"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toEndOf="@+id/honeyLabel"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+
+        <TextView
+            android:id="@+id/pollenCount"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="1"
+            android:textAlignment="gravity"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/polenLabel"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toEndOf="@+id/polenLabel"
+            app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent=".5" />
+
+        <CheckBox
+            android:id="@+id/eggCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/eggLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/eggLabel"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+
+        <CheckBox
+            android:id="@+id/miteCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/miteLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/miteLabel"
+            app:layout_constraintTop_toBottomOf="@+id/eggCheckbox" />
+
+        <CheckBox
+            android:id="@+id/queenCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/queenLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/queenLabel"
+            app:layout_constraintTop_toBottomOf="@+id/miteCheckbox" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

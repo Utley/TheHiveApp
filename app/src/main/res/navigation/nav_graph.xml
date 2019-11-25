@@ -24,6 +24,12 @@
         tools:layout="@layout/hive_detail_fragment" />
 
     <fragment
+        android:id="@+id/inspection_detail"
+        android:name="com.example.thehiveapp_android.ui.inspection.InspectionDetail"
+        android:label="Inspection"
+        tools:layout="@layout/fragment_inspection_detail" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.thehiveapp_android.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
@@ -31,7 +37,7 @@
 
     <fragment
         android:id="@+id/navigation_hive_form"
-        android:name="com.example.thehiveapp_android.ui.hiveForm.InspectionFormFragment"
-        android:label="HiveForm"
+        android:name="com.example.thehiveapp_android.ui.inspection.InspectionFormFragment"
+        android:label="New Inspection"
         tools:layout="@layout/hive_form_fragment" />
 </navigation>

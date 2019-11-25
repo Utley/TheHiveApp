@@ -5,8 +5,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_hive_form">Hive Form</string>
-    <string name="hive_form_title_default">Some Hive</string>
-  
+    <string name="hive_form_title_default">Hive Name</string>
+
     <string name="add_hive_form_title">Add Hive</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -22,12 +22,12 @@
     <string name="text_four">Four</string>
     <string name="text_five">Five</string>
     <!-- inspection log titles-->
-    <string name="honey_count">Honey count</string>
-    <string name="pollen_count">Pollen count</string>
-    <string name="brood_count">Brood count</string>
+    <string name="honey_count">Honey Count</string>
+    <string name="pollen_count">Pollen Count</string>
+    <string name="brood_count">Brood Count</string>
     <string name="seen_queen">Did you see the queen?</string>
     <string name="seen_eggs">Did you see new eggs?</string>
-    <string name="mite_check">Did you check for mites?</string>
+    <string name="mite_check">Did you see mites?</string>
     <string name="overall_health">Overall hive health</string>
     <!-- reminders -->
     <string name="notification">New Notification</string>
