@@ -39,7 +39,7 @@ class DataManager {
      * Synchronously retrieves all Realm object of a given type from the database.
      *
      * @param classz A class representing the object type to retrieve
-     * @return a list(?) of object sof the given type
+     * @return a RealmResults containing all objects of the given type
      */
      //In case a generic version of this is needed.
     fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
@@ -50,7 +50,7 @@ class DataManager {
      * Synchronously retrieves all hives from the database. If no hives have been entered, creates
      * a dummy object and adds that; I assuuuuume that's just debug behavior?
      *
-     * @return a list(?) of HiveRealmObjects
+     * @return a RealmResults containing all HiveRealmObjects
      */
     fun getAllHiveLogs() : RealmResults<HiveLogRealmObject> = realm.where(HiveLogRealmObject::class.java).findAll()
 
@@ -84,7 +84,7 @@ class DataManager {
      *
      * Retrieves all reminder objects from the database.
      *
-     * @return a list(?) of reminder objects
+     * @return a list of reminder objects
      */
     fun getAllReminders() = realm.where(ReminderRealmObject::class.java).findAll()
 
@@ -122,7 +122,7 @@ class DataManager {
      *
      * Asynchronously removes all objects in the given RealmResults set from the database.
      *
-     * @param deleteMe RealmObject to delete
+     * @param deleteUs RealmResults containing objects to delete
      */
     fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>){
         // Similar, again, to the method above; pass in a RealmResults containing all the objects
