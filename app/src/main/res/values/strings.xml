@@ -34,4 +34,10 @@
     <string name="notification_channel_description">This is a sample notification channel for demonstration purpose.</string>
     <string name="pick_time">Set reminder</string>
     <string name="cancelNotification">Clear all</string>
+
+    <string-array name="frame_size_array">
+        <item>Shallow (5 3/8")</item>
+        <item>Medium (6 1/4")</item>
+        <item>Deep (9 1/8")</item>
+    </string-array>
 </resources>
