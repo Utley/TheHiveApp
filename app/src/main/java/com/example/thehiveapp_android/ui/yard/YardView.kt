@@ -60,23 +60,21 @@ class YardView : Fragment() {
         val hiveLayout: RelativeLayout = root.findViewById(R.id.hiveContainer)
         root.setOnDragListener { it, dragEvent ->
             if(dragEvent.action == DragEvent.ACTION_DRAG_STARTED) {
-                true
-            }
-
-            if(dragEvent.action == DragEvent.ACTION_DROP) {
-                var tmpParams: FrameLayout.LayoutParams  = FrameLayout.LayoutParams(buttonWidth, buttonHeight)
-                tmpParams.width = buttonWidth
-                tmpParams.height = buttonHeight
-//                    tmpParams.leftMargin = button.left + round(dragEvent.x)
-//                    tmpParams.topMargin = button.top + round(dragEvent.y)
-                tmpParams.leftMargin = round(dragEvent.x) - it.width / 2
-                tmpParams.topMargin = round(dragEvent.y) - it.height / 2
-                it.layoutParams = tmpParams
-//                    button.top = round(dragEvent.y)
-//                    button.left = round(dragEvent.x)
-//                    button.width = buttonWidth
-//                    button.height = buttonHeight
-
+//
+//            if(dragEvent.action == DragEvent.ACTION_DROP) {
+//                var tmpParams: FrameLayout.LayoutParams  = FrameLayout.LayoutParams(buttonWidth, buttonHeight)
+//                tmpParams.width = buttonWidth
+//                tmpParams.height = buttonHeight
+////                    tmpParams.leftMargin = button.left + round(dragEvent.x)
+////                    tmpParams.topMargin = button.top + round(dragEvent.y)
+//                tmpParams.leftMargin = round(dragEvent.x) - it.width / 2
+//                tmpParams.topMargin = round(dragEvent.y) - it.height / 2
+//                it.layoutParams = tmpParams
+////                    button.top = round(dragEvent.y)
+////                    button.left = round(dragEvent.x)
+////                    button.width = buttonWidth
+////                    button.height = buttonHeight
+//
                 true
             }
             else true
@@ -106,24 +104,24 @@ class YardView : Fragment() {
             }
             button.setOnDragListener { it, dragEvent ->
                 Log.i("hive","drag event ${dragEvent.toString()}")
-                if(dragEvent.action == DragEvent.ACTION_DRAG_ENDED) {
+                if(dragEvent.action == DragEvent.ACTION_DROP) {
+                    Log.i("hive","button ${button.text} got dropped!")
 
                     var tmpParams: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
                     tmpParams.width = buttonWidth
                     tmpParams.height = buttonHeight
-//                    tmpParams.leftMargin = button.left + round(dragEvent.x)
-//                    tmpParams.topMargin = button.top + round(dragEvent.y)
-//                    tmpParams.leftMargin = round(dragEvent.x) - button.width / 2
-//                    tmpParams.topMargin = round(dragEvent.y) - button.height / 2
-                    Log.i("hive","left ${button.left}")
-                    Log.i("hive","top ${button.top}")
+                    tmpParams.leftMargin = button.left + round(dragEvent.x)
+                    tmpParams.topMargin = button.top + round(dragEvent.y)
+                    tmpParams.leftMargin = round(dragEvent.x) - button.width / 2
+                    tmpParams.topMargin = round(dragEvent.y) - button.height / 2
+                    tmpParams.alignWithParent = true
+                    Log.i("hive","left pre ${button.left}")
+                    Log.i("hive","top pre ${button.top}")
                     Log.i("hive","drag x ${dragEvent.x}")
                     Log.i("hive","drag y ${dragEvent.y}")
-//                    button.layoutParams = tmpParams
-//                    button.top = round(dragEvent.y)
-//                    button.left = round(dragEvent.x)
-//                    button.width = buttonWidth
-//                    button.height = buttonHeight
+                    button.layoutParams = tmpParams
+                    Log.i("hive","left post ${button.left}")
+                    Log.i("hive","top post ${button.top}")
                     true
                 }
                 else true
