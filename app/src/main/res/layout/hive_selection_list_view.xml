@@ -6,6 +6,7 @@
     <ListView
         android:id="@+id/hive_selection_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingVertical="@dimen/left_padding" />
 
 </LinearLayout>

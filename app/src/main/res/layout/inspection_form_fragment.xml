@@ -1,185 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="64dp"
     android:isScrollContainer="true"
-    tools:context=".ui.hiveForm.InspectionFormFragment">
+    tools:context=".ui.inspection.InspectionFormFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/hiveNameSpinner"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/hive_form_title_default"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/hive_form_title_default"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
-
-        <TextView
-            android:id="@+id/honeyText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/honey_count"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
-        <RadioGroup
-            android:id="@+id/honeyInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/honey1"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_one" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Save"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seen_queen_switch"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <RadioButton
-                android:id="@+id/honey2"
-                android:layout_width="wrap_content"
+            <Switch
+                android:id="@+id/seen_mites_switch"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/text_two" />
+                android:layout_marginStart="@dimen/left_padding"
+                android:layout_marginTop="8dp"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:text="@string/mite_check"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                android:thumbTint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seen_eggs_switch" />
 
-            <RadioButton
-                android:id="@+id/honey3"
-                android:layout_width="wrap_content"
+            <Switch
+                android:id="@+id/seen_eggs_switch"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/text_three" />
+                android:layout_marginStart="@dimen/left_padding"
+                android:layout_marginTop="16dp"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:text="@string/seen_eggs"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                android:thumbTint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pollenText" />
 
-            <RadioButton
-                android:id="@+id/honey4"
-                android:layout_width="wrap_content"
+            <Switch
+                android:id="@+id/seen_queen_switch"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/text_four" />
+                android:layout_marginStart="@dimen/left_padding"
+                android:layout_marginTop="8dp"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:text="@string/seen_queen"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                android:thumbTint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seen_mites_switch" />
 
-            <RadioButton
-                android:id="@+id/honey5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_five" />
-        </RadioGroup>
+            <TextView
+                android:id="@+id/spacer"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/pollenText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pollen_count"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            <LinearLayout
+                android:id="@+id/tableHeader"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/honeyText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/spacer"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <RadioGroup
-            android:id="@+id/pollenInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tableCol1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1" />
 
-            <RadioButton
-                android:id="@+id/pollen1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_one" />
+                <TextView
+                    android:id="@+id/tableCol2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2" />
 
-            <RadioButton
-                android:id="@+id/pollen2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_two" />
+                <TextView
+                    android:id="@+id/tableCol3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3" />
 
-            <RadioButton
-                android:id="@+id/pollen3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_three" />
+                <TextView
+                    android:id="@+id/tableCol4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4" />
 
-            <RadioButton
-                android:id="@+id/pollen4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_four" />
+                <TextView
+                    android:id="@+id/tableCol5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5" />
 
-            <RadioButton
-                android:id="@+id/pollen5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_five" />
-        </RadioGroup>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/broodText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/brood_count"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            <TextView
+                android:id="@+id/honeyText"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:paddingLeft="@dimen/left_padding"
+                android:text="@string/honey_count"
+                android:textAlignment="inherit"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/tableHeader"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spacer" />
 
-        <RadioGroup
-            android:id="@+id/broodInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            <RadioGroup
+                android:id="@+id/honeyInput"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/broodText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tableHeader"
+                app:layout_constraintTop_toBottomOf="@+id/spacer">
 
-            <RadioButton
-                android:id="@+id/brood1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_one" />
+                <RadioButton
+                    android:id="@+id/honey1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:gravity="fill_horizontal"
+                    android:textColorLink="@color/colorAccent" />
 
-            <RadioButton
-                android:id="@+id/brood2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_two" />
+                <RadioButton
+                    android:id="@+id/honey2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:gravity="fill_horizontal"
+                    android:textAlignment="center"
+                    android:textColorLink="@color/colorAccent" />
 
-            <RadioButton
-                android:id="@+id/brood3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_three" />
+                <RadioButton
+                    android:id="@+id/honey3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:gravity="fill_horizontal"
+                    android:textAlignment="center"
+                    android:textColorLink="@color/colorAccent" />
 
-            <RadioButton
-                android:id="@+id/brood4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_four" />
+                <RadioButton
+                    android:id="@+id/honey4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:gravity="fill_horizontal"
+                    android:textAlignment="center"
+                    android:textColorLink="@color/colorAccent" />
 
-            <RadioButton
-                android:id="@+id/brood5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_five" />
+                <RadioButton
+                    android:id="@+id/honey5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:gravity="fill_horizontal"
+                    android:textAlignment="center"
+                    android:textColorLink="@color/colorAccent" />
 
-        </RadioGroup>
+            </RadioGroup>
 
-        <Switch
-            android:id="@+id/seen_queen_switch"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
-            android:text="@string/seen_queen" />
+            <TextView
+                android:id="@+id/broodText"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:paddingLeft="@dimen/left_padding"
+                android:text="@string/brood_count"
+                android:textAlignment="inherit"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/tableHeader"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/honeyText" />
 
-        <Switch
-            android:id="@+id/seen_eggs_switch"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
-            android:text="@string/seen_eggs" />
+            <RadioGroup
+                android:id="@+id/broodInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/pollenText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tableHeader"
+                app:layout_constraintTop_toBottomOf="@+id/honeyText">
 
-        <Switch
-            android:id="@+id/mite_check_switch"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
-            android:text="@string/mite_check" />
+                <RadioButton
+                    android:id="@+id/brood1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save" />
+                <RadioButton
+                    android:id="@+id/brood2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/brood3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/brood4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/brood5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/pollenText"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:paddingLeft="@dimen/left_padding"
+                android:text="@string/pollen_count"
+                android:textAlignment="inherit"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/tableHeader"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/broodText" />
+
+            <RadioGroup
+                android:id="@+id/pollenInput"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center|center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/pollenText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pollenText"
+                app:layout_constraintTop_toBottomOf="@+id/broodText">
+
+                <RadioButton
+                    android:id="@+id/pollen1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/pollen2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/pollen3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/pollen4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+
+                <RadioButton
+                    android:id="@+id/pollen5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>
