@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -15,6 +16,9 @@ import androidx.navigation.findNavController
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
+import kotlinx.android.synthetic.*
+import android.widget.Spinner;
+
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -31,6 +35,18 @@ class HomeFragment : Fragment() {
 //        val root = inflater.inflate(R.layout.fragment_home, container, false)
         val root = inflater.inflate(R.layout.hive_form_fragment, container, false)
         val hiveName: EditText = root.findViewById(R.id.hiveNameTextInput)
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        val hiveSizeSpinner : Spinner = root.findViewById(R.id.hiveSizeInput)
+        ArrayAdapter.createFromResource(
+            this.getContext()!!,
+            R.array.frame_size_array,
+            android.R.layout.simple_spinner_item // default layout
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            hiveSizeSpinner.adapter = adapter
+        }
         val button = root.findViewById(R.id.saveButton) as Button
         button.setOnClickListener{
             Log.d("InspectionFormFragment", hiveName.text.toString())
