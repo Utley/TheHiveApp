@@ -12,6 +12,11 @@
         android:title="List of Hives" />
 
     <item
+        android:id="@+id/navigation_yard_view"
+        android:icon="@drawable/ic_hive_form_foreground"
+        android:title="Yard View" />
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications" />
