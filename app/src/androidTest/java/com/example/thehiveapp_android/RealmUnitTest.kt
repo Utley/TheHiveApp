@@ -28,11 +28,27 @@ class RealmUnitTest {
     private var testConfig =
         RealmConfiguration.Builder().inMemory().name("test-realm").build()
 
-    private val manager = DataManager.getInstance(Realm.getInstance(testConfig))
+    private lateinit var manager : DataManager //= DataManager.getInstance(Realm.getInstance(testConfig))
+
+    private val main = MainActivity()
 
     @Before
     fun setup() {
+        // it doesn't feel like this should be necessary, but it keeps crashing when I try to run it
+        // without init'ing Realm first
+        // might just be my emulator, Idk
 
+        var rrrr : Realm
+
+        try {
+            Realm.setDefaultConfiguration(testConfig)
+            Realm.init(main)
+            rrrr = Realm.getInstance(testConfig)
+        } catch (fuckYouTooAndroid: IllegalStateException) {
+            rrrr = Realm.getDefaultInstance()
+        }
+
+        manager = DataManager.getInstance(rrrr)
     }
 
     /**
