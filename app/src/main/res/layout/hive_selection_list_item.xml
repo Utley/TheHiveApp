@@ -4,21 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/hive_name_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hive Name"
-        android:textSize="24sp" />
+        android:orientation="vertical"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/inspections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Hive Name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/hive_last_inspected_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Last Inspected: Date"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <!-- We can always change textSize if we need to... -->
-
-    <TextView
-        android:id="@+id/hive_last_inspected_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Inspected: Date"
-        android:textSize="18sp" />
-
 
 
 </com.example.thehiveapp_android.ui.hive.HiveListItemView>

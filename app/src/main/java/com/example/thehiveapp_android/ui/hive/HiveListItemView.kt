@@ -43,7 +43,7 @@ class HiveListItemView : LinearLayout {
     fun populate(hive: HiveRealmObject){
         //This is where we actually populate the views in this item.
 
-        hiveNameTextView = this.findViewById(R.id.hive_name_text) as TextView
+        hiveNameTextView = this.findViewById(R.id.inspections) as TextView
         hiveLastInspectedAtTextView = this.findViewById(R.id.hive_last_inspected_text) as TextView
 
         hiveNameTextView.text = hive.name

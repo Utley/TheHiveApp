@@ -8,28 +8,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/left_padding">
 
         <TextView
             android:id="@+id/field_created"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:textAlignment="center"
+            android:gravity="right|center_vertical"
+            android:textAlignment="gravity"
             android:textColor="@android:color/secondary_text_light"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/label_inspections"
+            app:layout_constraintBottom_toBottomOf="@+id/label_created"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/label_created"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
             android:id="@+id/label_created"
-            android:layout_width="96dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="80dp"
+            android:gravity="start|center_vertical"
             android:text="Created On:"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
+            android:textAlignment="gravity"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title" />
@@ -38,10 +41,12 @@
             android:id="@+id/label_inspections"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:gravity="start|center_vertical"
             android:text="Inspections:"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
+            android:textAlignment="gravity"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/field_created"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_created" />
 
@@ -54,16 +59,15 @@
             android:gravity="center_vertical"
             android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/hive_name_text"
-            android:layout_width="407dp"
+            android:id="@+id/inspections"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
+            android:layout_marginBottom="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,8 +78,10 @@
             android:id="@+id/add_inspection"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:backgroundTint="@color/colorPrimary"
             android:text="+"
-            app:layout_constraintBottom_toTopOf="@+id/hive_name_text"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/inspections"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/field_created" />
 
