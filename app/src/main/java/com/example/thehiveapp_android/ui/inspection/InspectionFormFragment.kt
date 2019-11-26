@@ -68,11 +68,11 @@ class InspectionFormFragment : Fragment() {
             val titleText = "Bzzt!"
             val messageText = "Won't you bee a honey and fill out all the (flowery) fields?"
 
-            //checkedRadioButtonId is -1 if there is no selection.
+            // checkedRadioButtonId is -1 if there is no selection.
             if (honeyRadioGroup.checkedRadioButtonId < 0 ||
                 pollenRadioGroup.checkedRadioButtonId < 0 ||
                 broodRadioGroup.checkedRadioButtonId < 0){
-                DialogManager.instance.presentDialog(this.context, titleText, messageText)
+                DialogManager.presentDialog(this.context, titleText, messageText)
             } else {
 
                 val newLog = HiveLogRealmObject()
