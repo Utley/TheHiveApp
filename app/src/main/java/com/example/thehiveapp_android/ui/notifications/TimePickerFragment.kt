@@ -11,6 +11,11 @@ import android.os.Bundle
 import android.view.View
 import com.example.thehiveapp_android.R
 
+/**
+ *
+ *
+ * @author I forgot how to check
+ */
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle): Dialog {

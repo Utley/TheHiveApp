@@ -23,11 +23,12 @@ class MainActivity : AppCompatActivity() {
     /**
      * App entrypoint function.
      *
-     * This function acts like the `main()` method of a Java program, performing the necessary operations to start up
-     * the app. In particular, this method guarantees the database connection will be initialized and the UI elements
-     * and managers (such as the NavControllers).
+     * This function acts like the `main()` method of a Java program, performing the necessary
+     * operations to start up the app. In particular, this method guarantees the database connection
+     * will be initialized and the UI elements and managers (such as the NavControllers).
      *
-     * @param savedInstanceState OS-provided object providing information to init the program's state
+     * @param savedInstanceState OS-provided object providing information to init the program's
+     *      state
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

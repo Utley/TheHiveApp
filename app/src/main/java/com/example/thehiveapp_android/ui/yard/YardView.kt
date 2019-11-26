@@ -15,6 +15,9 @@ import androidx.core.view.marginTop
 import androidx.navigation.findNavController
 
 import com.example.thehiveapp_android.R
+import org.jetbrains.annotations.TestOnly
+
+
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import io.realm.RealmResults
@@ -26,27 +29,52 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [YardView.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [YardView.newInstance] factory method to
- * create an instance of this fragment.
+ * A simple [Fragment] subclass managing the UI details for the yard screen.
+ *
+ * A simple [Fragment] subclass managing the UI details for the yard screen. Activities that contain
+ * this fragment must implement the [YardView.OnFragmentInteractionListener] interface to handle
+ * interaction events. Use the [YardView.newInstance] factory method to create an instance of this
+ * fragment.
+ *
+ * @author ???
  */
-class YardView : Fragment() {
+class YardView private constructor() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    /**
+     * Called to do initial creation of a fragment. This is called after `onAttach(Activity)` and
+     * before `onCreateView(LayoutInflater, ViewGroup, Bundle)`.
+     *
+     * Note that this can be called while the fragment's activity is still in the process of being
+     * created. As such, you can not rely on things like the activity's content view hierarchy being
+     * initialized at this point.
+     *
+     * Any restored child fragments will be created before the base `Fragment.onCreate` method
+     * returns.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     * a previous saved state, this is the state.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
-
-
+    /**
+     * Called to have the fragment instantiate its user interface view. This will be called between
+     * `onCreate(Bundle)` and `onActivityCreated(Bundle)`.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the
+     * fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be
+     * attached to.  The fragment should not add the view itself, but this can be used to generate
+     * the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous
+     * saved state as given here.
+     * @return Return the View for the fragment's UI, or null.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -141,6 +169,12 @@ class YardView : Fragment() {
         listener?.onFragmentInteraction(uri)
     }
 
+    /**
+     * Called when a fragment is first attached to its context. `onCreate(Bundle)` will be called
+     * after this.
+     *
+     * @param context The current app context
+     */
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
@@ -150,6 +184,10 @@ class YardView : Fragment() {
         }
     }
 
+    /**
+     * Called when the fragment is no longer attached to its activity. This is called after
+     * `onDestroy()`.
+     */
     override fun onDetach() {
         super.onDetach()
         listener = null
@@ -172,9 +210,10 @@ class YardView : Fragment() {
     }
 
     companion object {
+
         /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
+         * Use this factory method to create a new instance of this fragment using the provided
+         * parameters.
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.

@@ -4,9 +4,19 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 
-
+/**
+ * Specifies behavior on reception of an alarm broadcast.
+ *
+ * @author I forgot how to check
+ */
 class AlarmReceiver : BroadcastReceiver() {
 
+    /**
+     * Reacts to the reception of an alarm.
+     *
+     * @param context The current context
+     * @param intent The alarm's intent
+     */
     override fun onReceive(context: Context, intent: Intent) {
 
         println("Received Alarm")
