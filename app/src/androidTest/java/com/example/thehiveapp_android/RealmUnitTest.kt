@@ -1,6 +1,7 @@
 package com.example.thehiveapp_android
 
 
+import android.util.Log
 import com.example.thehiveapp_android.data.DataManager
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -14,6 +15,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.runner.RunWith
 import java.lang.RuntimeException
+import kotlin.concurrent.thread
 
 
 /**
@@ -29,12 +31,13 @@ class RealmUnitTest {
     //private var testConfig =
     //    RealmConfiguration.Builder().inMemory().name("test-realm").build()
 
-    //private val manager = DataManager.getInstance()
+    private lateinit var manager : DataManager //= DataManager.getInstance()
 
-    //private val main = MainActivity()
+    //private val main =
 
     @Before
     fun setup() {
+        Log.i("test init", "running test setup")
         // it doesn't feel like this should be necessary, but it keeps crashing when I try to run it
         // without init'ing Realm first
         // might just be my emulator, Idk
@@ -42,7 +45,7 @@ class RealmUnitTest {
         var rrrr : Realm
 
         try {
-            Realm.init(MainActivity.getInstance())
+            Realm.init(main)
             var testConfig =
                 RealmConfiguration.Builder().inMemory().name("test-realm").build()
             Realm.setDefaultConfiguration(testConfig)
@@ -51,7 +54,7 @@ class RealmUnitTest {
             rrrr = Realm.getDefaultInstance()
         }
 
-        //manager = DataManager.getInstance(rrrr)
+        manager = DataManager.getInstance(rrrr)
     }
 
     /**

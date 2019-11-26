@@ -1,6 +1,7 @@
 package com.example.thehiveapp_android
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     init {
-        inst = this
+        inst = inst ?: this
+        Log.i("main init", "instantiating main")
     }
 
     /**
