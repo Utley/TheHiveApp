@@ -19,6 +19,10 @@ import java.lang.RuntimeException
 import kotlin.concurrent.thread
 
 import androidx.test.core.app.ApplicationProvider
+import com.example.thehiveapp_android.data.HiveRealmObject
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import org.junit.BeforeClass
 
 /**
  * Instrumented unit test to monitor the correctness of our Realm database.
@@ -46,23 +50,35 @@ class RealmUnitTest {
         manager = DataManager.getInstance(realm)
     }
 
-    /**
-     * TODO replace this with a real test once things start compiling
-     */
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun dataManagerCanGetAllHives() {
+        var hives = manager.getAllHives()
+        if(!hives.isValid) {
+            throw RuntimeException("dataManagerCanGetAllHivesEmpty failed.")
+        }
+        Log.d("??", "${hives.count()}")
     }
 
 
     @Test
-    fun dataManagerDoesntImplodeWhenIPokeIt() {
-        var foo = DataManager.getInstance().getAllHives()
+    fun canGetHivesNotEmpty() {
+        var newHive = HiveRealmObject()
+        newHive.name = "Bodacious"
 
-        if(!foo.isValid || foo.isEmpty()) {
-            throw RuntimeException("baaaaaaaad")
+        realm.executeTransaction { realm ->
+            realm.copyToRealm(newHive) //Add this hive synchronously.
+            // async adding, as done in manager.saveObject(), likely will not work with unit testing
+        }
+
+        val hives = manager.getAllHives()
+        val firstHive = hives.first()!!
+
+        if (hives.first()!!.name != "Bodacious"){
+            throw RuntimeException("Not Particularly Bodacious: ${firstHive.name}")
         }
     }
+
+
 
     @After
     fun tearDown() {
