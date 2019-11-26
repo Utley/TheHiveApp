@@ -19,7 +19,7 @@ class DialogManager {
             }
     }
 
-    fun presentDialog(context: Context, title: String, message: String){
+    fun presentDialog(context: Context?, title: String, message: String){
         val builder = AlertDialog.Builder(context) //Create our AlertDialog Builder.
 
         builder.setTitle(title) //Set the title and message.

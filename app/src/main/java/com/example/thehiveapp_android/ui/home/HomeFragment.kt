@@ -18,6 +18,7 @@ import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import kotlinx.android.synthetic.*
 import android.widget.Spinner;
+import com.example.thehiveapp_android.ui.dialog.DialogManager
 
 import java.util.*
 
@@ -50,11 +51,20 @@ class HomeFragment : Fragment() {
         val button = root.findViewById(R.id.saveButton) as Button
         button.setOnClickListener{
             Log.d("InspectionFormFragment", hiveName.text.toString())
-            val newHive = HiveRealmObject()
-            newHive.uuid = UUID.randomUUID().mostSignificantBits
-            newHive.name = hiveName.text.toString()
-            DataManager.instance.saveObject(newHive)
-            activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_list)
+
+            val titleText = "Bzzt!"
+            val messageText = "Won't you bee a honey and fill out all the (flowery) fields?"
+
+            if (hiveName.text == null || hiveName.text.toString() == ""){
+                DialogManager.instance.presentDialog(this.context, titleText, messageText)
+            } else {
+                val newHive = HiveRealmObject()
+                newHive.uuid = UUID.randomUUID().mostSignificantBits
+                newHive.name = hiveName.text.toString()
+                DataManager.instance.saveObject(newHive)
+                activity?.findNavController(R.id.nav_host_fragment)
+                    ?.navigate(R.id.navigation_hive_list)
+            }
         }
         return root
     }
