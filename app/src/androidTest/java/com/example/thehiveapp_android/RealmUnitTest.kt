@@ -13,6 +13,7 @@ import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.runner.RunWith
+import java.lang.RuntimeException
 
 
 /**
@@ -25,12 +26,12 @@ class RealmUnitTest {
 
     // dummy Realm object used for testing
     // taken from https://medium.com/@q2ad/android-testing-realm-2dc1e1c94ee1
-    private var testConfig =
-        RealmConfiguration.Builder().inMemory().name("test-realm").build()
+    //private var testConfig =
+    //    RealmConfiguration.Builder().inMemory().name("test-realm").build()
 
-    private lateinit var manager : DataManager //= DataManager.getInstance(Realm.getInstance(testConfig))
+    //private val manager = DataManager.getInstance()
 
-    private val main = MainActivity()
+    //private val main = MainActivity()
 
     @Before
     fun setup() {
@@ -41,14 +42,16 @@ class RealmUnitTest {
         var rrrr : Realm
 
         try {
+            Realm.init(MainActivity.getInstance())
+            var testConfig =
+                RealmConfiguration.Builder().inMemory().name("test-realm").build()
             Realm.setDefaultConfiguration(testConfig)
-            Realm.init(main)
             rrrr = Realm.getInstance(testConfig)
         } catch (fuckYouTooAndroid: IllegalStateException) {
             rrrr = Realm.getDefaultInstance()
         }
 
-        manager = DataManager.getInstance(rrrr)
+        //manager = DataManager.getInstance(rrrr)
     }
 
     /**
@@ -60,8 +63,17 @@ class RealmUnitTest {
     }
 
 
+    @Test
+    fun dataManagerDoesntImplodeWhenIPokeIt() {
+        var foo = DataManager.getInstance().getAllHives()
+
+        if(!foo.isValid || foo.isEmpty()) {
+            throw RuntimeException("baaaaaaaad")
+        }
+    }
+
     @After
     fun tearDown() {
-        manager.tearDown()
+        //manager.tearDown()
     }
 }

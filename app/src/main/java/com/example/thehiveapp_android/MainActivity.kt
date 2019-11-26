@@ -16,9 +16,21 @@ import io.realm.Realm
  * This class represents the main entrypoint for the app; it's similar in practice to the `main()`
  * method of a Java program.
  *
- * @author probably Zac?
+ * @author probably Zac? Apparently nobody knows...
  */
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        var inst : MainActivity? = null
+
+        fun getInstance() : MainActivity {
+            return inst ?: throw Exception("How did this even get called before main got inited")
+        }
+    }
+
+    init {
+        inst = this
+    }
 
     /**
      * App entrypoint function.
