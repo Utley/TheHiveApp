@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 /**
  * Records the internal model for the Home Fragment.
  *
+ * @property text Our current live data
  * @author I forgot how to check
  */
 class HomeViewModel : ViewModel() {

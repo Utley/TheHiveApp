@@ -14,11 +14,25 @@ import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveLogRealmObject
 import io.realm.RealmList
 
-
+/**
+ * Adapter used to view hive logs in some context.
+ *
+ * I don't actually entirely know what's going on here, need to verify with whoever wrote this. dang
+ * kotlin and it's weird optimized syntax
+ *
+ * @param hiveLogs Hive logs being analyzed
+ * @param viewModel The internal model we're working off
+ * @param context The current activity context
+ * @constructor ???
+ * @author still don't know how to check =/
+ */
 class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
                      private val viewModel: HiveListViewModel,
                      private val context: FragmentActivity):
     RecyclerView.Adapter<HiveLogAdapter.HiveLogViewHolder>() {
+
+    // private... class? With no members? what???
+    // apparently we return it... so I guess it's just a rename for abstraction's sake?
     class HiveLogViewHolder(val textView: LinearLayout) : RecyclerView.ViewHolder(textView)
 
     /**
@@ -39,7 +53,7 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
      * @return A new `ViewHolder` that holds a `View` of the given view type
      */
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): HiveLogAdapter.HiveLogViewHolder {
+                                    viewType: Int): HiveLogViewHolder {
         val textView = LayoutInflater.from(parent.context)
             .inflate(R.layout.hive_log_list_item, parent, false) as LinearLayout
 

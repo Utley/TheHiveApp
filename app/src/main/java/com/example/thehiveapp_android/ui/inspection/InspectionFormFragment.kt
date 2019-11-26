@@ -14,19 +14,41 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveLogRealmObject
+import com.example.thehiveapp_android.ui.dialog.DialogManager
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 import java.util.*
 
-
+/**
+ * Fragment to manage displaying an inspection form screen.
+ *
+ * @author Cole ??
+ */
 class InspectionFormFragment : Fragment() {
 
     private lateinit var viewModel: HiveListViewModel
 
     companion object {
+        /**
+         * Retrieves a new instance of a InspectionFormFragment
+         *
+         * @return a new InspectionFormFragment
+         */
         fun newInstance() = InspectionFormFragment()
     }
 
-
+    /**
+     * Called to have the fragment instantiate its user interface view. This will be called between
+     * `onCreate(Bundle)` and `onActivityCreated(Bundle)`.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the
+     * fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be
+     * attached to.  The fragment should not add the view itself, but this can be used to generate
+     * the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous
+     * saved state as given here.
+     * @return Return the View for the fragment's UI, or null.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,47 +64,70 @@ class InspectionFormFragment : Fragment() {
 
         val button = root.findViewById(R.id.saveButton) as Button
         button.setOnClickListener{
-            val newLog = HiveLogRealmObject()
-            var selectedHive = viewModel.selectedHive
-            Log.d("InspectionFormFragment","selectedHive = ${selectedHive}")
 
-            newLog.uuid = UUID.randomUUID().mostSignificantBits
+            val titleText = "Bzzt!"
+            val messageText = "Won't you bee a honey and fill out all the (flowery) fields?"
 
-            // Want the index of the radio button in its group
-            var radioButtonID = honeyRadioGroup.checkedRadioButtonId
-            var radioButton: RadioButton = honeyRadioGroup.findViewById(radioButtonID)
-            val honeyCount = honeyRadioGroup.indexOfChild(radioButton) + 1
-            newLog.honeyFrameCount = honeyCount
+            //checkedRadioButtonId is -1 if there is no selection.
+            if (honeyRadioGroup.checkedRadioButtonId < 0 ||
+                pollenRadioGroup.checkedRadioButtonId < 0 ||
+                broodRadioGroup.checkedRadioButtonId < 0){
+                DialogManager.instance.presentDialog(this.context, titleText, messageText)
+            } else {
 
-            radioButtonID = pollenRadioGroup.checkedRadioButtonId
-            radioButton = pollenRadioGroup.findViewById(radioButtonID)
-            val pollenCount = pollenRadioGroup.indexOfChild(radioButton) + 1
-            newLog.pollenFrameCount = pollenCount
+                val newLog = HiveLogRealmObject()
+                var selectedHive = viewModel.selectedHive
+                Log.d("InspectionFormFragment", "selectedHive = ${selectedHive}")
 
-            radioButtonID = broodRadioGroup.checkedRadioButtonId
-            radioButton = broodRadioGroup.findViewById(radioButtonID)
-            val broodCount = broodRadioGroup.indexOfChild(radioButton) + 1
-            newLog.broodFrameCount = broodCount
+                newLog.uuid = UUID.randomUUID().mostSignificantBits
 
-            newLog.sawQueen = seenQueenSwitch.isChecked
-            newLog.sawNewEggs = seenEggsSwitch.isChecked
-            newLog.checkedForDroneMites = miteCheckSwitch.isChecked
+                // Want the index of the radio button in its group
+                var radioButtonID = honeyRadioGroup.checkedRadioButtonId
+                var radioButton: RadioButton = honeyRadioGroup.findViewById(radioButtonID)
+                val honeyCount = honeyRadioGroup.indexOfChild(radioButton) + 1
+                newLog.honeyFrameCount = honeyCount
 
-            if(miteCheckSwitch.isChecked) {
-                newLog.relativeMiteCount = 5
+                radioButtonID = pollenRadioGroup.checkedRadioButtonId
+                radioButton = pollenRadioGroup.findViewById(radioButtonID)
+                val pollenCount = pollenRadioGroup.indexOfChild(radioButton) + 1
+                newLog.pollenFrameCount = pollenCount
+
+                radioButtonID = broodRadioGroup.checkedRadioButtonId
+                radioButton = broodRadioGroup.findViewById(radioButtonID)
+                val broodCount = broodRadioGroup.indexOfChild(radioButton) + 1
+                newLog.broodFrameCount = broodCount
+
+                newLog.sawQueen = seenQueenSwitch.isChecked
+                newLog.sawNewEggs = seenEggsSwitch.isChecked
+                newLog.checkedForDroneMites = miteCheckSwitch.isChecked
+
+                if (miteCheckSwitch.isChecked) {
+                    newLog.relativeMiteCount = 5
+                } else {
+                    newLog.relativeMiteCount = 0
+                }
+
+                selectedHive.addLog(newLog)
+
+                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.hive_detail)
             }
-            else {
-                newLog.relativeMiteCount = 0
-            }
-
-            selectedHive.addLog(newLog)
-
-            activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.hive_detail)
         }
 
         return root
     }
 
+    /**
+     * Called when the fragment's activity has been created and this fragment's view hierarchy
+     * instantiated. It can be used to do final initialization once these pieces are in place, such
+     * as retrieving views or restoring state. It is also useful for fragments that use
+     * `setRetainInstance(boolean)` to retain their instance, as this callback tells the fragment
+     * when it is fully associated with the new activity instance. This is called after
+     * `onCreateView()` and before `onViewStateRestored(Bundle)`.
+     *
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state,
+     *      this is the state.
+     * @throws Exception when the specified activity is invalid
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

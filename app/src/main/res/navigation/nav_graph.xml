@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_inspection_detail" />
 
     <fragment
+        android:id="@+id/navigation_yard_view"
+        android:name="com.example.thehiveapp_android.ui.yard.YardView"
+        android:label="Yard View"
+        tools:layout="@layout/fragment_yard_view" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.thehiveapp_android.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"

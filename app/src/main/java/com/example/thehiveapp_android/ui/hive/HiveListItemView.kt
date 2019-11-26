@@ -65,9 +65,7 @@ class HiveListItemView : LinearLayout {
     /**
      * Specifies the view's behavior when clicked.
      *
-     * Specifies the view's behavior when clicked.
-     *
-     * @param v the view
+     * @param v The view
      */
     fun onClick(v: View) {
         Log.d("HiveListItemView", "Clicked Hive")

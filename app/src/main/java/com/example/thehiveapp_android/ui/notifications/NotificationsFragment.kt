@@ -11,19 +11,23 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.thehiveapp_android.R
-import com.google.android.material.button.MaterialButton
-import java.time.DayOfWeek
 import ca.antonious.materialdaypicker.MaterialDayPicker as MaterialDayPicker
 import ca.antonious.materialdaypicker.SingleSelectionMode as SingleSelectionMode
 import ca.antonious.materialdaypicker.MaterialDayPicker.Weekday as Weekday
 import java.util.*
 
 
-/** 
+
+/**
  * Retrieves an int corresponding to the provided day of the week.
+ *
+ * Retrieves an int corresponding to the provided day of the week. The MaterialDayPicker library
+ * lists selected days of the week via a `List<MaterialDayPicker.Weekday.DAY_OF_WEEK`, so we use
+ * this function to quickly convert to an int to use in our notification setting.
  *
  * @param day The weekday we're looking to convert
  * @return An int corresponding to the above weekday
@@ -102,6 +106,7 @@ class NotificationsFragment : Fragment() {
             clickTest(it, timePicker, dayInt)
             // add to notification list
             updateLst(root, timePicker, dayInt, "All notifications clear")
+
         }
 
         val cancelButton: Button = root.findViewById(R.id.notificationCancelButton)
@@ -122,8 +127,8 @@ class NotificationsFragment : Fragment() {
      * Eliminates the string rmvStr from the list of current notifications to display.
      *
      * @param root The current View context
-     * @param timePicker
-     * @param dayInt The day of the week
+     * @param timePicker Contains the time to update
+     * @param dayInt An int corresponding to a day of the week
      * @param rmvStr String to remove
      */
     fun updateLst(root: View, timePicker: TimePicker, dayInt: Int, rmvStr: String){
@@ -204,6 +209,7 @@ class NotificationsFragment : Fragment() {
      * Generates a new system notification based on the provided TimePicker.
      *
      * @param timePicker Time for the new notification to occur at
+     * @param dayInt An int corresponding to a day of the week
      */
     fun makeNotificationFromPicker(timePicker: TimePicker, dayInt : Int){
         println("Hello World 3")
