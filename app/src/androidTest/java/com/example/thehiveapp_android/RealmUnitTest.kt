@@ -1,6 +1,7 @@
 package com.example.thehiveapp_android
 
 
+import android.content.Context
 import android.util.Log
 import com.example.thehiveapp_android.data.DataManager
 import io.realm.Realm
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith
 import java.lang.RuntimeException
 import kotlin.concurrent.thread
 
+import androidx.test.core.app.ApplicationProvider
 
 /**
  * Instrumented unit test to monitor the correctness of our Realm database.
@@ -26,14 +28,10 @@ import kotlin.concurrent.thread
 @RunWith(AndroidJUnit4::class)
 class RealmUnitTest {
 
-    // dummy Realm object used for testing
-    // taken from https://medium.com/@q2ad/android-testing-realm-2dc1e1c94ee1
-    //private var testConfig =
-    //    RealmConfiguration.Builder().inMemory().name("test-realm").build()
+    val context = ApplicationProvider.getApplicationContext<Context>()
 
-    private lateinit var manager : DataManager //= DataManager.getInstance()
-
-    //private val main =
+    lateinit var manager : DataManager //= DataManager.getInstance()
+    lateinit var realm: Realm
 
     @Before
     fun setup() {
@@ -41,20 +39,11 @@ class RealmUnitTest {
         // it doesn't feel like this should be necessary, but it keeps crashing when I try to run it
         // without init'ing Realm first
         // might just be my emulator, Idk
+        Realm.init(context)
+        val realmConfig = RealmConfiguration.Builder().inMemory().name("test").build()
+        realm = Realm.getInstance(realmConfig)
 
-        var rrrr : Realm
-
-        try {
-            Realm.init(main)
-            var testConfig =
-                RealmConfiguration.Builder().inMemory().name("test-realm").build()
-            Realm.setDefaultConfiguration(testConfig)
-            rrrr = Realm.getInstance(testConfig)
-        } catch (fuckYouTooAndroid: IllegalStateException) {
-            rrrr = Realm.getDefaultInstance()
-        }
-
-        manager = DataManager.getInstance(rrrr)
+        manager = DataManager.getInstance(realm)
     }
 
     /**
