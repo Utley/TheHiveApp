@@ -23,7 +23,7 @@ import java.util.*
  * @property noteString String containing an optional note
  * @author Zac
  */
-open class HiveLogRealmObject : RealmObject() {
+open class InspectionRealmObject : RealmObject() {
 
     @PrimaryKey
     var uuid: Long = UUID.randomUUID().mostSignificantBits  //Database ID

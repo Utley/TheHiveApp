@@ -53,7 +53,7 @@ class HiveDetail : Fragment() {
         val createdDate = viewModel.selectedHive.createdAt
         createdOn.text = DateFormat.getDateTimeInstance().format(createdDate)
 
-        viewAdapter = HiveLogAdapter(viewModel.selectedHive.hiveLogs, viewModel, requireActivity())
+        viewAdapter = InspectionAdapter(viewModel.selectedHive.inspections, viewModel, requireActivity())
         viewManager = LinearLayoutManager(activity)
 
         recyclerView = root.findViewById<RecyclerView>(R.id.inspections).apply {

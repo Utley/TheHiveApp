@@ -16,7 +16,7 @@ import java.util.*
  * @property name the hive's name
  * @property createdAt Date the hive was created
  * @property queenedAt Date the current queen was bought/born, roughly
- * @property hiveLogs List of objects representing this hive's inspection logs
+ * @property inspections List of objects representing this hive's inspection logs
  * @author Zac
  */
 //RealmObject() descendants must be open classes; Kotlin classes are final by default
@@ -32,19 +32,19 @@ open class HiveRealmObject() : RealmObject() {
 
     var queenedAt: Date = Date()
 
-    private var hiveLogsList : RealmList<HiveLogRealmObject> = RealmList<HiveLogRealmObject>()
-    val hiveLogs : RealmList<HiveLogRealmObject>
-        get() = hiveLogsList
+    private var inspectionList : RealmList<InspectionRealmObject> = RealmList<InspectionRealmObject>()
+    val inspections : RealmList<InspectionRealmObject>
+        get() = inspectionList
 
     /**
      * Addes a new hive log to this hive's list.
      *
      * @param newLog log to add
      */
-    fun addLog(newLog : HiveLogRealmObject) {
+    fun addLog(newLog : InspectionRealmObject) {
         var realm:Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        hiveLogs.add(newLog)
+        inspections.add(newLog)
         realm.commitTransaction()
     }
 }

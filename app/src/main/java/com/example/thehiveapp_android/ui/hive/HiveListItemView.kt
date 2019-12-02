@@ -50,8 +50,8 @@ class HiveListItemView : LinearLayout {
         hiveNameTextView.text = hive.name
 
         var hiveDateString = "Not Yet Inspected"
-        if (hive.hiveLogs.size > 0) {
-            val lastInspectedDate = hive.hiveLogs.last()!!.date
+        if (hive.inspections.size > 0) {
+            val lastInspectedDate = hive.inspections.last()!!.date
             hiveDateString = DateFormat.getDateInstance().format(lastInspectedDate)
         }
 

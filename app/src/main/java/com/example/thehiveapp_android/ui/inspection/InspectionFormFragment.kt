@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.thehiveapp_android.R
-import com.example.thehiveapp_android.data.HiveLogRealmObject
+import com.example.thehiveapp_android.data.InspectionRealmObject
 import com.example.thehiveapp_android.ui.dialog.DialogManager
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 import java.util.*
@@ -75,7 +75,7 @@ class InspectionFormFragment : Fragment() {
                 DialogManager.instance.presentDialog(this.context, titleText, messageText)
             } else {
 
-                val newLog = HiveLogRealmObject()
+                val newLog = InspectionRealmObject()
                 var selectedHive = viewModel.selectedHive
                 Log.d("InspectionFormFragment", "selectedHive = ${selectedHive}")
 
