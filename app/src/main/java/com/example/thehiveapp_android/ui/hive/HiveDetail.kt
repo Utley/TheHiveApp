@@ -44,7 +44,7 @@ class HiveDetail : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var root = inflater.inflate(R.layout.hive_detail_fragment, container, false)
+        var root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
 
         val title: TextView = root.findViewById(R.id.title)
         title.text = viewModel.selectedHive.name
@@ -66,7 +66,7 @@ class HiveDetail : Fragment() {
         // Clicking the '+' button opens the new inspection form
         val addInspectionButton = root.findViewById(R.id.add_inspection) as Button
         addInspectionButton.setOnClickListener {
-            activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_form)
+            activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_inspection_form)
         }
 
         return root

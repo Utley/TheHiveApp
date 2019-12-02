@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val root = inflater.inflate(R.layout.hive_form_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_hive_form, container, false)
         val hiveName: EditText = root.findViewById(R.id.nameInput)
         // Create an ArrayAdapter using the string array and a default spinner layout
         val hiveSizeSpinner : Spinner = root.findViewById(R.id.hiveSizeInput)

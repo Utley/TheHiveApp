@@ -1,13 +1,10 @@
 package com.example.thehiveapp_android.ui.hive
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
@@ -56,7 +53,7 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int): HiveLogViewHolder {
         val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.hive_log_list_item, parent, false) as LinearLayout
+            .inflate(R.layout.item_inspection, parent, false) as LinearLayout
 
         return HiveLogViewHolder(textView)
     }
@@ -87,7 +84,7 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
             if (selectedInspection != null) {
                 viewModel.selectedInspection = selectedInspection
             }
-            context.findNavController(R.id.nav_host_fragment).navigate(R.id.inspection_detail)
+            context.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_inspection_detail)
 
         }
     }

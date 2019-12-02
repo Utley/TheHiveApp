@@ -53,7 +53,7 @@ class InspectionFormFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.inspection_form_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_inspection_form, container, false)
 
         var honeyRadioGroup: RadioGroup = root.findViewById(R.id.honeyInput)
         var pollenRadioGroup: RadioGroup = root.findViewById(R.id.pollenInput)
@@ -109,7 +109,7 @@ class InspectionFormFragment : Fragment() {
 
                 selectedHive.addLog(newLog)
 
-                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.hive_detail)
+                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_detail)
             }
         }
 

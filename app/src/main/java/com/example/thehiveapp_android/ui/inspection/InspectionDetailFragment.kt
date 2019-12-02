@@ -17,7 +17,7 @@ import java.text.DateFormat
  *
  * @author Cole ??
  */
-class InspectionDetail : Fragment() {
+class InspectionDetailFragment : Fragment() {
     private lateinit var viewModel: HiveListViewModel
 
     /**

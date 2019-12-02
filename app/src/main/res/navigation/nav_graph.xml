@@ -15,19 +15,25 @@
         android:id="@+id/navigation_hive_list"
         android:name="com.example.thehiveapp_android.ui.hive.HiveListFragment"
         android:label="Hive List"
-        tools:layout="@layout/hive_selection_list_view" />
+        tools:layout="@layout/fragment_hive_list" />
 
     <fragment
-        android:id="@+id/hive_detail"
+        android:id="@+id/navigation_hive_detail"
         android:name="com.example.thehiveapp_android.ui.hive.HiveDetail"
         android:label="Hive"
-        tools:layout="@layout/hive_detail_fragment" />
+        tools:layout="@layout/fragment_hive_detail" />
 
     <fragment
-        android:id="@+id/inspection_detail"
-        android:name="com.example.thehiveapp_android.ui.inspection.InspectionDetail"
+        android:id="@+id/navigation_inspection_detail"
+        android:name="com.example.thehiveapp_android.ui.inspection.InspectionDetailFragment"
         android:label="Inspection"
         tools:layout="@layout/fragment_inspection_detail" />
+
+    <fragment
+        android:id="@+id/navigation_inspection_form"
+        android:name="com.example.thehiveapp_android.ui.inspection.InspectionFormFragment"
+        android:label="New Inspection"
+        tools:layout="@layout/fragment_inspection_form" />
 
     <fragment
         android:id="@+id/navigation_yard_view"
@@ -41,9 +47,4 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
-    <fragment
-        android:id="@+id/navigation_hive_form"
-        android:name="com.example.thehiveapp_android.ui.inspection.InspectionFormFragment"
-        android:label="New Inspection"
-        tools:layout="@layout/hive_form_fragment" />
 </navigation>
