@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveLogRealmObject
 import io.realm.RealmList
+import java.text.DateFormat
 
 /**
  * Adapter used to view hive logs in some context.
@@ -76,8 +77,9 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: HiveLogViewHolder, position: Int) {
-        val inspectionDate = holder.textView.findViewById<TextView>(R.id.inspection_date)
-        inspectionDate.text = hiveLogs[position]?.date.toString()
+        val inspectionDateView = holder.textView.findViewById<TextView>(R.id.inspection_date)
+        val inspectionDate = hiveLogs[position]?.date
+        inspectionDateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
 
         holder.textView.setOnClickListener {
             // TODO: Start animation - make the selected row darker

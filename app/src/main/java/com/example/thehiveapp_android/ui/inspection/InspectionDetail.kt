@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
+import java.text.DateFormat
 
 /**
  * Fragment to manage displaying an inspection detail screen.
@@ -39,8 +40,9 @@ class InspectionDetail : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_inspection_detail, container, false)
 
-        val date: TextView = root.findViewById(R.id.date)
-        date.text = viewModel.selectedInspection.date.toString()
+        val dateView: TextView = root.findViewById(R.id.date)
+        val inspectionDate = viewModel.selectedInspection.date
+        dateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
 
         val honeyCount: TextView = root.findViewById(R.id.honeyCount)
         honeyCount.text = viewModel.selectedInspection.honeyFrameCount.toString()

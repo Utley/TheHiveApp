@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
+import java.text.DateFormat
 
 /**
  * Fragment which handles displaying a detailed display of a hive.
@@ -49,13 +50,14 @@ class HiveDetail : Fragment() {
         title.text = viewModel.selectedHive.name
 
         val createdOn: TextView = root.findViewById(R.id.field_created)
-        createdOn.text = viewModel.selectedHive.createdAt.toString()
+        val createdDate = viewModel.selectedHive.createdAt
+        createdOn.text = DateFormat.getDateTimeInstance().format(createdDate)
 
         viewAdapter = HiveLogAdapter(viewModel.selectedHive.hiveLogs, viewModel, requireActivity())
         viewManager = LinearLayoutManager(activity)
 
         recyclerView = root.findViewById<RecyclerView>(R.id.inspections).apply {
-            // improves performance when changes in content do not change the layout size of the RecyclerView
+            // Improves performance when changes in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
