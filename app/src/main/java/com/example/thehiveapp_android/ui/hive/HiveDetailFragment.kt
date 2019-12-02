@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
+import com.example.thehiveapp_android.ui.inspection.InspectionAdapter
 import java.text.DateFormat
 
 /**
@@ -19,7 +20,7 @@ import java.text.DateFormat
  *
  * @author I forgot how to check
  */
-class HiveDetail : Fragment() {
+class HiveDetailFragment : Fragment() {
 
     private lateinit var viewModel: HiveListViewModel
 
@@ -53,7 +54,11 @@ class HiveDetail : Fragment() {
         val createdDate = viewModel.selectedHive.createdAt
         createdOn.text = DateFormat.getDateTimeInstance().format(createdDate)
 
-        viewAdapter = InspectionAdapter(viewModel.selectedHive.inspections, viewModel, requireActivity())
+        viewAdapter = InspectionAdapter(
+            viewModel.selectedHive.inspections,
+            viewModel,
+            requireActivity()
+        )
         viewManager = LinearLayoutManager(activity)
 
         recyclerView = root.findViewById<RecyclerView>(R.id.inspections).apply {

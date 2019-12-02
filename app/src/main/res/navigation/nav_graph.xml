@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_hive_detail"
-        android:name="com.example.thehiveapp_android.ui.hive.HiveDetail"
+        android:name="com.example.thehiveapp_android.ui.hive.HiveDetailFragment"
         android:label="Hive"
         tools:layout="@layout/fragment_hive_detail" />
 
