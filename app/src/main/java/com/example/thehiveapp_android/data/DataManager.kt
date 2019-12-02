@@ -30,8 +30,6 @@ class DataManager {
 
     private var realm : Realm = Realm.getDefaultInstance()
 
-    private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
-
 
     /**
      * Synchronously retrieves all objects of a given type from the database.
