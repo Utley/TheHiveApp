@@ -1,4 +1,4 @@
-package com.example.thehiveapp_android.ui.hive
+package com.example.thehiveapp_android.ui.inspection
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.InspectionRealmObject
+import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 import io.realm.RealmList
 import java.text.DateFormat
 
@@ -29,8 +30,6 @@ class InspectionAdapter(private val inspections: RealmList<InspectionRealmObject
                         private val context: FragmentActivity):
     RecyclerView.Adapter<InspectionAdapter.InspectionViewHolder>() {
 
-    // private... class? With no members? what???
-    // apparently we return it... so I guess it's just a rename for abstraction's sake?
     class InspectionViewHolder(val textView: LinearLayout) : RecyclerView.ViewHolder(textView)
 
     /**
@@ -55,7 +54,9 @@ class InspectionAdapter(private val inspections: RealmList<InspectionRealmObject
         val textView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_inspection, parent, false) as LinearLayout
 
-        return InspectionViewHolder(textView)
+        return InspectionViewHolder(
+            textView
+        )
     }
 
     /**
