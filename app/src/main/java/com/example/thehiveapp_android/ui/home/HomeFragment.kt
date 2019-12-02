@@ -26,8 +26,6 @@ import java.util.*
  */
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-
     /**
      * Called to have the fragment instantiate its user interface view. This will be called between
      * `onCreate(Bundle)` and `onActivityCreated(Bundle)`.
@@ -46,8 +44,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // val root = inflater.inflate(R.layout.fragment_home, container, false)
         val root = inflater.inflate(R.layout.fragment_hive_form, container, false)
         val hiveName: EditText = root.findViewById(R.id.nameInput)
