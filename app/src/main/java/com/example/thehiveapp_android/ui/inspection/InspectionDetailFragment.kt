@@ -62,6 +62,8 @@ class InspectionDetailFragment : Fragment() {
         val queenCheckbox: CheckBox = root.findViewById(R.id.queenCheckbox)
         queenCheckbox.isChecked = viewModel.selectedInspection.sawQueen
 
+        val notes: TextView = root.findViewById(R.id.notesText)
+        notes.text = viewModel.selectedInspection.noteString
 
         return root
     }

@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Switch
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -55,12 +52,13 @@ class InspectionFormFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_inspection_form, container, false)
 
-        var honeyRadioGroup: RadioGroup = root.findViewById(R.id.honeyInput)
-        var pollenRadioGroup: RadioGroup = root.findViewById(R.id.pollenInput)
-        var broodRadioGroup: RadioGroup = root.findViewById(R.id.broodInput)
-        var seenQueenSwitch: Switch = root.findViewById(R.id.seen_queen_switch)
-        var seenEggsSwitch: Switch = root.findViewById(R.id.seen_eggs_switch)
-        var miteCheckSwitch: Switch = root.findViewById(R.id.seen_mites_switch)
+        val honeyRadioGroup: RadioGroup = root.findViewById(R.id.honeyInput)
+        val pollenRadioGroup: RadioGroup = root.findViewById(R.id.pollenInput)
+        val broodRadioGroup: RadioGroup = root.findViewById(R.id.broodInput)
+        val seenQueenSwitch: Switch = root.findViewById(R.id.seen_queen_switch)
+        val seenEggsSwitch: Switch = root.findViewById(R.id.seen_eggs_switch)
+        val miteCheckSwitch: Switch = root.findViewById(R.id.seen_mites_switch)
+        val notes: TextView = root.findViewById(R.id.notesInput)
 
         val button = root.findViewById(R.id.saveButton) as Button
         button.setOnClickListener{
@@ -106,6 +104,8 @@ class InspectionFormFragment : Fragment() {
                 } else {
                     newLog.relativeMiteCount = 0
                 }
+
+                newLog.noteString = notes.text.toString()
 
                 selectedHive.addLog(newLog)
 

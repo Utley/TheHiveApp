@@ -1,345 +1,374 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:isScrollContainer="true"
+    android:orientation="vertical"
     tools:context=".ui.inspection.InspectionFormFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:paddingHorizontal="@dimen/horizontal_padding">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <Button
+            android:id="@+id/saveButton"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Save"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Switch
+            android:id="@+id/seen_mites_switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:text="@string/mite_check"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            android:thumbTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seen_eggs_switch" />
+
+        <Switch
+            android:id="@+id/seen_eggs_switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:text="@string/seen_eggs"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            android:thumbTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pollenLabel" />
+
+        <Switch
+            android:id="@+id/seen_queen_switch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:text="@string/seen_queen"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            android:thumbTint="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seen_mites_switch" />
+
+        <TextView
+            android:id="@+id/spacer"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/tableHeader"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingHorizontal="@dimen/horizontal_padding">
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/honeyLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spacer"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/saveButton"
+            <TextView
+                android:id="@+id/tableCol1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1" />
+
+            <TextView
+                android:id="@+id/tableCol2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2" />
+
+            <TextView
+                android:id="@+id/tableCol3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3" />
+
+            <TextView
+                android:id="@+id/tableCol4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4" />
+
+            <TextView
+                android:id="@+id/tableCol5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="5" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/honeyLabel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="@string/honey_count"
+            android:textAlignment="inherit"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/tableHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spacer" />
+
+        <RadioGroup
+            android:id="@+id/honeyInput"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/broodLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tableHeader"
+            app:layout_constraintTop_toBottomOf="@+id/spacer">
+
+            <RadioButton
+                android:id="@+id/honey1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="fill_horizontal"
+                android:textColorLink="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/honey2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="fill_horizontal"
+                android:textAlignment="center"
+                android:textColorLink="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/honey3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="fill_horizontal"
+                android:textAlignment="center"
+                android:textColorLink="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/honey4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="fill_horizontal"
+                android:textAlignment="center"
+                android:textColorLink="@color/colorAccent" />
+
+            <RadioButton
+                android:id="@+id/honey5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="fill_horizontal"
+                android:textAlignment="center"
+                android:textColorLink="@color/colorAccent" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/broodLabel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="@string/brood_count"
+            android:textAlignment="inherit"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/tableHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/honeyLabel" />
+
+        <RadioGroup
+            android:id="@+id/broodInput"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/pollenLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tableHeader"
+            app:layout_constraintTop_toBottomOf="@+id/honeyLabel">
+
+            <RadioButton
+                android:id="@+id/brood1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Save"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seen_queen_switch"
-                app:layout_constraintVertical_bias="0.0" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
 
-            <Switch
-                android:id="@+id/seen_mites_switch"
+            <RadioButton
+                android:id="@+id/brood2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
+
+            <RadioButton
+                android:id="@+id/brood3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
+
+            <RadioButton
+                android:id="@+id/brood4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
+
+            <RadioButton
+                android:id="@+id/brood5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/pollenLabel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text="@string/pollen_count"
+            android:textAlignment="inherit"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/tableHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
+
+        <RadioGroup
+            android:id="@+id/pollenInput"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center|center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/pollenLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pollenLabel"
+            app:layout_constraintTop_toBottomOf="@+id/broodLabel">
+
+            <RadioButton
+                android:id="@+id/pollen1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:text="@string/mite_check"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="18sp"
-                android:thumbTint="@color/colorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seen_eggs_switch" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
 
-            <Switch
-                android:id="@+id/seen_eggs_switch"
+            <RadioButton
+                android:id="@+id/pollen2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:text="@string/seen_eggs"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="18sp"
-                android:thumbTint="@color/colorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pollenLabel" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
 
-            <Switch
-                android:id="@+id/seen_queen_switch"
+            <RadioButton
+                android:id="@+id/pollen3"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:text="@string/seen_queen"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="18sp"
-                android:thumbTint="@color/colorPrimaryDark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seen_mites_switch" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
 
-            <TextView
-                android:id="@+id/spacer"
-                android:layout_width="160dp"
-                android:layout_height="40dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/tableHeader"
+            <RadioButton
+                android:id="@+id/pollen4"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/honeyLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/spacer"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
 
-                <TextView
-                    android:id="@+id/tableCol1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1" />
-
-                <TextView
-                    android:id="@+id/tableCol2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="2" />
-
-                <TextView
-                    android:id="@+id/tableCol3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="3" />
-
-                <TextView
-                    android:id="@+id/tableCol4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="4" />
-
-                <TextView
-                    android:id="@+id/tableCol5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="5" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/honeyLabel"
+            <RadioButton
+                android:id="@+id/pollen5"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:text="@string/honey_count"
-                android:textAlignment="inherit"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/tableHeader"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spacer" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark" />
+        </RadioGroup>
 
-            <RadioGroup
-                android:id="@+id/honeyInput"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/broodLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tableHeader"
-                app:layout_constraintTop_toBottomOf="@+id/spacer">
+        <EditText
+            android:id="@+id/notesInput"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/border"
+            android:drawableTop="@android:drawable/divider_horizontal_dark"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:overScrollMode="always"
+            android:padding="@dimen/horizontal_padding"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toTopOf="@+id/saveButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notesLabel" />
 
-                <RadioButton
-                    android:id="@+id/honey1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:gravity="fill_horizontal"
-                    android:textColorLink="@color/colorAccent" />
+        <TextView
+            android:id="@+id/notesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/notes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seen_queen_switch" />
 
-                <RadioButton
-                    android:id="@+id/honey2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:gravity="fill_horizontal"
-                    android:textAlignment="center"
-                    android:textColorLink="@color/colorAccent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <RadioButton
-                    android:id="@+id/honey3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:gravity="fill_horizontal"
-                    android:textAlignment="center"
-                    android:textColorLink="@color/colorAccent" />
-
-                <RadioButton
-                    android:id="@+id/honey4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:gravity="fill_horizontal"
-                    android:textAlignment="center"
-                    android:textColorLink="@color/colorAccent" />
-
-                <RadioButton
-                    android:id="@+id/honey5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:gravity="fill_horizontal"
-                    android:textAlignment="center"
-                    android:textColorLink="@color/colorAccent" />
-
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/broodLabel"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:text="@string/brood_count"
-                android:textAlignment="inherit"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/tableHeader"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/honeyLabel" />
-
-            <RadioGroup
-                android:id="@+id/broodInput"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/pollenLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tableHeader"
-                app:layout_constraintTop_toBottomOf="@+id/honeyLabel">
-
-                <RadioButton
-                    android:id="@+id/brood1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/brood2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/brood3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/brood4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/brood5"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/pollenLabel"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:text="@string/pollen_count"
-                android:textAlignment="inherit"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/tableHeader"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
-
-            <RadioGroup
-                android:id="@+id/pollenInput"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center|center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/pollenLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/pollenLabel"
-                app:layout_constraintTop_toBottomOf="@+id/broodLabel">
-
-                <RadioButton
-                    android:id="@+id/pollen1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/pollen2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/pollen3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/pollen4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-
-                <RadioButton
-                    android:id="@+id/pollen5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimaryDark" />
-            </RadioGroup>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>
