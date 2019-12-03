@@ -157,7 +157,7 @@ class YardView private constructor() : Fragment() {
             }
 
             button.setOnClickListener {
-                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_form)
+                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_home)
             }
             myButtons.add(button)
             hiveLayout.addView(button)

@@ -2,7 +2,7 @@ package com.example.thehiveapp_android.ui.hive
 
 import androidx.lifecycle.ViewModel
 import com.example.thehiveapp_android.data.DataManager
-import com.example.thehiveapp_android.data.HiveLogRealmObject
+import com.example.thehiveapp_android.data.InspectionRealmObject
 import com.example.thehiveapp_android.data.HiveRealmObject
 import io.realm.RealmResults
 
@@ -32,6 +32,6 @@ class HiveListViewModel : ViewModel() {
     /**
      * The log we're currently inspecting.
      */
-    var selectedInspection: HiveLogRealmObject = HiveLogRealmObject()
+    var selectedInspection: InspectionRealmObject = InspectionRealmObject()
 
 }

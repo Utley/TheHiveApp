@@ -15,7 +15,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/horizontal_padding">
 
             <Button
                 android:id="@+id/saveButton"
@@ -38,7 +39,6 @@
                 android:id="@+id/seen_mites_switch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/left_padding"
                 android:layout_marginTop="8dp"
                 android:buttonTint="@color/colorPrimaryDark"
                 android:text="@string/mite_check"
@@ -54,7 +54,6 @@
                 android:id="@+id/seen_eggs_switch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/left_padding"
                 android:layout_marginTop="16dp"
                 android:buttonTint="@color/colorPrimaryDark"
                 android:text="@string/seen_eggs"
@@ -64,13 +63,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pollenText" />
+                app:layout_constraintTop_toBottomOf="@+id/pollenLabel" />
 
             <Switch
                 android:id="@+id/seen_queen_switch"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/left_padding"
                 android:layout_marginTop="8dp"
                 android:buttonTint="@color/colorPrimaryDark"
                 android:text="@string/seen_queen"
@@ -97,7 +95,7 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/honeyText"
+                app:layout_constraintBottom_toTopOf="@+id/honeyLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/spacer"
                 app:layout_constraintTop_toTopOf="parent">
@@ -145,10 +143,9 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/honeyText"
+                android:id="@+id/honeyLabel"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:paddingLeft="@dimen/left_padding"
                 android:text="@string/honey_count"
                 android:textAlignment="inherit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -164,7 +161,7 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/broodText"
+                app:layout_constraintBottom_toTopOf="@+id/broodLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tableHeader"
                 app:layout_constraintTop_toBottomOf="@+id/spacer">
@@ -221,10 +218,9 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/broodText"
+                android:id="@+id/broodLabel"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:paddingLeft="@dimen/left_padding"
                 android:text="@string/brood_count"
                 android:textAlignment="inherit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -232,7 +228,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/tableHeader"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/honeyText" />
+                app:layout_constraintTop_toBottomOf="@+id/honeyLabel" />
 
             <RadioGroup
                 android:id="@+id/broodInput"
@@ -240,10 +236,10 @@
                 android:layout_height="0dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/pollenText"
+                app:layout_constraintBottom_toTopOf="@+id/pollenLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tableHeader"
-                app:layout_constraintTop_toBottomOf="@+id/honeyText">
+                app:layout_constraintTop_toBottomOf="@+id/honeyLabel">
 
                 <RadioButton
                     android:id="@+id/brood1"
@@ -283,10 +279,9 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/pollenText"
+                android:id="@+id/pollenLabel"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:paddingLeft="@dimen/left_padding"
                 android:text="@string/pollen_count"
                 android:textAlignment="inherit"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -294,7 +289,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/tableHeader"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/broodText" />
+                app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
 
             <RadioGroup
                 android:id="@+id/pollenInput"
@@ -302,10 +297,10 @@
                 android:layout_height="0dp"
                 android:gravity="center|center_horizontal"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/pollenText"
+                app:layout_constraintBottom_toBottomOf="@+id/pollenLabel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/pollenText"
-                app:layout_constraintTop_toBottomOf="@+id/broodText">
+                app:layout_constraintStart_toEndOf="@+id/pollenLabel"
+                app:layout_constraintTop_toBottomOf="@+id/broodLabel">
 
                 <RadioButton
                     android:id="@+id/pollen1"

@@ -33,8 +33,6 @@ class DataManager {
 
     private var realm : Realm = Realm.getDefaultInstance()
 
-    private fun <T: RealmModel> RealmResults<T>.asLiveData() = RealmLiveData(this)
-
 
     /**
      * Synchronously retrieves all objects of a given type from the database.
@@ -49,7 +47,7 @@ class DataManager {
      *
      * @return a RealmResults containing all [HiveLogRealmObject]s in the database
      */
-    fun getAllHiveLogs() : RealmResults<HiveLogRealmObject> = realm.where(HiveLogRealmObject::class.java).findAll()
+    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> = realm.where(InspectionRealmObject::class.java).findAll()
 
     /**
      * Synchronously retrieves all hivess from the database.
@@ -64,9 +62,9 @@ class DataManager {
         if (hiveRealmResults.size == 0) {
             val newHive = HiveRealmObject()
             newHive.name = "Test Hive"
-            val inspection1 = HiveLogRealmObject()
-            val inspection2 = HiveLogRealmObject()
-            val inspection3 = HiveLogRealmObject()
+            val inspection1 = InspectionRealmObject()
+            val inspection2 = InspectionRealmObject()
+            val inspection3 = InspectionRealmObject()
             newHive.addLog(inspection1)
             newHive.addLog(inspection2)
             newHive.addLog(inspection3)

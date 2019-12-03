@@ -61,7 +61,7 @@ class HiveRealmListAdapter(
      */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         return if (convertView == null){
-            var view = layoutInflater.inflate(R.layout.hive_selection_list_item, null) as HiveListItemView
+            var view = layoutInflater.inflate(R.layout.item_hive, null) as HiveListItemView
 
             // Warning: Force unwrap happens here! See if we can convert this to something that doesn't do that.
             view.populate(getItem(position)!!)

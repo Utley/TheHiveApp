@@ -1,18 +1,17 @@
-package com.example.thehiveapp_android.ui.hive
+package com.example.thehiveapp_android.ui.inspection
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
-import com.example.thehiveapp_android.data.HiveLogRealmObject
+import com.example.thehiveapp_android.data.InspectionRealmObject
+import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 import io.realm.RealmList
+import java.text.DateFormat
 
 /**
  * Adapter used to view hive logs in some context.
@@ -20,20 +19,18 @@ import io.realm.RealmList
  * I don't actually entirely know what's going on here, need to verify with whoever wrote this. dang
  * kotlin and it's weird optimized syntax
  *
- * @param hiveLogs Hive logs being analyzed
+ * @param inspections Hive logs being analyzed
  * @param viewModel The internal model we're working off
  * @param context The current activity context
  * @constructor ???
  * @author still don't know how to check =/
  */
-class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
-                     private val viewModel: HiveListViewModel,
-                     private val context: FragmentActivity):
-    RecyclerView.Adapter<HiveLogAdapter.HiveLogViewHolder>() {
+class InspectionAdapter(private val inspections: RealmList<InspectionRealmObject>,
+                        private val viewModel: HiveListViewModel,
+                        private val context: FragmentActivity):
+    RecyclerView.Adapter<InspectionAdapter.InspectionViewHolder>() {
 
-    // private... class? With no members? what???
-    // apparently we return it... so I guess it's just a rename for abstraction's sake?
-    class HiveLogViewHolder(val textView: LinearLayout) : RecyclerView.ViewHolder(textView)
+    class InspectionViewHolder(val textView: LinearLayout) : RecyclerView.ViewHolder(textView)
 
     /**
      * Called when `RecyclerView` needs a new `ViewHolder` of the given type to represent an item.
@@ -53,11 +50,13 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
      * @return A new `ViewHolder` that holds a `View` of the given view type
      */
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): HiveLogViewHolder {
+                                    viewType: Int): InspectionViewHolder {
         val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.hive_log_list_item, parent, false) as LinearLayout
+            .inflate(R.layout.item_inspection, parent, false) as LinearLayout
 
-        return HiveLogViewHolder(textView)
+        return InspectionViewHolder(
+            textView
+        )
     }
 
     /**
@@ -75,17 +74,18 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
      *        item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: HiveLogViewHolder, position: Int) {
-        val inspectionDate = holder.textView.findViewById<TextView>(R.id.inspection_date)
-        inspectionDate.text = hiveLogs[position]?.date.toString()
+    override fun onBindViewHolder(holder: InspectionViewHolder, position: Int) {
+        val inspectionDateView = holder.textView.findViewById<TextView>(R.id.inspection_date)
+        val inspectionDate = inspections[position]?.date
+        inspectionDateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
 
         holder.textView.setOnClickListener {
             // TODO: Start animation - make the selected row darker
-            val selectedInspection = viewModel.selectedHive.hiveLogs.get(position)
+            val selectedInspection = viewModel.selectedHive.inspections.get(position)
             if (selectedInspection != null) {
                 viewModel.selectedInspection = selectedInspection
             }
-            context.findNavController(R.id.nav_host_fragment).navigate(R.id.inspection_detail)
+            context.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_inspection_detail)
 
         }
     }
@@ -95,5 +95,5 @@ class HiveLogAdapter(private val hiveLogs: RealmList<HiveLogRealmObject>,
      *
      * @return The total number of items in this adapter.
      */
-    override fun getItemCount() = hiveLogs.size
+    override fun getItemCount() = inspections.size
 }

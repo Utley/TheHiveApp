@@ -1,30 +1,24 @@
-package com.example.thehiveapp_android.ui.hive
+package com.example.thehiveapp_android.ui.inspection
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
+import com.example.thehiveapp_android.ui.hive.HiveListViewModel
+import java.text.DateFormat
 
 /**
- * Fragment which handles displaying a detailed display of a hive.
+ * Fragment to manage displaying an inspection detail screen.
  *
- * @author I forgot how to check
+ * @author Cole ??
  */
-class HiveDetail : Fragment() {
-
+class InspectionDetailFragment : Fragment() {
     private lateinit var viewModel: HiveListViewModel
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-    private lateinit var viewManager: RecyclerView.LayoutManager
 
     /**
      * Called to have the fragment instantiate its user interface view. This will be called between
@@ -40,32 +34,34 @@ class HiveDetail : Fragment() {
      * @return Return the View for the fragment's UI, or null.
      */
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var root = inflater.inflate(R.layout.hive_detail_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_inspection_detail, container, false)
 
-        val title: TextView = root.findViewById(R.id.title)
-        title.text = viewModel.selectedHive.name
+        val dateView: TextView = root.findViewById(R.id.date)
+        val inspectionDate = viewModel.selectedInspection.date
+        dateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
 
-        val createdOn: TextView = root.findViewById(R.id.field_created)
-        createdOn.text = viewModel.selectedHive.createdAt.toString()
+        val honeyCount: TextView = root.findViewById(R.id.honeyCount)
+        honeyCount.text = viewModel.selectedInspection.honeyFrameCount.toString()
 
-        viewAdapter = HiveLogAdapter(viewModel.selectedHive.hiveLogs, viewModel, requireActivity())
-        viewManager = LinearLayoutManager(activity)
+        val broodCount: TextView = root.findViewById(R.id.broodCount)
+        broodCount.text = viewModel.selectedInspection.broodFrameCount.toString()
 
-        recyclerView = root.findViewById<RecyclerView>(R.id.inspections).apply {
-            // improves performance when changes in content do not change the layout size of the RecyclerView
-            setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
-        }
+        val pollenCount: TextView = root.findViewById(R.id.pollenCount)
+        pollenCount.text = viewModel.selectedInspection.pollenFrameCount.toString()
 
-        // Clicking the '+' button opens the new inspection form
-        val addInspectionButton = root.findViewById(R.id.add_inspection) as Button
-        addInspectionButton.setOnClickListener {
-            activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_form)
-        }
+        val eggCheckbox: CheckBox = root.findViewById(R.id.eggCheckbox)
+        eggCheckbox.isChecked = viewModel.selectedInspection.sawNewEggs
+
+        val miteCheckbox: CheckBox = root.findViewById(R.id.miteCheckbox)
+        miteCheckbox.isChecked = viewModel.selectedInspection.checkedForDroneMites
+
+        val queenCheckbox: CheckBox = root.findViewById(R.id.queenCheckbox)
+        queenCheckbox.isChecked = viewModel.selectedInspection.sawQueen
+
 
         return root
     }
@@ -92,5 +88,4 @@ class HiveDetail : Fragment() {
             ViewModelProviders.of(this)[HiveListViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
     }
-
 }
