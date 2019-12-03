@@ -79,8 +79,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
+        android:backgroundTint="@color/colorPrimary"
         android:gravity="center"
         android:text="@string/pick_time"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notificationTimePicker" />
 
@@ -88,9 +90,10 @@
         android:id="@+id/notificationCancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/colorPrimary"
         android:gravity="center"
         android:text="@string/cancelNotification"
+        android:textColor="@android:color/white"
         app:layout_constraintLeft_toRightOf="@+id/notificationTimePickerButton"
         app:layout_constraintTop_toBottomOf="@+id/notificationTimePicker" />
 

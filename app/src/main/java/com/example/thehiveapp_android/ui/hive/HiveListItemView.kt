@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.HiveRealmObject
+import java.text.DateFormat
 
 /**
  * Displays individual hive info
@@ -49,8 +50,9 @@ class HiveListItemView : LinearLayout {
         hiveNameTextView.text = hive.name
 
         var hiveDateString = "Not Yet Inspected"
-        if (hive.hiveLogs.size > 0) {
-            hiveDateString = hive.hiveLogs.last()!!.date.toString()
+        if (hive.inspections.size > 0) {
+            val lastInspectedDate = hive.inspections.last()!!.date
+            hiveDateString = DateFormat.getDateInstance().format(lastInspectedDate)
         }
 
         hiveLastInspectedAtTextView.text = hiveDateString

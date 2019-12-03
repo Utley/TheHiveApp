@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.hive.HiveDetail">
+    tools:context=".ui.hive.HiveDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/left_padding">
+        android:paddingHorizontal="@dimen/horizontal_padding">
 
         <TextView
             android:id="@+id/field_created"

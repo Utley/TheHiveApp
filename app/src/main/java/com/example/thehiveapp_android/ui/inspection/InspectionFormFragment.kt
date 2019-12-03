@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.thehiveapp_android.R
-import com.example.thehiveapp_android.data.HiveLogRealmObject
+import com.example.thehiveapp_android.data.InspectionRealmObject
 import com.example.thehiveapp_android.ui.dialog.DialogManager
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 import java.util.*
@@ -53,7 +53,7 @@ class InspectionFormFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.inspection_form_fragment, container, false)
+        val root = inflater.inflate(R.layout.fragment_inspection_form, container, false)
 
         var honeyRadioGroup: RadioGroup = root.findViewById(R.id.honeyInput)
         var pollenRadioGroup: RadioGroup = root.findViewById(R.id.pollenInput)
@@ -75,7 +75,7 @@ class InspectionFormFragment : Fragment() {
                 DialogManager.instance.presentDialog(this.context, titleText, messageText)
             } else {
 
-                val newLog = HiveLogRealmObject()
+                val newLog = InspectionRealmObject()
                 var selectedHive = viewModel.selectedHive
                 Log.d("InspectionFormFragment", "selectedHive = ${selectedHive}")
 
@@ -109,7 +109,7 @@ class InspectionFormFragment : Fragment() {
 
                 selectedHive.addLog(newLog)
 
-                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.hive_detail)
+                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_detail)
             }
         }
 

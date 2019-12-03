@@ -48,7 +48,7 @@ class HiveListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.hive_selection_list_view, container, false)
+        val root = inflater.inflate(R.layout.fragment_hive_list, container, false)
 
         hiveListView = root.findViewById(hive_selection_list_view)
 
@@ -57,7 +57,7 @@ class HiveListFragment : Fragment() {
             if (selectedHive != null) {
                 viewModel.selectedHive = selectedHive
             }
-            activity?.findNavController(nav_host_fragment)?.navigate(R.id.hive_detail)
+            activity?.findNavController(nav_host_fragment)?.navigate(R.id.navigation_hive_detail)
         }
 
         // For hiveRealmResults, we do get to use this like an array/list, but we also get free updates to objects we change here.
