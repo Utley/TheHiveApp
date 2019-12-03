@@ -1,6 +1,7 @@
 package com.example.thehiveapp_android
 
 
+import android.content.Context
 import android.util.Log
 import com.example.thehiveapp_android.data.DataManager
 import io.realm.Realm
@@ -17,6 +18,11 @@ import org.junit.runner.RunWith
 import java.lang.RuntimeException
 import kotlin.concurrent.thread
 
+import androidx.test.core.app.ApplicationProvider
+import com.example.thehiveapp_android.data.HiveRealmObject
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+import org.junit.BeforeClass
 
 /**
  * Instrumented unit test to monitor the correctness of our Realm database.
@@ -26,14 +32,10 @@ import kotlin.concurrent.thread
 @RunWith(AndroidJUnit4::class)
 class RealmUnitTest {
 
-    // dummy Realm object used for testing
-    // taken from https://medium.com/@q2ad/android-testing-realm-2dc1e1c94ee1
-    //private var testConfig =
-    //    RealmConfiguration.Builder().inMemory().name("test-realm").build()
+    val context = ApplicationProvider.getApplicationContext<Context>()
 
-    private lateinit var manager : DataManager //= DataManager.getInstance()
-
-    //private val main =
+    lateinit var manager : DataManager //= DataManager.getInstance()
+    lateinit var realm: Realm
 
     @Before
     fun setup() {
@@ -41,39 +43,42 @@ class RealmUnitTest {
         // it doesn't feel like this should be necessary, but it keeps crashing when I try to run it
         // without init'ing Realm first
         // might just be my emulator, Idk
+        Realm.init(context)
+        val realmConfig = RealmConfiguration.Builder().inMemory().name("test").build()
+        realm = Realm.getInstance(realmConfig)
 
-        var rrrr : Realm
-
-        try {
-            Realm.init(main)
-            var testConfig =
-                RealmConfiguration.Builder().inMemory().name("test-realm").build()
-            Realm.setDefaultConfiguration(testConfig)
-            rrrr = Realm.getInstance(testConfig)
-        } catch (fuckYouTooAndroid: IllegalStateException) {
-            rrrr = Realm.getDefaultInstance()
-        }
-
-        manager = DataManager.getInstance(rrrr)
+        manager = DataManager.getInstance(realm)
     }
 
-    /**
-     * TODO replace this with a real test once things start compiling
-     */
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun dataManagerCanGetAllHives() {
+        var hives = manager.getAllHives()
+        if(!hives.isValid) {
+            throw RuntimeException("dataManagerCanGetAllHivesEmpty failed.")
+        }
+        Log.d("??", "${hives.count()}")
     }
 
 
     @Test
-    fun dataManagerDoesntImplodeWhenIPokeIt() {
-        var foo = DataManager.getInstance().getAllHives()
+    fun canGetHivesNotEmpty() {
+        var newHive = HiveRealmObject()
+        newHive.name = "Bodacious"
 
-        if(!foo.isValid || foo.isEmpty()) {
-            throw RuntimeException("baaaaaaaad")
+        realm.executeTransaction { realm ->
+            realm.copyToRealm(newHive) //Add this hive synchronously.
+            // async adding, as done in manager.saveObject(), likely will not work with unit testing
+        }
+
+        val hives = manager.getAllHives()
+        val firstHive = hives.first()!!
+
+        if (hives.first()!!.name != "Bodacious"){
+            throw RuntimeException("Not Particularly Bodacious: ${firstHive.name}")
         }
     }
+
+
 
     @After
     fun tearDown() {
