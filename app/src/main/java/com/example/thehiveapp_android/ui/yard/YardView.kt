@@ -20,10 +20,11 @@ import org.jetbrains.annotations.TestOnly
 
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
+import io.realm.Realm
 import io.realm.RealmResults
-import java.lang.Math.round
-import kotlin.math.abs
 import kotlin.math.absoluteValue
+import kotlin.math.round
+import kotlin.Float
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -99,11 +100,18 @@ class YardView constructor() : Fragment() {
 
             val columnCount = 3
             var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
-            params.leftMargin = buttonWidth * (i % columnCount) + 10
-            params.topMargin = buttonHeight * (i / columnCount) + 10
+            if((realmObj?.xPosition == 0) and (realmObj?.yPosition == 0)) {
+                params.leftMargin = buttonWidth * (i % columnCount) + 10
+                params.topMargin = buttonHeight * (i / columnCount) + 10
+            }
+            else {
+                params.leftMargin = (realmObj?.xPosition) ?: 0
+                params.topMargin = (realmObj?.yPosition) ?: 0
+            }
             params.width = buttonWidth
             params.height = buttonHeight
             button.layoutParams = params
+            val tolerance = 5
 
             button.setOnTouchListener { view, motionEvent ->
                 if (motionEvent.action == MotionEvent.ACTION_DOWN){
@@ -111,12 +119,19 @@ class YardView constructor() : Fragment() {
                     button.downY = motionEvent.rawY
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_MOVE) {
-                    view.y = motionEvent.rawY - view.height
-                    view.x = motionEvent.rawX - view.width/2
+                    var newX = motionEvent.rawX - view.width/2
+                    var newY = motionEvent.rawY - view.height
+                    view.x = newX
+                    view.y = newY
+                    var realm: Realm = Realm.getDefaultInstance()
+                    realm.beginTransaction()
+                    realmObj?.xPosition = Math.round(newX)
+                    realmObj?.yPosition = Math.round(newY)
+                    realm.commitTransaction()
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_UP) {
-                    if ((button.downX - motionEvent.rawX).absoluteValue < 1 &&
-                        (button.downY - motionEvent.rawY).absoluteValue < 1){
+                    if ((button.downX - motionEvent.rawX).absoluteValue < tolerance &&
+                        (button.downY - motionEvent.rawY).absoluteValue < tolerance){
                         activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_home)
                     }
                 }
