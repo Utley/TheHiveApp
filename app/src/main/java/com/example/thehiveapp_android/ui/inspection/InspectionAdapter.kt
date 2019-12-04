@@ -11,6 +11,8 @@ import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.InspectionRealmObject
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 import io.realm.RealmList
+import io.realm.RealmResults
+import io.realm.Sort
 import java.text.DateFormat
 
 /**
@@ -25,7 +27,7 @@ import java.text.DateFormat
  * @constructor ???
  * @author still don't know how to check =/
  */
-class InspectionAdapter(private val inspections: RealmList<InspectionRealmObject>,
+class InspectionAdapter(private var inspections: RealmResults<InspectionRealmObject>,
                         private val viewModel: HiveListViewModel,
                         private val context: FragmentActivity):
     RecyclerView.Adapter<InspectionAdapter.InspectionViewHolder>() {
@@ -81,7 +83,7 @@ class InspectionAdapter(private val inspections: RealmList<InspectionRealmObject
 
         holder.textView.setOnClickListener {
             // TODO: Start animation - make the selected row darker
-            val selectedInspection = viewModel.selectedHive.inspections.get(position)
+            val selectedInspection = inspections[position]
             if (selectedInspection != null) {
                 viewModel.selectedInspection = selectedInspection
             }
