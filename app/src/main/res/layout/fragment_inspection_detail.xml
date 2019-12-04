@@ -15,13 +15,17 @@
             android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="60dp"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:editable="false"
             android:ems="10"
-            android:inputType="date"
+            android:enabled="false"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/broodCount"
