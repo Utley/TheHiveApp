@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/navigation_yard_view"
-        android:icon="@drawable/ic_hive_form_foreground"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="Yard View" />
 
     <item
@@ -14,7 +14,7 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_hive_form_foreground"
         android:title="@string/title_home" />
 
     <item
