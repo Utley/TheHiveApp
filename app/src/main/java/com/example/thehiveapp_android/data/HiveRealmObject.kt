@@ -36,6 +36,9 @@ open class HiveRealmObject() : RealmObject() {
     val inspections : RealmList<InspectionRealmObject>
         get() = inspectionList
 
+    var xPosition: Int = 0
+    var yPosition: Int = 0
+
     /**
      * Addes a new hive log to this hive's list.
      *

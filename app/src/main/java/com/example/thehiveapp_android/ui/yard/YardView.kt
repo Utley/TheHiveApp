@@ -20,8 +20,11 @@ import org.jetbrains.annotations.TestOnly
 
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
+import io.realm.Realm
 import io.realm.RealmResults
-import java.lang.Math.round
+import kotlin.math.absoluteValue
+import kotlin.math.round
+import kotlin.Float
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,7 +41,7 @@ private const val ARG_PARAM2 = "param2"
  *
  * @author Stephen
  */
-class YardView private constructor() : Fragment() {
+class YardView constructor() : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -87,31 +90,9 @@ class YardView private constructor() : Fragment() {
         var allHives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
         val myButtons = ArrayList<Button>()
         val hiveLayout: RelativeLayout = root.findViewById(R.id.hiveContainer)
-        root.setOnDragListener { it, dragEvent ->
-            if(dragEvent.action == DragEvent.ACTION_DRAG_STARTED) {
-//
-//            if(dragEvent.action == DragEvent.ACTION_DROP) {
-//                var tmpParams: FrameLayout.LayoutParams  = FrameLayout.LayoutParams(buttonWidth, buttonHeight)
-//                tmpParams.width = buttonWidth
-//                tmpParams.height = buttonHeight
-////                    tmpParams.leftMargin = button.left + round(dragEvent.x)
-////                    tmpParams.topMargin = button.top + round(dragEvent.y)
-//                tmpParams.leftMargin = round(dragEvent.x) - it.width / 2
-//                tmpParams.topMargin = round(dragEvent.y) - it.height / 2
-//                it.layoutParams = tmpParams
-////                    button.top = round(dragEvent.y)
-////                    button.left = round(dragEvent.x)
-////                    button.width = buttonWidth
-////                    button.height = buttonHeight
-//
-                true
-            }
-            else true
-        }
-
 
         for (i in 0..allHives.size-1) {
-            val button = Button(this.context)
+            val button = YardButton(this.context)
             button.setBackgroundColor(getResources().getColor(R.color.colorPrimary))
             val realmObj: HiveRealmObject? = allHives.get(i)
             button.text = realmObj?.name
@@ -119,46 +100,45 @@ class YardView private constructor() : Fragment() {
             button.height = 50
 
             val columnCount = 3
-//            var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
             var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
-            params.leftMargin = buttonWidth * (i % columnCount) + 10
-            params.topMargin = buttonHeight * (i / columnCount) + 10
+            if((realmObj?.xPosition == 0) and (realmObj?.yPosition == 0)) {
+                params.leftMargin = buttonWidth * (i % columnCount) + 10
+                params.topMargin = buttonHeight * (i / columnCount) + 10
+            }
+            else {
+                params.leftMargin = (realmObj?.xPosition) ?: 0
+                params.topMargin = (realmObj?.yPosition) ?: 0
+            }
             params.width = buttonWidth
             params.height = buttonHeight
             button.layoutParams = params
+            val tolerance = 5
 
-            button.setOnLongClickListener {
-               button.startDragAndDrop(null,View.DragShadowBuilder(it),button,0)
+            button.setOnTouchListener { view, motionEvent ->
+                if (motionEvent.action == MotionEvent.ACTION_DOWN){
+                    button.downX = motionEvent.rawX
+                    button.downY = motionEvent.rawY
+                }
+                else if (motionEvent.action == MotionEvent.ACTION_MOVE) {
+                    var newX = motionEvent.rawX - view.width/2
+                    var newY = motionEvent.rawY - view.height
+                    view.x = newX
+                    view.y = newY
+                    var realm: Realm = Realm.getDefaultInstance()
+                    realm.beginTransaction()
+                    realmObj?.xPosition = Math.round(newX)
+                    realmObj?.yPosition = Math.round(newY)
+                    realm.commitTransaction()
+                }
+                else if (motionEvent.action == MotionEvent.ACTION_UP) {
+                    if ((button.downX - motionEvent.rawX).absoluteValue < tolerance &&
+                        (button.downY - motionEvent.rawY).absoluteValue < tolerance){
+                        activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_home)
+                    }
+                }
                 true
             }
-            button.setOnDragListener { it, dragEvent ->
-                Log.i("hive","drag event ${dragEvent.toString()}")
-                if(dragEvent.action == DragEvent.ACTION_DROP) {
-                    Log.i("hive","button ${button.text} got dropped!")
 
-                    var tmpParams: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
-                    tmpParams.width = buttonWidth
-                    tmpParams.height = buttonHeight
-                    tmpParams.leftMargin = button.left + round(dragEvent.x)
-                    tmpParams.topMargin = button.top + round(dragEvent.y)
-                    tmpParams.leftMargin = round(dragEvent.x) - button.width / 2
-                    tmpParams.topMargin = round(dragEvent.y) - button.height / 2
-                    tmpParams.alignWithParent = true
-                    Log.i("hive","left pre ${button.left}")
-                    Log.i("hive","top pre ${button.top}")
-                    Log.i("hive","drag x ${dragEvent.x}")
-                    Log.i("hive","drag y ${dragEvent.y}")
-                    button.layoutParams = tmpParams
-                    Log.i("hive","left post ${button.left}")
-                    Log.i("hive","top post ${button.top}")
-                    true
-                }
-                else true
-            }
-
-            button.setOnClickListener {
-                activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_home)
-            }
             myButtons.add(button)
             hiveLayout.addView(button)
         }

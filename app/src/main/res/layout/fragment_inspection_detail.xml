@@ -8,14 +8,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/horizontal_padding">
 
         <EditText
             android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="60dp"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:editable="false"
             android:ems="10"
-            android:inputType="date"
+            android:enabled="false"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
@@ -44,8 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/horizontal_padding"
             android:text="@string/brood_count"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/honeyLabel"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +62,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/horizontal_padding"
             android:text="New Eggs"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/honeyCount"
             app:layout_constraintStart_toEndOf="@+id/honeyCount"
@@ -70,6 +75,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/horizontal_padding"
             android:text="Mites"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/broodCount"
             app:layout_constraintEnd_toEndOf="@+id/eggLabel"
@@ -83,6 +89,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/horizontal_padding"
             android:text="Queen"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/pollenCount"
             app:layout_constraintEnd_toEndOf="@+id/miteLabel"
@@ -94,8 +101,8 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/horizontal_padding"
             android:text="@string/honey_count"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date" />
@@ -105,8 +112,8 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/horizontal_padding"
             android:text="@string/pollen_count"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
@@ -184,5 +191,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/queenLabel"
             app:layout_constraintTop_toBottomOf="@+id/miteCheckbox" />
+
+        <TextView
+            android:id="@+id/notesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/notes"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/polenLabel" />
+
+        <EditText
+            android:id="@+id/notesText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="64dp"
+            android:background="@drawable/border"
+            android:clickable="false"
+            android:drawableTop="@android:drawable/divider_horizontal_dark"
+            android:editable="false"
+            android:ems="10"
+            android:gravity="start|top"
+            android:lines="6"
+            android:overScrollMode="always"
+            android:padding="@dimen/horizontal_padding"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notesLabel" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

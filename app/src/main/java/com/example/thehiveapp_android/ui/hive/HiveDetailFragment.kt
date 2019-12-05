@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.ui.inspection.InspectionAdapter
+import io.realm.Sort
 import java.text.DateFormat
 
 /**
@@ -55,7 +56,7 @@ class HiveDetailFragment : Fragment() {
         createdOn.text = DateFormat.getDateTimeInstance().format(createdDate)
 
         viewAdapter = InspectionAdapter(
-            viewModel.selectedHive.inspections,
+            viewModel.selectedHive.inspections.sort("date", Sort.DESCENDING),
             viewModel,
             requireActivity()
         )
