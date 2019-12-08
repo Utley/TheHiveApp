@@ -133,7 +133,7 @@ class YardView constructor() : Fragment() {
                 else if (motionEvent.action == MotionEvent.ACTION_UP) {
                     if ((button.downX - motionEvent.rawX).absoluteValue < tolerance &&
                         (button.downY - motionEvent.rawY).absoluteValue < tolerance){
-                        activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_home)
+                        activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_inspection_form)
                     }
                 }
                 true
