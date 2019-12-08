@@ -4,25 +4,21 @@ package com.example.thehiveapp_android
 import android.content.Context
 import android.util.Log
 import com.example.thehiveapp_android.data.DataManager
+import com.example.thehiveapp_android.data.InspectionRealmObject
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import org.junit.Test
 
 import androidx.test.runner.AndroidJUnit4
-import androidx.test.runner.AndroidJUnitRunner
 import org.junit.After
 
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.runner.RunWith
 import java.lang.RuntimeException
-import kotlin.concurrent.thread
 
 import androidx.test.core.app.ApplicationProvider
 import com.example.thehiveapp_android.data.HiveRealmObject
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import org.junit.BeforeClass
+import java.util.concurrent.TimeUnit
 
 /**
  * Instrumented unit test to monitor the correctness of our Realm database.
@@ -31,8 +27,7 @@ import org.junit.BeforeClass
  */
 @RunWith(AndroidJUnit4::class)
 class RealmUnitTest {
-
-    val context = ApplicationProvider.getApplicationContext<Context>()
+    private val context = ApplicationProvider.getApplicationContext<Context>()
 
     lateinit var manager : DataManager //= DataManager.getInstance()
     lateinit var realm: Realm
@@ -40,9 +35,6 @@ class RealmUnitTest {
     @Before
     fun setup() {
         Log.i("test init", "running test setup")
-        // it doesn't feel like this should be necessary, but it keeps crashing when I try to run it
-        // without init'ing Realm first
-        // might just be my emulator, Idk
         Realm.init(context)
         val realmConfig = RealmConfiguration.Builder().inMemory().name("test").build()
         realm = Realm.getInstance(realmConfig)
@@ -50,38 +42,87 @@ class RealmUnitTest {
         manager = DataManager.getInstance(realm)
     }
 
+
+    /**
+     * Test saveObject() for hives and getAllHives()
+     */
     @Test
-    fun dataManagerCanGetAllHives() {
+    fun hiveOperations() {
+        // retrieve the current hive list an check that it's empty
         var hives = manager.getAllHives()
-        if(!hives.isValid) {
+        if(!hives.isValid || !hives.isEmpty()) {
             throw RuntimeException("dataManagerCanGetAllHivesEmpty failed.")
         }
-        Log.d("??", "${hives.count()}")
-    }
 
-
-    @Test
-    fun canGetHivesNotEmpty() {
+        // create new hive to add to test database
         var newHive = HiveRealmObject()
         newHive.name = "Bodacious"
 
-        realm.executeTransaction { realm ->
-            realm.copyToRealm(newHive) //Add this hive synchronously.
-            // async adding, as done in manager.saveObject(), likely will not work with unit testing
+        manager.saveObject(newHive)
+
+        // wait half a second for the thing to complete
+        // maybe possibly overkill but w/e
+        TimeUnit.MILLISECONDS.sleep(500)
+
+        // make sure the test hive took
+        hives = manager.getAllHives()
+        if(hives.first() == null || hives.first()!!.name != "Bodacious") {
+            throw RuntimeException("Could not retrieve hive")
         }
 
-        val hives = manager.getAllHives()
-        val firstHive = hives.first()!!
-
-        if (hives.first()!!.name != "Bodacious"){
-            throw RuntimeException("Not Particularly Bodacious: ${firstHive.name}")
-        }
+        // delete the object directly, so that the database will be in a "clean" state for future
+        // test cases
+        realm.deleteAll()
     }
 
+
+
+    /**
+     * Test saveObject() for inspection logs and getAllHiveLogs()
+     */
+    @Test
+    fun inspectionOperations() {
+        // retrieve the current hive list an check that it's empty
+        var logs = manager.getAllHiveLogs()
+        if(!logs.isValid || !logs.isEmpty()) {
+            throw RuntimeException("dataManagerCanGetAllHivesEmpty failed.")
+        }
+
+        // create new hive to add to test database
+        var newHive = HiveRealmObject()
+        newHive.name = "Autotelic"
+        val insp1 = InspectionRealmObject()
+        insp1.noteString = "Cromnyomancy"
+        insp1.sawQueen = true
+        newHive.addLog(insp1)
+
+        manager.saveObject(newHive)
+
+        // wait half a second for the thing to complete
+        // maybe possibly overkill but w/e
+        TimeUnit.MILLISECONDS.sleep(500)
+
+        try {
+            // make sure the test hive took
+            logs = manager.getAllHiveLogs()
+            if(logs.first() == null) {
+                throw RuntimeException("Hive not stored")
+            } else  {
+                val dbLog = logs.first()!!
+                if(dbLog.noteString != "Cromnyomancy" || !dbLog.sawQueen) {
+                    throw RuntimeException("Log did not save context")
+                }
+            }
+        } finally {
+            // delete the object directly, so that the database will be in a "clean" state for future
+            // test cases
+            realm.deleteAll()
+        }
+    }
 
 
     @After
     fun tearDown() {
-        //manager.tearDown()
+        manager.tearDown()
     }
 }

@@ -54,7 +54,8 @@ class DataManager private constructor (private var realm : Realm) {
      * @return a RealmResults containing all objects of the given type
      */
      //In case a generic version of this is needed.
-    fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
+     // do we ever actually use this? If not, better off scrapped
+    //fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
 
     /**
      * Synchronously retrieves all hive logs from the database.
@@ -71,34 +72,13 @@ class DataManager private constructor (private var realm : Realm) {
     fun getAllHives() : RealmResults<HiveRealmObject> {
         val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
 
-        // TODO: Remove - used for testing with empty database
         Log.d("DataManager","Size of DB: ${hiveRealmResults.size}")
-        if (hiveRealmResults.size == 0) {
-            val newHive = HiveRealmObject()
-            newHive.name = "Test Hive"
-            val inspection1 = InspectionRealmObject()
-            val inspection2 = InspectionRealmObject()
-            val inspection3 = InspectionRealmObject()
-            newHive.addLog(inspection1)
-            newHive.addLog(inspection2)
-            newHive.addLog(inspection3)
-            this.saveObject(newHive)
-            Log.d("HiveListFragment","Saved an object.")
-        }
-        else {
+        if (hiveRealmResults.size != 0) {
             Log.d("DataManager", "${hiveRealmResults[0]}")
         }
 
         return hiveRealmResults
     }
-
-    /**
-     * Retrieves all reminders objects from the database.
-     *
-     * @return a list of reminder objects
-     */
-    // shouldn't this need a return value listed? Or is it implied?
-    fun getAllReminders() = realm.where(ReminderRealmObject::class.java).findAll()
 
     /**
      * Saves the given RealmObject to the database.
