@@ -19,7 +19,7 @@ import java.util.*
 /**
  * Manages the visual representation of the notification page.
  *
- * @author I forgot how to check
+ * @author Hannah
  */
 class NotificationsFragment : Fragment() {
 
