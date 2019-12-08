@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -22,7 +23,6 @@
             </intent-filter>
         </activity>
 
-
         <receiver
             android:name=".ui.notifications.AlarmReceiver"
             android:enabled="true" />
@@ -30,13 +30,6 @@
         <service
             android:name=".ui.notifications.NotificationService"
             android:enabled="true" />
-
-        <activity
-            android:name=".ui.notifications.ResultActivity"
-            android:excludeFromRecents="true"
-            android:label="@string/notification"
-            android:launchMode="singleTask"
-            android:taskAffinity="" />
 
     </application>
 

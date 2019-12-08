@@ -1,9 +1,6 @@
 package com.example.thehiveapp_android.ui.notifications
 
 import android.os.Bundle
-import android.os.Message
-import android.provider.DocumentsContract
-import android.service.media.MediaBrowserService
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,41 +8,13 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import ca.antonious.materialdaypicker.MaterialDayPicker
+import ca.antonious.materialdaypicker.MaterialDayPicker.Weekday
+import ca.antonious.materialdaypicker.SingleSelectionMode
 import com.example.thehiveapp_android.R
-import ca.antonious.materialdaypicker.MaterialDayPicker as MaterialDayPicker
-import ca.antonious.materialdaypicker.SingleSelectionMode as SingleSelectionMode
-import ca.antonious.materialdaypicker.MaterialDayPicker.Weekday as Weekday
 import java.util.*
-
-
-/**
- * Retrieves an int corresponding to the provided day of the week.
- *
- * Retrieves an int corresponding to the provided day of the week. The MaterialDayPicker library
- * lists selected days of the week via a `List<MaterialDayPicker.Weekday.DAY_OF_WEEK`, so we use
- * this function to quickly convert to an int to use in our notification setting.
- *
- * @param day The weekday we're looking to convert
- * @return An int corresponding to the above weekday
- */
-fun getDayInt( day: Weekday ) : Int {
-    var dayInt = 0
-        when (day) {
-            Weekday.SUNDAY -> dayInt = 1
-            Weekday.MONDAY -> dayInt = 2
-            Weekday.TUESDAY -> dayInt = 3
-            Weekday.WEDNESDAY -> dayInt = 4
-            Weekday.THURSDAY -> dayInt = 5
-            Weekday.FRIDAY -> dayInt = 6
-            Weekday.SATURDAY -> dayInt = 7
-            else -> dayInt = 1
-        }
-    return dayInt
-}
-
 
 /**
  * Manages the visual representation of the notification page.
@@ -82,25 +51,14 @@ class NotificationsFragment : Fragment() {
             textView.text = it
         })
 
-/*
-        val button: Button = root.findViewById(R.id.button_notification)
-
-        button.setOnClickListener {
-            makeNotification()
-        }
-
- */
-        // clock picker
         val timePicker: TimePicker = root.findViewById(R.id.notificationTimePicker)
-        // day of week picker
         val dayPicker : MaterialDayPicker = root.findViewById(R.id.day_picker)
         dayPicker.selectionMode = SingleSelectionMode.create() // only allow one day of week to be chosen
 
-        // create reminder button
         val timeButton: Button = root.findViewById(R.id.notificationTimePickerButton)
         timeButton.setOnClickListener{
             // get day of week from picker
-            val dayInt = getDayInt(dayPicker.selectedDays.getOrElse(0) {Weekday.MONDAY})
+            val dayInt = NotificationUtils.getDayInt(dayPicker.selectedDays.getOrElse(0) {Weekday.MONDAY})
             // create notification
             clickTest(it, timePicker, dayInt)
             // add to notification list
@@ -113,10 +71,7 @@ class NotificationsFragment : Fragment() {
             cancelNotificationFromPicker(timePicker)
             val timeTextView: TextView = root.findViewById(R.id.time_notification) as TextView
             timeTextView.text = "All notifications clear\n"
-
-            //clickTest(it, timePicker)
         }
-
 
         return root
     }
@@ -130,29 +85,26 @@ class NotificationsFragment : Fragment() {
      * @param dayInt An int corresponding to a day of the week
      * @param rmvStr String to remove
      */
-    fun updateLst(root: View, timePicker: TimePicker, dayInt: Int, rmvStr: String){
+    private fun updateLst(root: View, timePicker: TimePicker, dayInt: Int, rmvStr: String){
         val timeTextView: TextView = root.findViewById(R.id.time_notification) as TextView
 
         val calendar: Calendar = Calendar.getInstance().apply {
-            //timeInMillis = System.currentTimeMillis()
             set(Calendar.DAY_OF_WEEK, dayInt)
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
             set(Calendar.MINUTE, timePicker.minute)
-            //set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE)+1)
             set(Calendar.SECOND, 0)
         }
 
         var str2 = timeTextView.text.toString()
         str2 += "Created notification for ${calendar.time}\n"
         timeTextView.text = str2
-//
-        var strLst = str2.split("\n")
+
+        val strLst = str2.split("\n")
         val iterator = strLst.iterator()
 
 
         var string = ""
 
-        // do something with the rest of elements
         iterator.forEach {
             if(rmvStr != it){
                 string += it
@@ -160,9 +112,8 @@ class NotificationsFragment : Fragment() {
             }
 
         }
-        timeTextView.text = string
-//
 
+        timeTextView.text = string
     }
 
     //private val mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
@@ -177,33 +128,6 @@ class NotificationsFragment : Fragment() {
         makeNotificationFromPicker(timePicker, dayInt)
     }
 
-
-    /**
-     * Generates a new notification. I think another test function?
-     */
-    fun makeNotification(){
-        println("Hello World 2")
-
-        val calendar: Calendar = Calendar.getInstance().apply {
-            //timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 3)
-            //set(Calendar.MINUTE, 30)
-            set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE)+1)
-            set(Calendar.SECOND, 0)
-        }
-
-        // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
-        var mNotificationTime = calendar.timeInMillis //Set to 2:20 AM
-
-
-        var act = this@NotificationsFragment.activity
-        if (!mNotified && act != null) {
-            NotificationUtils().setNotification(mNotificationTime, act)
-        }
-
-    }
-
-
     /**
      * Generates a new system notification based on the provided TimePicker.
      *
@@ -211,14 +135,10 @@ class NotificationsFragment : Fragment() {
      * @param dayInt An int corresponding to a day of the week
      */
     fun makeNotificationFromPicker(timePicker: TimePicker, dayInt : Int){
-        println("Hello World 3")
-
         val calendar: Calendar = Calendar.getInstance().apply {
-            //timeInMillis = System.currentTimeMillis()
             set(Calendar.DAY_OF_WEEK, dayInt)
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
             set(Calendar.MINUTE, timePicker.minute)
-            //set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE)+1)
             this.set(Calendar.SECOND, 0)
         }
 
@@ -231,27 +151,22 @@ class NotificationsFragment : Fragment() {
 
         var act = this@NotificationsFragment.activity
         if (!mNotified && act != null) {
-            NotificationUtils().setNotification(mNotificationTime, act)
+            NotificationUtils.setNotification(mNotificationTime, act)
         }
-
     }
 
     /**
      * Not implemented yet?
      */
     fun cancelNotificationFromPicker(timePicker: TimePicker){
-        println("Hello World 3")
-
         val calendar: Calendar = Calendar.getInstance().apply {
-            //timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
             set(Calendar.MINUTE, timePicker.minute)
-            //set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE)+1)
             set(Calendar.SECOND, 0)
         }
 
         // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
-        var mNotificationTime = calendar.timeInMillis //Set to 2:20 AM
+        var mNotificationTime = calendar.timeInMillis
 
         println("Creating notification for ${calendar.time}")
         println("Real time is ${Calendar.getInstance().time}")
@@ -259,9 +174,7 @@ class NotificationsFragment : Fragment() {
 
         var act = this@NotificationsFragment.activity
         if (!mNotified && act != null) {
-            NotificationUtils().deleteNotification(mNotificationTime, act)
+            NotificationUtils.deleteNotification(mNotificationTime, act)
         }
-
     }
-
 }

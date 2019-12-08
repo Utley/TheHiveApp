@@ -6,9 +6,7 @@ import android.content.Intent
 
 /**
  * Specifies behavior on reception of an alarm broadcast.
- *
- * @author I forgot how to check
- */
+ **/
 class AlarmReceiver : BroadcastReceiver() {
 
     /**
@@ -27,5 +25,4 @@ class AlarmReceiver : BroadcastReceiver() {
 
         context.startService(service)
     }
-
 }
