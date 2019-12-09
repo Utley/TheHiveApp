@@ -65,9 +65,9 @@ class DataManager {
             val inspection1 = InspectionRealmObject()
             val inspection2 = InspectionRealmObject()
             val inspection3 = InspectionRealmObject()
-            newHive.addLog(inspection1)
-            newHive.addLog(inspection2)
-            newHive.addLog(inspection3)
+            newHive.addInspection(inspection1)
+            newHive.addInspection(inspection2)
+            newHive.addInspection(inspection3)
             this.saveObject(newHive)
             Log.d("HiveListFragment","Saved an object.")
         }

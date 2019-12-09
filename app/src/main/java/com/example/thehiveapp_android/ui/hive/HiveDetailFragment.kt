@@ -19,11 +19,11 @@ import java.text.DateFormat
 /**
  * Fragment which handles displaying a detailed display of a hive.
  *
- * @author I forgot how to check
+ * @author Cole
  */
 class HiveDetailFragment : Fragment() {
 
-    private lateinit var viewModel: HiveListViewModel
+    private var viewModel = HiveListViewModel.instance
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -46,7 +46,7 @@ class HiveDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
+        var root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
 
         val title: TextView = root.findViewById(R.id.title)
         title.text = viewModel.selectedHive.name
@@ -100,5 +100,4 @@ class HiveDetailFragment : Fragment() {
             ViewModelProviders.of(this)[HiveListViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
     }
-
 }

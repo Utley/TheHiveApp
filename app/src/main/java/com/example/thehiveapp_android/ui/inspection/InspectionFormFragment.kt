@@ -107,7 +107,7 @@ class InspectionFormFragment : Fragment() {
 
                 newLog.noteString = notes.text.toString()
 
-                selectedHive.addLog(newLog)
+                selectedHive.addInspection(newLog)
 
                 activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_detail)
             }
