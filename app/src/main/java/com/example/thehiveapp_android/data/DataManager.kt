@@ -48,21 +48,12 @@ class DataManager private constructor (internal var realm : Realm) {
 
 
     /**
-     * Synchronously retrieves all Realm objects of a given type from the database.
-     *
-     * @param classz A class representing the object type to retrieve
-     * @return a RealmResults containing all objects of the given type
-     */
-     //In case a generic version of this is needed.
-     // do we ever actually use this? If not, better off scrapped
-    //fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
-
-    /**
      * Synchronously retrieves all hive logs from the database.
      *
      * @return a RealmResults containing all current hive logs
      */
-    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> = realm.where(InspectionRealmObject::class.java).findAll()
+    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> =
+        realm.where(InspectionRealmObject::class.java).findAll()
 
     /**
      * Synchronously retrieves all hive objects from the database.
@@ -91,8 +82,6 @@ class DataManager private constructor (internal var realm : Realm) {
         realm.executeTransactionAsync { realm ->
             realm.copyToRealm(saveMe)
         }
-        // If an object has already been fetched from Realm, generally, we shouldn't need to use this
-        // method as Realm will handle the changes we made (TODO: test to make sure this is true)
     }
 
     /**
@@ -116,7 +105,7 @@ class DataManager private constructor (internal var realm : Realm) {
      *
      * @param deleteUs RealmResults containing objects to delete
      */
-    fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>) {
+    fun deleteObjectsInRealmResults(deleteUs: RealmResults<out RealmObject>) {
         // Similar, again, to the method above; pass in a RealmResults containing all the objects
         // we want to delete, and we'll delete them all.
         realm.executeTransactionAsync { _ ->
