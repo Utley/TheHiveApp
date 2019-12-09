@@ -42,12 +42,19 @@ open class HiveRealmObject() : RealmObject() {
     /**
      * Addes a new hive log to this hive's list.
      *
-     * @param newLog log to add
+     * @param newInspection log to add
      */
-    fun addLog(newLog : InspectionRealmObject) {
-        var realm:Realm = Realm.getDefaultInstance()
+    fun addInspection(newInspection : InspectionRealmObject) {
+        val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
-        inspections.add(newLog)
+        inspections.add(newInspection)
+        realm.commitTransaction()
+    }
+
+    fun deleteInspection(inspectionToDelete: InspectionRealmObject) {
+        val realm: Realm = Realm.getDefaultInstance()
+        realm.beginTransaction()
+        inspections.remove(inspectionToDelete)
         realm.commitTransaction()
     }
 }

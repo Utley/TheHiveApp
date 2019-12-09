@@ -100,5 +100,4 @@ class HiveDetailFragment : Fragment() {
             ViewModelProviders.of(this)[HiveListViewModel::class.java]
         } ?: throw Exception("Invalid Activity")
     }
-
 }

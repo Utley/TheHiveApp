@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.InspectionRealmObject
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
-import io.realm.RealmList
 import io.realm.RealmResults
-import io.realm.Sort
 import java.text.DateFormat
 
 /**
@@ -77,18 +75,28 @@ class InspectionAdapter(private var inspections: RealmResults<InspectionRealmObj
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: InspectionViewHolder, position: Int) {
-        val inspectionDateView = holder.textView.findViewById<TextView>(R.id.inspection_date)
-        val inspectionDate = inspections[position]?.date
-        inspectionDateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
+        val selectedInspection = inspections[position]
 
-        holder.textView.setOnClickListener {
+        val inspectionDateView = holder.textView.findViewById<TextView>(R.id.inspectionDate)
+        val inspectionDate = inspections[position]?.date
+        if (inspectionDate != null) {
+            inspectionDateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
+        }
+
+        inspectionDateView.setOnClickListener {
             // TODO: Start animation - make the selected row darker
-            val selectedInspection = inspections[position]
             if (selectedInspection != null) {
                 viewModel.selectedInspection = selectedInspection
             }
             context.findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_inspection_detail)
+        }
 
+        val deleteInspectionView = holder.textView.findViewById<TextView>(R.id.deleteInspection)
+        deleteInspectionView.setOnClickListener {
+            if (selectedInspection != null) {
+                viewModel.selectedHive.deleteInspection(selectedInspection)
+            }
+            context.recreate() // Refresh layout
         }
     }
 
