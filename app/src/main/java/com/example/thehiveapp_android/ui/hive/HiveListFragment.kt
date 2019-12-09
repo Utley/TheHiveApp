@@ -25,7 +25,7 @@ class HiveListFragment : Fragment() {
     // This class acts like a wrapper for a RealmResults object, providing a modifier interface that can
     // then be used in a HiveListItemView.
 
-    private lateinit var viewModel: HiveListViewModel
+    private var viewModel = HiveListViewModel.instance
 
     private lateinit var hiveListView : ListView
 

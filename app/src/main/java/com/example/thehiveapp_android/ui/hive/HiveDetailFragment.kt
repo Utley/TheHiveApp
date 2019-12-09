@@ -23,7 +23,7 @@ import java.text.DateFormat
  */
 class HiveDetailFragment : Fragment() {
 
-    private lateinit var viewModel: HiveListViewModel
+    private var viewModel = HiveListViewModel.instance
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -46,6 +46,7 @@ class HiveDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         var root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
 
         val title: TextView = root.findViewById(R.id.title)
