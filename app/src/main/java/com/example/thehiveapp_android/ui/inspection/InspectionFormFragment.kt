@@ -30,7 +30,7 @@ class InspectionFormFragment : Fragment() {
          *
          * @return a new InspectionFormFragment
          */
-        fun newInstance() = InspectionFormFragment()
+        //fun newInstance() = InspectionFormFragment()
     }
 
     /**
@@ -74,8 +74,8 @@ class InspectionFormFragment : Fragment() {
             } else {
 
                 val newLog = InspectionRealmObject()
-                var selectedHive = viewModel.selectedHive
-                Log.d("InspectionFormFragment", "selectedHive = ${selectedHive}")
+                val selectedHive = viewModel.selectedHive
+                Log.d("InspectionFormFragment", "selectedHive = $selectedHive")
 
                 newLog.uuid = UUID.randomUUID().mostSignificantBits
 

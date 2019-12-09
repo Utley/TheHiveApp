@@ -6,18 +6,22 @@ import android.app.TimePickerDialog
 import android.app.DialogFragment
 import java.util.*
 
-
 import android.os.Bundle
 import android.view.View
-import com.example.thehiveapp_android.R
 
 /**
+ * Picks some time woooooooooo
  *
- *
- * @author I forgot how to check
+ * @author Hannah probably
  */
 class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
 
+    /**
+     * Generates th dialog to be used on object creation.
+     *
+     * @param savedInstanceState If this fragment is being re-constructed from a previous saved
+     *  state bundle contains the necessary information to reconstruct it.
+     */
     override fun onCreateDialog(savedInstanceState: Bundle): Dialog {
         // Use the current time as the default values for the picker
         val c = Calendar.getInstance()
@@ -32,6 +36,9 @@ class TimePickerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener 
         TimePickerFragment().show(fragmentManager, "notificationTimePicker")
     }
 
+    /**
+     * Doesn't actually do anything, remove? Or is this branch just behind?
+     */
     override fun onTimeSet(view: TimePicker, hourOfDay: Int, minute: Int) {
         // Do something with the time chosen by the user
     }

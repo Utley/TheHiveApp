@@ -1,9 +1,6 @@
 package com.example.thehiveapp_android.ui.notifications
 
 import android.os.Bundle
-import android.os.Message
-import android.provider.DocumentsContract
-import android.service.media.MediaBrowserService
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +8,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.thehiveapp_android.R

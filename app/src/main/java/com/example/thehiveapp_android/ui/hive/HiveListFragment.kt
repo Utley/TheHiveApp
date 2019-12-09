@@ -65,7 +65,8 @@ class HiveListFragment : Fragment() {
         val hiveRealmResults = viewModel.hives
 
         //requireContext may throw if this isn't associated with a context...
-        val adapter = HiveRealmListAdapter(requireContext(), hiveRealmResults, true)
+        //val adapter = HiveRealmListAdapter(requireContext(), hiveRealmResults, true)
+        val adapter = HiveRealmListAdapter(requireContext(), hiveRealmResults)
         hiveListView.adapter = adapter
         Log.d("HiveListFragment", "adapter.count == ${adapter.count}")
         Log.d("HiveListFragment", "hiveRealmResults.size == ${hiveRealmResults.size}")

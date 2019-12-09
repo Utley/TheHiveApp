@@ -15,7 +15,10 @@ import io.realm.annotations.PrimaryKey
  * @property y y coordinate
  * @author Zac
  */
-open class YardHiveRealmObject() : RealmObject() {
+// linter says they're never used. Given that HiveRealmObject has its own coordinate fields, I
+// believe it
+/*
+open class YardHiveRealmObject : RealmObject() {
     // These do actually need default values, even if they're optional...
     @PrimaryKey
     var uuid: Long = 0
@@ -27,3 +30,4 @@ open class YardHiveRealmObject() : RealmObject() {
     var x: Int = 0
     var y: Int = 0
 }
+*/

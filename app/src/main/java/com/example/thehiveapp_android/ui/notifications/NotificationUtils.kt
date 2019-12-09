@@ -3,9 +3,7 @@ package com.example.thehiveapp_android.ui.notifications
 import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.widget.TimePicker
 import android.content.Intent
-import com.example.thehiveapp_android.R
 import java.util.*
 
 /**
@@ -36,7 +34,7 @@ class NotificationUtils {
             calendar.timeInMillis = timeInMilliSeconds
 
 
-            val custom_INTERVAL_ONE_MINUTE = AlarmManager.INTERVAL_FIFTEEN_MINUTES / 15
+            val customIntervalOneMinute = AlarmManager.INTERVAL_FIFTEEN_MINUTES / 15
             val pendingIntent = PendingIntent.getBroadcast(activity, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT)
             alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
             /*

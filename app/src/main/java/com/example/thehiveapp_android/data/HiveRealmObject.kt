@@ -20,7 +20,7 @@ import java.util.*
  * @author Zac
  */
 //RealmObject() descendants must be open classes; Kotlin classes are final by default
-open class HiveRealmObject() : RealmObject() {
+open class HiveRealmObject : RealmObject() {
     //These do actually need default values, even if they're optional...
     @PrimaryKey
     var uuid: Long = UUID.randomUUID().mostSignificantBits
@@ -32,7 +32,7 @@ open class HiveRealmObject() : RealmObject() {
 
     var queenedAt: Date = Date()
 
-    private var inspectionList : RealmList<InspectionRealmObject> = RealmList<InspectionRealmObject>()
+    private var inspectionList : RealmList<InspectionRealmObject> = RealmList()
     val inspections : RealmList<InspectionRealmObject>
         get() = inspectionList
 

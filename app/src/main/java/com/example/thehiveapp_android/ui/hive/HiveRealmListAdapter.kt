@@ -21,13 +21,16 @@ import io.realm.RealmResults
  * @author Zac
  */
 class HiveRealmListAdapter(
-    private val context: Context,
-    private val realmResults: RealmResults<HiveRealmObject>,
-    private val automaticUpdate: Boolean)
+    context: Context,
+    private val realmResults: RealmResults<HiveRealmObject> //,
+    // removed because the linter was complaining; feel free to re-add if it causes issues
+    //automaticUpdate: Boolean
+)
     : RealmBaseAdapter<HiveRealmObject>(realmResults), ListAdapter
 {
 
-    val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    val layoutInflater =
+        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     /**
      * Retrieves the number of Realm results

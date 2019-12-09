@@ -41,7 +41,7 @@ private const val ARG_PARAM2 = "param2"
  *
  * @author Stephen
  */
-class YardView constructor() : Fragment() {
+class YardView : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -61,9 +61,9 @@ class YardView constructor() : Fragment() {
      * @param savedInstanceState If the fragment is being re-created from
      * a previous saved state, this is the state.
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    //override fun onCreate(savedInstanceState: Bundle?) {
+    //    super.onCreate(savedInstanceState)
+    //}
 
     /**
      * Called to have the fragment instantiate its user interface view. This will be called between
@@ -114,7 +114,8 @@ class YardView constructor() : Fragment() {
             button.layoutParams = params
             val tolerance = 5
 
-            button.setOnTouchListener { view, motionEvent ->
+            // define a local function to handle touch events
+            fun listenForTouchThings(view : View, motionEvent : MotionEvent) : Boolean {
                 if (motionEvent.action == MotionEvent.ACTION_DOWN){
                     button.downX = motionEvent.rawX
                     button.downY = motionEvent.rawY
@@ -136,7 +137,11 @@ class YardView constructor() : Fragment() {
                         activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_home)
                     }
                 }
-                true
+                return true
+            }
+
+            button.setOnTouchListener { view, motionEvent ->
+                listenForTouchThings(view, motionEvent)
             }
 
             myButtons.add(button)
@@ -163,9 +168,9 @@ class YardView constructor() : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
-        } else {
+        } //else {
 //            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
+        //}
     }
 
     /**

@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.InspectionRealmObject
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
-import io.realm.RealmList
 import io.realm.RealmResults
-import io.realm.Sort
 import java.text.DateFormat
 
 /**
