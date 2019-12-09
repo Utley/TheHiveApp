@@ -18,12 +18,13 @@ import java.lang.RuntimeException
 
 import androidx.test.core.app.ApplicationProvider
 import com.example.thehiveapp_android.data.HiveRealmObject
+import io.realm.RealmResults
 import java.util.concurrent.TimeUnit
 
 /**
  * Instrumented unit test to monitor the correctness of our Realm database.
  *
- * @author David
+ * @author David and Zac
  */
 @RunWith(AndroidJUnit4::class)
 class RealmUnitTest {
@@ -42,6 +43,57 @@ class RealmUnitTest {
         manager = DataManager.getInstance(realm)
     }
 
+    /**
+     * Tests an asynchronous database operation.
+     *
+     * Because asynchronous database operations are, well, asynchronous, we can't just check them
+     * instantaneously to see if our changes worked. This function helps us get around this by
+     * providing a framework to monitor an asynchronous Realm operation using a RealmResults promise
+     * object. When the promise is completed, it can then be tested to see if the results are valid.
+     *
+     * Regardless of success or failure, this method will automatically clear the contents of our
+     * in-memory testing database when it's finished, preventing our working values from
+     * contaminating later tests.
+     *
+     * @param T Type of RealmObject to return
+     * @param results The RealmResults promise to analyze; must not be empty
+     * @param verification A function that can be used to verify the results of said promise
+     * @throws RuntimeException if an error occurs with loading the data, or if any part of the data
+     *  analysis fails
+     */
+    private fun <T> verifyAsyncResult(
+        results: RealmResults<T>,
+        verification: (query: RealmResults<T>) -> Boolean
+    ) {
+        // wait for the result to become available
+        if(!results.load()) {
+            throw RuntimeException("Could not load promise!")
+        }
+
+        try {
+            if(!results.isValid) {
+                throw RuntimeException("Results set is invalid")
+            }
+
+            if(results.isEmpty()) {
+                throw RuntimeException("Results set is empty!")
+            }
+
+            if(results.first() == null) {
+                throw RuntimeException("Could not retrieve hive")
+            }
+
+            if(!verification(results)) {
+                throw RuntimeException("Could not verify data")
+            }
+        } finally {
+            // delete the object directly, so that the database will be in a "clean" state for
+            // future test cases
+            realm.beginTransaction()
+            realm.deleteAll()
+            realm.commitTransaction()
+        }
+    }
 
     /**
      * Test saveObject() for hives and getAllHives()
@@ -50,29 +102,30 @@ class RealmUnitTest {
     fun hiveOperations() {
         // retrieve the current hive list an check that it's empty
         var hives = manager.getAllHives()
-        if(!hives.isValid || !hives.isEmpty()) {
-            throw RuntimeException("dataManagerCanGetAllHivesEmpty failed.")
+        if(!hives.isValid) {
+            throw RuntimeException("Hives promise is invalid!.")
+        }
+
+        if(!hives.isEmpty()) {
+            throw RuntimeException("Hives promise isn't empty, despite us not adding anything yet!")
         }
 
         // create new hive to add to test database
-        var newHive = HiveRealmObject()
+        val newHive = HiveRealmObject()
         newHive.name = "Bodacious"
 
         manager.saveObject(newHive)
 
-        // wait half a second for the thing to complete
-        // maybe possibly overkill but w/e
-        TimeUnit.MILLISECONDS.sleep(500)
-
-        // make sure the test hive took
+        // get a promise for the hives we stored
         hives = manager.getAllHives()
-        if(hives.first() == null || hives.first()!!.name != "Bodacious") {
-            throw RuntimeException("Could not retrieve hive")
+
+        // define a lambda to check the results of that promise
+        val checkHives : (RealmResults<HiveRealmObject>) -> Boolean = {
+            hives: RealmResults<HiveRealmObject> -> hives.first()!!.name != "Bodacious"
         }
 
-        // delete the object directly, so that the database will be in a "clean" state for future
-        // test cases
-        realm.deleteAll()
+        // use the above with verifyAsyncResult() to make sure the test hive took
+        verifyAsyncResult(hives, checkHives)
     }
 
 
@@ -84,12 +137,16 @@ class RealmUnitTest {
     fun inspectionOperations() {
         // retrieve the current hive list an check that it's empty
         var logs = manager.getAllHiveLogs()
-        if(!logs.isValid || !logs.isEmpty()) {
-            throw RuntimeException("dataManagerCanGetAllHivesEmpty failed.")
+        if(!logs.isValid) {
+            throw RuntimeException("Logs promise is invalid!.")
+        }
+
+        if(!logs.isEmpty()) {
+            throw RuntimeException("Logs promise isn't empty, despite us not adding anything yet!")
         }
 
         // create new hive to add to test database
-        var newHive = HiveRealmObject()
+        val newHive = HiveRealmObject()
         newHive.name = "Autotelic"
         val insp1 = InspectionRealmObject()
         insp1.noteString = "Cromnyomancy"
@@ -98,26 +155,17 @@ class RealmUnitTest {
 
         manager.saveObject(newHive)
 
-        // wait half a second for the thing to complete
-        // maybe possibly overkill but w/e
-        TimeUnit.MILLISECONDS.sleep(500)
+        // get a promise for the hives we stored
+        logs = manager.getAllHiveLogs()
 
-        try {
-            // make sure the test hive took
-            logs = manager.getAllHiveLogs()
-            if(logs.first() == null) {
-                throw RuntimeException("Hive not stored")
-            } else  {
-                val dbLog = logs.first()!!
-                if(dbLog.noteString != "Cromnyomancy" || !dbLog.sawQueen) {
-                    throw RuntimeException("Log did not save context")
-                }
-            }
-        } finally {
-            // delete the object directly, so that the database will be in a "clean" state for future
-            // test cases
-            realm.deleteAll()
+        // define a lambda to check the results of that promise
+        val checkHives : (RealmResults<InspectionRealmObject>) -> Boolean = {
+                logs: RealmResults<InspectionRealmObject> ->
+                    logs.first()!!.noteString != "Cromnyomancy" || !logs.first()!!.sawQueen
         }
+
+        // use the above with verifyAsyncResult() to make sure the test hive took
+        verifyAsyncResult(logs, checkHives)
     }
 
 

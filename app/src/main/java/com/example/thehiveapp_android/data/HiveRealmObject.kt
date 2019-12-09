@@ -42,7 +42,7 @@ open class HiveRealmObject() : RealmObject() {
      * @param newLog log to add
      */
     fun addLog(newLog : InspectionRealmObject) {
-        var realm:Realm = Realm.getDefaultInstance()
+        var realm:Realm = DataManager.getInstance().realm
         realm.beginTransaction()
         inspections.add(newLog)
         realm.commitTransaction()

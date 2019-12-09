@@ -15,7 +15,7 @@ import java.lang.Exception
  *
  * @author Zac
  */
-class DataManager private constructor (private var realm : Realm) {
+class DataManager private constructor (internal var realm : Realm) {
     // Let's make this a singleton class...
     companion object {
         private var managerInstance : DataManager? = null
