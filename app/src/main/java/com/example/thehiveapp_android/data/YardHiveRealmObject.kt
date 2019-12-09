@@ -15,7 +15,7 @@ import io.realm.annotations.PrimaryKey
  * @property y y coordinate
  * @author Zac
  */
-open class YardHiveRealmObject() : RealmObject() {
+open class YardHiveRealmObject : RealmObject() {
     // These do actually need default values, even if they're optional...
     @PrimaryKey
     var uuid: Long = 0
