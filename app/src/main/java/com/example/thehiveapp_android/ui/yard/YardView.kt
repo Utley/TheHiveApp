@@ -12,6 +12,7 @@ import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.marginLeft
 import androidx.core.view.marginTop
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 
 import com.example.thehiveapp_android.R
@@ -20,6 +21,8 @@ import org.jetbrains.annotations.TestOnly
 
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
+import com.example.thehiveapp_android.ui.hive.HiveListViewModel
+import com.example.thehiveapp_android.ui.hive.HiveDetailFragment
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlin.math.absoluteValue
@@ -47,6 +50,8 @@ class YardView constructor() : Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private var viewModel = HiveListViewModel.instance
+
     /**
      * Called to do initial creation of a fragment. This is called after `onAttach(Activity)` and
      * before `onCreateView(LayoutInflater, ViewGroup, Bundle)`.
@@ -63,6 +68,9 @@ class YardView constructor() : Fragment() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = activity?.run {
+            ViewModelProviders.of(this)[HiveListViewModel::class.java]
+        } ?: throw Exception("Invalid Activity")
     }
 
     /**
@@ -84,6 +92,9 @@ class YardView constructor() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        viewModel = HiveListViewModel()
+
+
         val buttonWidth = 300
         val buttonHeight = 300
         val root = inflater.inflate(R.layout.fragment_yard_view, container, false)
@@ -91,23 +102,25 @@ class YardView constructor() : Fragment() {
         val myButtons = ArrayList<Button>()
         val hiveLayout: RelativeLayout = root.findViewById(R.id.hiveContainer)
 
+        viewModel.selectedHive = allHives.get(0) ?: HiveRealmObject()
+
         for (i in 0..allHives.size-1) {
-            val button = YardButton(this.context)
+            val realmObj: HiveRealmObject = allHives.get(i)!!
+            val button = YardButton(this.context, realmObj)
             button.setBackgroundColor(getResources().getColor(R.color.colorPrimary))
-            val realmObj: HiveRealmObject? = allHives.get(i)
-            button.text = realmObj?.name
+            button.text = realmObj.name
             button.width = 50
             button.height = 50
 
             val columnCount = 3
             var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
-            if((realmObj?.xPosition == 0) and (realmObj?.yPosition == 0)) {
+            if((realmObj?.xPosition == 0) and (realmObj.yPosition == 0)) {
                 params.leftMargin = buttonWidth * (i % columnCount) + 10
                 params.topMargin = buttonHeight * (i / columnCount) + 10
             }
             else {
-                params.leftMargin = (realmObj?.xPosition) ?: 0
-                params.topMargin = (realmObj?.yPosition) ?: 0
+                params.leftMargin = (realmObj.xPosition)
+                params.topMargin = (realmObj.yPosition)
             }
             params.width = buttonWidth
             params.height = buttonHeight
@@ -133,7 +146,16 @@ class YardView constructor() : Fragment() {
                 else if (motionEvent.action == MotionEvent.ACTION_UP) {
                     if ((button.downX - motionEvent.rawX).absoluteValue < tolerance &&
                         (button.downY - motionEvent.rawY).absoluteValue < tolerance){
-                        activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_inspection_form)
+
+                        val selectedHive = button.hive
+                        if (selectedHive != null) {
+                            viewModel.selectedHive = selectedHive
+                        }
+                        Log.d("YardView", "${selectedHive}")
+
+                        //Invalidate the existing navigation_hive_detail to force it to be redrawn when it appears.
+
+                        activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_detail)
                     }
                 }
                 true

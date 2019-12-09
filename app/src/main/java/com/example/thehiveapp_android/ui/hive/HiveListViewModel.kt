@@ -19,6 +19,19 @@ import io.realm.RealmResults
  * @author I forgot how to check
  */
 class HiveListViewModel : ViewModel() {
+
+    companion object {
+        private var modelInstance : HiveListViewModel? = null
+
+        val instance: HiveListViewModel
+            get() {
+                if (modelInstance == null){
+                    modelInstance = HiveListViewModel()
+                }
+                return modelInstance!!
+            }
+    }
+
     /**
      * Retrieves the list of hives currently stored in the database.
      */
@@ -27,7 +40,7 @@ class HiveListViewModel : ViewModel() {
     /**
      * The hive that is currently selected.
      */
-    var selectedHive: HiveRealmObject = HiveRealmObject()
+    var selectedHive: HiveRealmObject = DataManager.instance.getAllHives().get(0) ?: HiveRealmObject()
 
     /**
      * The log we're currently inspecting.
