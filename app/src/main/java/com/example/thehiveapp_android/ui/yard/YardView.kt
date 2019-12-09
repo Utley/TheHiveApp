@@ -42,7 +42,7 @@ private const val ARG_PARAM2 = "param2"
  * interaction events. Use the [YardView.newInstance] factory method to create an instance of this
  * fragment.
  *
- * @author ???
+ * @author Stephen
  */
 class YardView constructor() : Fragment() {
     // TODO: Rename and change types of parameters
@@ -87,7 +87,8 @@ class YardView constructor() : Fragment() {
      * @return Return the View for the fragment's UI, or null.
      */
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -166,6 +167,9 @@ class YardView constructor() : Fragment() {
         return root
     }
 
+    /**
+     * Probably default, remove/refactor later
+     */
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onFragmentInteraction(uri)
@@ -200,7 +204,6 @@ class YardView constructor() : Fragment() {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     *
      *
      * See the Android Training lesson [Communicating with Other Fragments]
      * (http://developer.android.com/training/basics/fragments/communicating.html)

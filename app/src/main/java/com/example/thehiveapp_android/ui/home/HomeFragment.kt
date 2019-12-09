@@ -67,7 +67,7 @@ class HomeFragment : Fragment() {
             val messageText = "Won't you bee a honey and fill out all the (flowery) fields?"
 
             if (hiveName.text == null || hiveName.text.toString() == ""){
-                DialogManager.instance.presentDialog(this.context, titleText, messageText)
+                DialogManager.presentDialog(this.context, titleText, messageText)
             } else {
                 val newHive = HiveRealmObject()
                 newHive.uuid = UUID.randomUUID().mostSignificantBits

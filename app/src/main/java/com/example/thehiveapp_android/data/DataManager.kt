@@ -19,6 +19,9 @@ class DataManager {
     companion object {
         private var managerInstance : DataManager? = null
 
+        /**
+         * The current valid DataManager instance
+         */
         val instance: DataManager
             get() {
                 if (managerInstance == null){
@@ -34,25 +37,23 @@ class DataManager {
     /**
      * Synchronously retrieves all objects of a given type from the database.
      *
-     * Synchronously retrieves all Realm object of a given type from the database.
-     *
      * @param classz A class representing the object type to retrieve
      * @return a RealmResults containing all objects of the given type
      */
-     //In case a generic version of this is needed.
     fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
 
     /**
-     * Synchronously retrieves all hives from the database.
+     * Synchronously retrieves all hive logs from the database.
      *
-     * Synchronously retrieves all hives from the database. If no hives have been entered, creates
-     * a dummy object and adds that; I assuuuuume that's just debug behavior?
-     *
-     * @return a RealmResults containing all HiveRealmObjects
+     * @return a RealmResults containing all [HiveLogRealmObject]s in the database
      */
     fun getAllHiveLogs() : RealmResults<InspectionRealmObject> = realm.where(InspectionRealmObject::class.java).findAll()
 
-    //Get all hives from the database, synchronously.
+    /**
+     * Synchronously retrieves all hivess from the database.
+     *
+     * @return a RealmResults containing all [HiveRealmObject]s in the database
+     */
     fun getAllHives() : RealmResults<HiveRealmObject> {
         val hiveRealmResults = realm.where(HiveRealmObject::class.java).findAll()
 
@@ -78,9 +79,7 @@ class DataManager {
     }
 
     /**
-     * Retrieves all reminders from the database.
-     *
-     * Retrieves all reminder objects from the database.
+     * Synchronously retrieves all reminder objects from the database.
      *
      * @return a list of reminder objects
      */
@@ -102,9 +101,7 @@ class DataManager {
     }
 
     /**
-     * Removes the given RealmObject from the database.
-     *
-     * Asynchronously removes the given RealmObject from the database.
+     * Asynchronously removes a single RealmObject from the database.
      *
      * @param deleteMe RealmObject to delete
      */
@@ -118,7 +115,7 @@ class DataManager {
     /**
      * Removes a series of RealmObject from the database.
      *
-     * Asynchronously removes all objects in the given RealmResults set from the database.
+     * Asynchronously removes all objects contained in the given RealmResults set from the database.
      *
      * @param deleteUs RealmResults containing objects to delete
      */
