@@ -1,5 +1,6 @@
 package com.example.thehiveapp_android.ui.hive
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +30,7 @@ class HiveRealmListAdapter(
     : RealmBaseAdapter<HiveRealmObject>(realmResults), ListAdapter
 {
 
-    val layoutInflater =
+    private val layoutInflater =
         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     /**
@@ -62,11 +63,14 @@ class HiveRealmListAdapter(
      * @param parent view's grouping (??)
      * @return the filled view object
      */
+    @SuppressLint("InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         return if (convertView == null){
-            var view = layoutInflater.inflate(R.layout.item_hive, null) as HiveListItemView
+            // linter complains about the null root, but idk what to actually do about it...
+            val view = layoutInflater.inflate(R.layout.item_hive, null) as HiveListItemView
 
-            // Warning: Force unwrap happens here! See if we can convert this to something that doesn't do that.
+            // Warning: Force unwrap happens here! See if we can convert this to something that
+            // doesn't do that.
             view.populate(getItem(position)!!)
 
             // In a "return if" block like this, the last expression is returned as a value.

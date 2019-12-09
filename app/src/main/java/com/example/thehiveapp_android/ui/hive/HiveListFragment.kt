@@ -52,8 +52,8 @@ class HiveListFragment : Fragment() {
 
         hiveListView = root.findViewById(hive_selection_list_view)
 
-        hiveListView.setOnItemClickListener { parent, view, position, id ->
-            val selectedHive = viewModel.hives.get(position)
+        hiveListView.setOnItemClickListener { _, _, position, _ ->
+            val selectedHive = viewModel.hives[position]
             if (selectedHive != null) {
                 viewModel.selectedHive = selectedHive
             }

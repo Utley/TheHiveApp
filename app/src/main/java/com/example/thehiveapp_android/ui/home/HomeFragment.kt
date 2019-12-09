@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
         // Create an ArrayAdapter using the string array and a default spinner layout
         val hiveSizeSpinner : Spinner = root.findViewById(R.id.hiveSizeInput)
         ArrayAdapter.createFromResource(
-            this.getContext()!!,
+            this.context!!,
             R.array.frame_size_array,
             android.R.layout.simple_spinner_item // default layout
         ).also { adapter ->

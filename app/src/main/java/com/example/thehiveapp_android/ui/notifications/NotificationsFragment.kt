@@ -1,5 +1,6 @@
 package com.example.thehiveapp_android.ui.notifications
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,7 @@ class NotificationsFragment : Fragment() {
      * saved state as given here.
      * @return Return the View for the fragment's UI, or null.
      */
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -123,6 +125,7 @@ class NotificationsFragment : Fragment() {
     /**
      * Test function, delete later
      */
+    @Deprecated("Test function, pls delete")
     fun clickTest(v: View, timePicker: TimePicker, dayInt : Int ){
         println("Hello World 1")
         makeNotificationFromPicker(timePicker, dayInt)
@@ -134,7 +137,7 @@ class NotificationsFragment : Fragment() {
      * @param timePicker Time for the new notification to occur at
      * @param dayInt An int corresponding to a day of the week
      */
-    fun makeNotificationFromPicker(timePicker: TimePicker, dayInt : Int){
+    private fun makeNotificationFromPicker(timePicker: TimePicker, dayInt : Int){
         val calendar: Calendar = Calendar.getInstance().apply {
             set(Calendar.DAY_OF_WEEK, dayInt)
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
@@ -143,22 +146,22 @@ class NotificationsFragment : Fragment() {
         }
 
         // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
-        var mNotificationTime = calendar.timeInMillis
+        val mNotificationTime = calendar.timeInMillis
 
         println("Creating notification for ${calendar.time}")
         println("Real time is ${Calendar.getInstance().time}")
 
 
-        var act = this@NotificationsFragment.activity
+        val act = this@NotificationsFragment.activity
         if (!mNotified && act != null) {
             NotificationUtils.setNotification(mNotificationTime, act)
         }
     }
 
     /**
-     * Not implemented yet?
+     * Function which manages canceling picker notifications
      */
-    fun cancelNotificationFromPicker(timePicker: TimePicker){
+    private fun cancelNotificationFromPicker(timePicker: TimePicker){
         val calendar: Calendar = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
             set(Calendar.MINUTE, timePicker.minute)
@@ -166,13 +169,13 @@ class NotificationsFragment : Fragment() {
         }
 
         // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
-        var mNotificationTime = calendar.timeInMillis
+        val mNotificationTime = calendar.timeInMillis
 
         println("Creating notification for ${calendar.time}")
         println("Real time is ${Calendar.getInstance().time}")
 
 
-        var act = this@NotificationsFragment.activity
+        val act = this@NotificationsFragment.activity
         if (!mNotified && act != null) {
             NotificationUtils.deleteNotification(mNotificationTime, act)
         }

@@ -1,30 +1,35 @@
 package com.example.thehiveapp_android.ui.yard
 
-import android.content.ClipData
+//import android.content.ClipData
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Half.toFloat
-import android.util.Log
+//import android.util.Half.toFloat
+//import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginLeft
-import androidx.core.view.marginTop
+//import androidx.constraintlayout.widget.ConstraintLayout
+//import androidx.core.view.marginLeft
+//import androidx.core.view.marginTop
 import androidx.navigation.findNavController
 
 import com.example.thehiveapp_android.R
-import org.jetbrains.annotations.TestOnly
-
+//import org.jetbrains.annotations.TestOnly
 
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlin.math.absoluteValue
-import kotlin.math.round
-import kotlin.Float
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
+
+//import kotlin.math.round
+//import kotlin.Float
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,11 +48,11 @@ private const val ARG_PARAM2 = "param2"
  */
 class YardView : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    //private var param1: String? = null
+    //private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
-    /**
+    /* *
      * Called to do initial creation of a fragment. This is called after `onAttach(Activity)` and
      * before `onCreateView(LayoutInflater, ViewGroup, Bundle)`.
      *
@@ -78,6 +83,7 @@ class YardView : Fragment() {
      * saved state as given here.
      * @return Return the View for the fragment's UI, or null.
      */
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -87,20 +93,20 @@ class YardView : Fragment() {
         val buttonWidth = 300
         val buttonHeight = 300
         val root = inflater.inflate(R.layout.fragment_yard_view, container, false)
-        var allHives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
+        val allHives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
         val myButtons = ArrayList<Button>()
         val hiveLayout: RelativeLayout = root.findViewById(R.id.hiveContainer)
 
-        for (i in 0..allHives.size-1) {
+        for (i in 0 until allHives.size) {
             val button = YardButton(this.context)
-            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary))
-            val realmObj: HiveRealmObject? = allHives.get(i)
+            button.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+            val realmObj: HiveRealmObject? = allHives[i]
             button.text = realmObj?.name
             button.width = 50
             button.height = 50
 
             val columnCount = 3
-            var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
+            val params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
             if((realmObj?.xPosition == 0) and (realmObj?.yPosition == 0)) {
                 params.leftMargin = buttonWidth * (i % columnCount) + 10
                 params.topMargin = buttonHeight * (i / columnCount) + 10
@@ -121,14 +127,14 @@ class YardView : Fragment() {
                     button.downY = motionEvent.rawY
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_MOVE) {
-                    var newX = motionEvent.rawX - view.width/2
-                    var newY = motionEvent.rawY - view.height
+                    val newX = motionEvent.rawX - view.width/2
+                    val newY = motionEvent.rawY - view.height
                     view.x = newX
                     view.y = newY
-                    var realm: Realm = Realm.getDefaultInstance()
+                    val realm: Realm = Realm.getDefaultInstance()
                     realm.beginTransaction()
-                    realmObj?.xPosition = Math.round(newX)
-                    realmObj?.yPosition = Math.round(newY)
+                    realmObj?.xPosition = newX.roundToInt()
+                    realmObj?.yPosition = newY.roundToInt()
                     realm.commitTransaction()
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_UP) {

@@ -1,10 +1,10 @@
 package com.example.thehiveapp_android.data
 
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
-import java.util.Date
+//import io.realm.RealmObject
+//import io.realm.annotations.PrimaryKey
+//import java.util.Date
 
-/**
+/* *
  * Represents a reminder object's current status.
  *
  * Stores a Realm representation of a reminder's status. This object acts like a C struct, serving
@@ -15,6 +15,9 @@ import java.util.Date
  * @property reminderString The string the reminder will display on activation.
  * @author Zac
  */
+
+// reminders are stored in the Android system, not Realm, so this isn't necessary
+/*
 open class ReminderRealmObject : RealmObject() {
     //These do actually need default values, even if they're optional...
     @PrimaryKey
@@ -24,3 +27,4 @@ open class ReminderRealmObject : RealmObject() {
     var reminderString : String = "You've got a reminder set for right now!"
 
 }
+ */

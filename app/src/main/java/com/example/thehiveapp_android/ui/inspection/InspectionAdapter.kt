@@ -77,7 +77,7 @@ class InspectionAdapter(private var inspections: RealmResults<InspectionRealmObj
     override fun onBindViewHolder(holder: InspectionViewHolder, position: Int) {
         val inspectionDateView = holder.textView.findViewById<TextView>(R.id.inspection_date)
         val inspectionDate = inspections[position]?.date
-        inspectionDateView.text = DateFormat.getDateTimeInstance().format(inspectionDate)
+        inspectionDateView.text = DateFormat.getDateTimeInstance().format(inspectionDate!!)
 
         holder.textView.setOnClickListener {
             // TODO: Start animation - make the selected row darker

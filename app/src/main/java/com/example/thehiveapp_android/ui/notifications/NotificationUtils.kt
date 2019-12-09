@@ -23,17 +23,15 @@ class NotificationUtils {
          * @return An int corresponding to the above weekday
          */
         fun getDayInt(day: MaterialDayPicker.Weekday): Int {
-            var dayInt = 1
-            when (day) {
-                MaterialDayPicker.Weekday.SUNDAY -> dayInt = 1
-                MaterialDayPicker.Weekday.MONDAY -> dayInt = 2
-                MaterialDayPicker.Weekday.TUESDAY -> dayInt = 3
-                MaterialDayPicker.Weekday.WEDNESDAY -> dayInt = 4
-                MaterialDayPicker.Weekday.THURSDAY -> dayInt = 5
-                MaterialDayPicker.Weekday.FRIDAY -> dayInt = 6
-                MaterialDayPicker.Weekday.SATURDAY -> dayInt = 7
+            return when (day) {
+                MaterialDayPicker.Weekday.SUNDAY -> 1
+                MaterialDayPicker.Weekday.MONDAY -> 2
+                MaterialDayPicker.Weekday.TUESDAY -> 3
+                MaterialDayPicker.Weekday.WEDNESDAY -> 4
+                MaterialDayPicker.Weekday.THURSDAY -> 5
+                MaterialDayPicker.Weekday.FRIDAY -> 6
+                MaterialDayPicker.Weekday.SATURDAY -> 7
             }
-            return dayInt
         }
 
         fun setNotification(timeInMilliSeconds: Long, activity: Activity) {

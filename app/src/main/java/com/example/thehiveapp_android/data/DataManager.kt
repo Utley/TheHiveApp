@@ -33,7 +33,7 @@ class DataManager {
     private var realm : Realm = Realm.getDefaultInstance()
 
 
-    /**
+    /* *
      * Synchronously retrieves all objects of a given type from the database.
      *
      * @param classz A class representing the object type to retrieve

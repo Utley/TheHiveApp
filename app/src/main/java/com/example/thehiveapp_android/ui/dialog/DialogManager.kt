@@ -28,7 +28,7 @@ object DialogManager {
         builder.setTitle(title) //Set the title and message.
         builder.setMessage(message)
 
-        builder.setNeutralButton("OK") { dialog, which ->
+        builder.setNeutralButton("OK") { _, _ ->
             Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
         }
 

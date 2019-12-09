@@ -1,9 +1,9 @@
 package com.example.thehiveapp_android.data
 
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
+//import io.realm.RealmObject
+//import io.realm.annotations.PrimaryKey
 
-/**
+/* *
  * Represents a hive's status within a yard.
  *
  * Stores a Realm representation of a hive's status within the yard. This object acts like a struct
