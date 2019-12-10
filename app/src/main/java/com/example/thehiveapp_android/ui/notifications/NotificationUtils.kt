@@ -8,7 +8,12 @@ import ca.antonious.materialdaypicker.MaterialDayPicker
 import java.util.*
 
 /**
- * Created based on example by devdeeds.com on 5/12/17.
+ * Manages helper utilities of notification functionality including notification
+ * setting, deletion, and retrieving integer equivalent of day of the week
+ *
+ * Created based on open source example by devdeeds.com
+ *
+ * @author Hannah
  **/
 class NotificationUtils {
     companion object {
@@ -36,17 +41,26 @@ class NotificationUtils {
             return dayInt
         }
 
+        /**
+         * Given a time, create a system notification using Android AlarmManager
+         *
+         * @param timeInMilliSeconds Time, from Day and Time Pickers, to set notification
+         * @param activity Current activity
+         */
         fun setNotification(timeInMilliSeconds: Long, activity: Activity) {
+            // if time picker was set
             if (timeInMilliSeconds > 0) {
                 val alarmManager = activity.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
                 val alarmIntent = Intent(
                     activity.applicationContext,
                     AlarmReceiver::class.java
                 )
-
+                // associate the notification message and time to the alarm
                 alarmIntent.putExtra("reason", "notification")
                 alarmIntent.putExtra("timestamp", timeInMilliSeconds)
 
+                // create calendar object with value of timeInMillis
+                // so we can use it for our alarm value
                 val calendar = Calendar.getInstance()
                 calendar.timeInMillis = timeInMilliSeconds
 
@@ -56,12 +70,18 @@ class NotificationUtils {
                     alarmIntent,
                     PendingIntent.FLAG_CANCEL_CURRENT
                 )
-
+                // set our notification!
                 alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
             }
         }
 
+        /**
+         * Clear all reminders after the given time
+         * @param timeInMilliSeconds Time before which all notifications should be removed
+         * @param activity Reference to the current activity (given to Intent)
+         */
         fun deleteNotification(timeInMilliSeconds: Long, activity: Activity) {
+            // if time is given
             if (timeInMilliSeconds > 0) {
                 val alarmManager = activity.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
                 val alarmIntent = Intent(
@@ -69,6 +89,7 @@ class NotificationUtils {
                     AlarmReceiver::class.java
                 )
 
+                // associate message and time of alarms to delete
                 alarmIntent.putExtra("reason", "notification")
                 alarmIntent.putExtra("timestamp", timeInMilliSeconds)
 

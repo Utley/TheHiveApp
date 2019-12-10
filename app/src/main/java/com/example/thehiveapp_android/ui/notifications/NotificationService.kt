@@ -14,7 +14,9 @@ import java.util.*
 /**
  * Specifies behavior on reception of a notification.
  *
- * @author I forgot how to check
+ * Created based on open source example by devdeeds.com
+ *
+ * @author Hannah
  */
 class NotificationService : IntentService("NotificationService") {
     private lateinit var mNotification: Notification
@@ -27,6 +29,8 @@ class NotificationService : IntentService("NotificationService") {
 
         val importance = NotificationManager.IMPORTANCE_HIGH
         val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, importance)
+
+        // specify notification channel settings
         notificationChannel.enableVibration(true)
         notificationChannel.setShowBadge(true)
         notificationChannel.enableLights(true)
@@ -60,9 +64,11 @@ class NotificationService : IntentService("NotificationService") {
             val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val notifyIntent = Intent(this, MainActivity::class.java) // quick fix
 
+            // specify notification title and message
             val title = "HiveMind Inspection Reminder"
             val message = "This is a reminder to check on your hives! Click here to go to the HiveMind app."
 
+            // associate this title and message with intent
             notifyIntent.putExtra("title", title)
             notifyIntent.putExtra("message", message)
             notifyIntent.putExtra("notification", true)
@@ -75,8 +81,8 @@ class NotificationService : IntentService("NotificationService") {
             val pendingIntent = PendingIntent.getActivity(context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
             val res = this.resources
 
+            // set intent to be called when user selects notification
             mNotification = Notification.Builder(this, CHANNEL_ID)
-                // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp) // was ic_stat_name
                 .setLargeIcon(BitmapFactory.decodeResource(res, R.mipmap.ic_launcher))

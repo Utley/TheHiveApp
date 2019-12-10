@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Welcome to HiveMind Reminders! Set the clock to the desired time below then click set to create your reminder."
+        value = "Welcome to HiveMind Reminders! Select the day and set the clock to the desired time below then click set to create your reminder."
     }
 
     /**
