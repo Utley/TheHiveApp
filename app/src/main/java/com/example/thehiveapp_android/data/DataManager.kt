@@ -2,7 +2,6 @@ package com.example.thehiveapp_android.data
 
 import android.util.Log
 import io.realm.Realm
-import io.realm.RealmModel
 import io.realm.RealmObject
 import io.realm.RealmResults
 
@@ -65,9 +64,9 @@ class DataManager {
             val inspection1 = InspectionRealmObject()
             val inspection2 = InspectionRealmObject()
             val inspection3 = InspectionRealmObject()
-            newHive.addLog(inspection1)
-            newHive.addLog(inspection2)
-            newHive.addLog(inspection3)
+            newHive.addInspection(inspection1)
+            newHive.addInspection(inspection2)
+            newHive.addInspection(inspection3)
             this.saveObject(newHive)
             Log.d("HiveListFragment","Saved an object.")
         }
