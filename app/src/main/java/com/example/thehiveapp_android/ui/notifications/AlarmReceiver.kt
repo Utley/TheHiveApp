@@ -6,6 +6,8 @@ import android.content.Intent
 
 /**
  * Specifies behavior on reception of an alarm broadcast.
+ *
+ * @author Hannah
  **/
 class AlarmReceiver : BroadcastReceiver() {
 

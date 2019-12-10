@@ -54,16 +54,17 @@ class NotificationsFragment : Fragment() {
             textView.text = it
         })
 
+        // get our time and day of the week from the submitted form
         val timePicker: TimePicker = root.findViewById(R.id.notificationTimePicker)
         val dayPicker : MaterialDayPicker = root.findViewById(R.id.day_picker)
         dayPicker.selectionMode = SingleSelectionMode.create() // only allow one day of week to be chosen
 
-        val timeButton: Button = root.findViewById(R.id.notificationTimePickerButton)
-        timeButton.setOnClickListener{
+        val setNotificationButton: Button = root.findViewById(R.id.notificationTimePickerButton)
+        setNotificationButton.setOnClickListener{
             // get day of week from picker
             val dayInt = NotificationUtils.getDayInt(dayPicker.selectedDays.getOrElse(0) {Weekday.MONDAY})
             // create notification
-            clickTest(it, timePicker, dayInt)
+            makeNotificationFromPicker(timePicker, dayInt)
             // add to notification list
             updateLst(root, timePicker, dayInt, "All notifications clear")
 
@@ -71,7 +72,7 @@ class NotificationsFragment : Fragment() {
 
         val cancelButton: Button = root.findViewById(R.id.notificationCancelButton)
         cancelButton.setOnClickListener{
-            cancelNotificationFromPicker(timePicker)
+            cancelNotifications()
             val timeTextView: TextView = root.findViewById(R.id.time_notification) as TextView
             timeTextView.text = "All notifications clear\n"
         }
@@ -91,6 +92,7 @@ class NotificationsFragment : Fragment() {
     private fun updateLst(root: View, timePicker: TimePicker, dayInt: Int, rmvStr: String){
         val timeTextView: TextView = root.findViewById(R.id.time_notification) as TextView
 
+        // get relevant time info from time picker and set to calendar
         val calendar: Calendar = Calendar.getInstance().apply {
             set(Calendar.DAY_OF_WEEK, dayInt)
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
@@ -98,10 +100,12 @@ class NotificationsFragment : Fragment() {
             set(Calendar.SECOND, 0)
         }
 
+        // notify user that notification has been set
         var str2 = timeTextView.text.toString()
         str2 += "Created notification for ${calendar.time}\n"
         timeTextView.text = str2
 
+        // keep list of set notifications
         val strLst = str2.split("\n")
         val iterator = strLst.iterator()
 
@@ -119,20 +123,9 @@ class NotificationsFragment : Fragment() {
         timeTextView.text = string
     }
 
-    //private val mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
     private var mNotified = false
 
 
-    /**
-     * Test function, delete later
-     */
-    @Deprecated("Test function, pls delete")
-    fun clickTest(v: View, timePicker: TimePicker, dayInt : Int ){
-        println("Hello World 1")
-        makeNotificationFromPicker(timePicker, dayInt)
-    }
-
-    /**
      * Generates a new system notification based on the provided TimePicker.
      *
      * @param timePicker Time for the new notification to occur at
@@ -145,38 +138,22 @@ class NotificationsFragment : Fragment() {
             set(Calendar.MINUTE, timePicker.minute)
             this.set(Calendar.SECOND, 0)
         }
+        var mNotificationTime = calendar.timeInMillis
 
-        // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
-        val mNotificationTime = calendar.timeInMillis
-
-        println("Creating notification for ${calendar.time}")
-        println("Real time is ${Calendar.getInstance().time}")
-
-
-        val act = this@NotificationsFragment.activity as AppCompatActivity
+        var act = this@NotificationsFragment.activity as AppCompatActivity
         if (!mNotified && act != null) {
             NotificationUtils.setNotification(mNotificationTime, act)
         }
     }
 
     /**
-     * Function which manages canceling picker notifications
+     * Clear out all notifications
      */
-    private fun cancelNotificationFromPicker(timePicker: TimePicker){
-        val calendar: Calendar = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, timePicker.hour)
-            set(Calendar.MINUTE, timePicker.minute)
-            set(Calendar.SECOND, 0)
-        }
+    fun cancelNotifications(){
+        val calendar: Calendar = Calendar.getInstance();
+        var mNotificationTime = calendar.timeInMillis
 
-        // var mNotificationTime = Calendar.getInstance().timeInMillis + 5000 //Set after 5 seconds from the current time.
-        val mNotificationTime = calendar.timeInMillis
-
-        println("Creating notification for ${calendar.time}")
-        println("Real time is ${Calendar.getInstance().time}")
-
-
-        val act = this@NotificationsFragment.activity as AppCompatActivity
+        var act = this@NotificationsFragment.activity as AppCompatActivity
         if (!mNotified && act != null) {
             NotificationUtils.deleteNotification(mNotificationTime, act)
         }
