@@ -1,5 +1,6 @@
 package com.example.thehiveapp_android.ui.notifications
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.app.AlarmManager
 import android.app.PendingIntent

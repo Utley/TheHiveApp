@@ -125,7 +125,7 @@ class NotificationsFragment : Fragment() {
 
     private var mNotified = false
 
-
+    /**
      * Generates a new system notification based on the provided TimePicker.
      *
      * @param timePicker Time for the new notification to occur at
@@ -138,9 +138,9 @@ class NotificationsFragment : Fragment() {
             set(Calendar.MINUTE, timePicker.minute)
             this.set(Calendar.SECOND, 0)
         }
-        var mNotificationTime = calendar.timeInMillis
+        val mNotificationTime = calendar.timeInMillis
 
-        var act = this@NotificationsFragment.activity as AppCompatActivity
+        val act = this@NotificationsFragment.activity as AppCompatActivity?
         if (!mNotified && act != null) {
             NotificationUtils.setNotification(mNotificationTime, act)
         }
@@ -149,11 +149,11 @@ class NotificationsFragment : Fragment() {
     /**
      * Clear out all notifications
      */
-    fun cancelNotifications(){
-        val calendar: Calendar = Calendar.getInstance();
-        var mNotificationTime = calendar.timeInMillis
+    private fun cancelNotifications(){
+        val calendar: Calendar = Calendar.getInstance()
+        val mNotificationTime = calendar.timeInMillis
 
-        var act = this@NotificationsFragment.activity as AppCompatActivity
+        val act = this@NotificationsFragment.activity as AppCompatActivity?
         if (!mNotified && act != null) {
             NotificationUtils.deleteNotification(mNotificationTime, act)
         }
