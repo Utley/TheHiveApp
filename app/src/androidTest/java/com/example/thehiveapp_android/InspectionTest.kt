@@ -18,22 +18,30 @@ import org.hamcrest.Matcher
 import org.hamcrest.Matchers.*
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import java.text.DateFormat
 import java.util.*
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class AddInspectionTest {
+class InspectionTest {
 
     var inspectionDate: Date = Date()
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
+
+    companion object {
+        @AfterClass @JvmStatic fun teardown() {
+            // Reset data for test
+            val realm = Realm.getDefaultInstance()
+            realm.beginTransaction()
+            realm.deleteAll()
+            realm.commitTransaction()
+        }
+    }
 
     @Before
     fun setup() {
