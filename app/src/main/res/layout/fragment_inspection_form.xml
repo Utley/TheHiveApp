@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingHorizontal="@dimen/horizontal_padding">
 
@@ -27,7 +27,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
 
         <Switch
             android:id="@+id/seen_mites_switch"
@@ -95,44 +96,44 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/tableCol1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="1" />
+                android:text="1"
+                tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/tableCol2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="2" />
+                android:text="2"
+                tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/tableCol3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="3" />
+                android:text="3"
+                tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/tableCol4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="4" />
+                android:text="4"
+                tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/tableCol5"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="5" />
+                android:text="5"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
@@ -162,7 +163,6 @@
             app:layout_constraintTop_toBottomOf="@+id/spacer">
 
             <RadioButton
-                android:id="@+id/honey1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -171,17 +171,6 @@
                 android:textColorLink="@color/colorAccent" />
 
             <RadioButton
-                android:id="@+id/honey2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:gravity="fill_horizontal"
-                android:textAlignment="center"
-                android:textColorLink="@color/colorAccent" />
-
-            <RadioButton
-                android:id="@+id/honey3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -191,7 +180,6 @@
                 android:textColorLink="@color/colorAccent" />
 
             <RadioButton
-                android:id="@+id/honey4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -201,7 +189,15 @@
                 android:textColorLink="@color/colorAccent" />
 
             <RadioButton
-                android:id="@+id/honey5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:gravity="fill_horizontal"
+                android:textAlignment="center"
+                android:textColorLink="@color/colorAccent" />
+
+            <RadioButton
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -238,35 +234,30 @@
             app:layout_constraintTop_toBottomOf="@+id/honeyLabel">
 
             <RadioButton
-                android:id="@+id/brood1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/brood2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/brood3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/brood4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/brood5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -300,35 +291,30 @@
             app:layout_constraintTop_toBottomOf="@+id/broodLabel">
 
             <RadioButton
-                android:id="@+id/pollen1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/pollen2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/pollen3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/pollen4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:buttonTint="@color/colorPrimaryDark" />
 
             <RadioButton
-                android:id="@+id/pollen5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -356,7 +342,8 @@
             app:layout_constraintBottom_toTopOf="@+id/saveButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notesLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/notesLabel"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:id="@+id/notesLabel"

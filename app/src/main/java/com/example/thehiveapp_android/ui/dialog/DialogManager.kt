@@ -1,8 +1,9 @@
 package com.example.thehiveapp_android.ui.dialog
 
-import android.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.content.Context
 import android.widget.Toast
+import java.lang.RuntimeException
 
 /**
  * Basic AlertDialog manager.
@@ -13,7 +14,6 @@ import android.widget.Toast
  */
 object DialogManager {
 
-
     /**
      * Present a dialog box over the current fragment with only a single neutral action.
      *
@@ -23,12 +23,15 @@ object DialogManager {
      * @param message A string containing the message body of the alert.
      */
     fun presentDialog(context: Context?, title: String, message: String) {
-        val builder = AlertDialog.Builder(context) //Create our AlertDialog Builder.
+        // Create our AlertDialog Builder.
+        val builder = AlertDialog.Builder(context ?:
+            throw RuntimeException("Please don't break anything")
+        )
 
-        builder.setTitle(title) //Set the title and message.
+        builder.setTitle(title) // Set the title and message.
         builder.setMessage(message)
 
-        builder.setNeutralButton("OK") { dialog, which ->
+        builder.setNeutralButton("OK") { _, _ ->
             Toast.makeText(context, "OK", Toast.LENGTH_SHORT).show()
         }
 

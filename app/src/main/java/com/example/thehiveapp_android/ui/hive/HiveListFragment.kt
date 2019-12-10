@@ -52,8 +52,8 @@ class HiveListFragment : Fragment() {
 
         hiveListView = root.findViewById(hive_selection_list_view)
 
-        hiveListView.setOnItemClickListener { parent, view, position, id ->
-            val selectedHive = viewModel.hives.get(position)
+        hiveListView.setOnItemClickListener { _, _, position, _ ->
+            val selectedHive = viewModel.hives[position]
             if (selectedHive != null) {
                 viewModel.selectedHive = selectedHive
             }
@@ -65,7 +65,8 @@ class HiveListFragment : Fragment() {
         val hiveRealmResults = viewModel.hives
 
         //requireContext may throw if this isn't associated with a context...
-        val adapter = HiveRealmListAdapter(requireContext(), hiveRealmResults, true)
+        //val adapter = HiveRealmListAdapter(requireContext(), hiveRealmResults, true)
+        val adapter = HiveRealmListAdapter(requireContext(), hiveRealmResults)
         hiveListView.adapter = adapter
         Log.d("HiveListFragment", "adapter.count == ${adapter.count}")
         Log.d("HiveListFragment", "hiveRealmResults.size == ${hiveRealmResults.size}")

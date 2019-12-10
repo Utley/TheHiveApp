@@ -1,36 +1,28 @@
 package com.example.thehiveapp_android.ui.yard
 
-import android.content.ClipData
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Half.toFloat
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginLeft
-import androidx.core.view.marginTop
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 
 import com.example.thehiveapp_android.R
-import org.jetbrains.annotations.TestOnly
-
 
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
-import com.example.thehiveapp_android.ui.hive.HiveDetailFragment
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlin.math.absoluteValue
-import kotlin.math.round
-import kotlin.Float
+import kotlin.math.roundToInt
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -44,11 +36,12 @@ private const val ARG_PARAM2 = "param2"
  *
  * @author Stephen
  */
-class YardView constructor() : Fragment() {
+class YardView : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    //private var param1: String? = null
+    //private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
+
 
     private var viewModel = HiveListViewModel.instance
 
@@ -63,8 +56,9 @@ class YardView constructor() : Fragment() {
      * Any restored child fragments will be created before the base `Fragment.onCreate` method
      * returns.
      *
-     * @param savedInstanceState If the fragment is being re-created from
-     * a previous saved state, this is the state.
+     * @param savedInstanceState If the fragment is being re-created from a previous saved state,
+     *  this is the state.
+     * @throws Exception if the specified activity is invalid
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +80,7 @@ class YardView constructor() : Fragment() {
      * saved state as given here.
      * @return Return the View for the fragment's UI, or null.
      */
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -98,23 +93,23 @@ class YardView constructor() : Fragment() {
         val buttonWidth = 300
         val buttonHeight = 300
         val root = inflater.inflate(R.layout.fragment_yard_view, container, false)
-        var allHives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
+        val allHives: RealmResults<HiveRealmObject> = DataManager.instance.getAllHives()
         val myButtons = ArrayList<Button>()
         val hiveLayout: RelativeLayout = root.findViewById(R.id.hiveContainer)
 
-        viewModel.selectedHive = allHives.get(0) ?: HiveRealmObject()
+        viewModel.selectedHive = allHives[0] ?: HiveRealmObject()
 
-        for (i in 0..allHives.size-1) {
-            val realmObj: HiveRealmObject = allHives.get(i)!!
+        for (i in 0 until allHives.size) {
+            val realmObj: HiveRealmObject = allHives[i]!!
             val button = YardButton(this.context, realmObj)
-            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary))
+            button.setBackgroundColor(resources.getColor(R.color.colorPrimary))
             button.text = realmObj.name
             button.width = 50
             button.height = 50
 
             val columnCount = 3
-            var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
-            if((realmObj?.xPosition == 0) and (realmObj.yPosition == 0)) {
+            val params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
+            if((realmObj.xPosition == 0) and (realmObj.yPosition == 0)) {
                 params.leftMargin = buttonWidth * (i % columnCount) + 10
                 params.topMargin = buttonHeight * (i / columnCount) + 10
             }
@@ -127,20 +122,21 @@ class YardView constructor() : Fragment() {
             button.layoutParams = params
             val tolerance = 5
 
-            button.setOnTouchListener { view, motionEvent ->
+            // define a local function to handle touch events
+            fun listenForTouchThings(view : View, motionEvent : MotionEvent) : Boolean {
                 if (motionEvent.action == MotionEvent.ACTION_DOWN){
                     button.downX = motionEvent.rawX
                     button.downY = motionEvent.rawY
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_MOVE) {
-                    var newX = motionEvent.rawX - view.width/2
-                    var newY = motionEvent.rawY - view.height
+                    val newX = motionEvent.rawX - view.width/2
+                    val newY = motionEvent.rawY - view.height
                     view.x = newX
                     view.y = newY
-                    var realm: Realm = Realm.getDefaultInstance()
+                    val realm: Realm = Realm.getDefaultInstance()
                     realm.beginTransaction()
-                    realmObj?.xPosition = Math.round(newX)
-                    realmObj?.yPosition = Math.round(newY)
+                    realmObj.xPosition = newX.roundToInt()
+                    realmObj.yPosition = newY.roundToInt()
                     realm.commitTransaction()
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_UP) {
@@ -148,31 +144,26 @@ class YardView constructor() : Fragment() {
                         (button.downY - motionEvent.rawY).absoluteValue < tolerance){
 
                         val selectedHive = button.hive
-                        if (selectedHive != null) {
-                            viewModel.selectedHive = selectedHive
-                        }
-                        Log.d("YardView", "${selectedHive}")
+                        viewModel.selectedHive = selectedHive
+
+                        Log.d("YardView", "$selectedHive")
 
                         //Invalidate the existing navigation_hive_detail to force it to be redrawn when it appears.
 
                         activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_detail)
                     }
                 }
-                true
+                return true
+            }
+
+            button.setOnTouchListener { view, motionEvent ->
+                listenForTouchThings(view, motionEvent)
             }
 
             myButtons.add(button)
             hiveLayout.addView(button)
         }
         return root
-    }
-
-    /**
-     * Probably default, remove/refactor later
-     */
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
     }
 
     /**
@@ -185,9 +176,9 @@ class YardView constructor() : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
-        } else {
+        } //else {
 //            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
+        //}
     }
 
     /**

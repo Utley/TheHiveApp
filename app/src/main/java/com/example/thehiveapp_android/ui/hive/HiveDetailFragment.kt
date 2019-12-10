@@ -19,7 +19,7 @@ import java.text.DateFormat
 /**
  * Fragment which handles displaying a detailed display of a hive.
  *
- * @author I forgot how to check
+ * @author Cole
  */
 class HiveDetailFragment : Fragment() {
 
@@ -46,8 +46,7 @@ class HiveDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        var root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
+        val root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
 
         val title: TextView = root.findViewById(R.id.title)
         title.text = viewModel.selectedHive.name

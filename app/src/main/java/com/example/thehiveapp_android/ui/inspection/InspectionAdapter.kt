@@ -14,16 +14,12 @@ import io.realm.RealmResults
 import java.text.DateFormat
 
 /**
- * Adapter used to view hive logs in some context.
- *
- * I don't actually entirely know what's going on here, need to verify with whoever wrote this. dang
- * kotlin and it's weird optimized syntax
+ * Adapter used to view hive inspections in the context of some fragment.
  *
  * @param inspections Hive logs being analyzed
  * @param viewModel The internal model we're working off
  * @param context The current activity context
- * @constructor ???
- * @author still don't know how to check =/
+ * @author Cole
  */
 class InspectionAdapter(private var inspections: RealmResults<InspectionRealmObject>,
                         private val viewModel: HiveListViewModel,

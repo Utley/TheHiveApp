@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.rule.ActivityTestRule"
     }
     buildTypes {
         release {
@@ -26,21 +27,35 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //noinspection GradleDependency,GradleDependency
     implementation 'androidx.appcompat:appcompat:1.0.2'
+    //noinspection GradleDependency
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'com.google.android.material:material:1.0.0'
+    //noinspection GradleDependency
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    //noinspection GradleDependency,GradleDependency
     implementation 'androidx.navigation:navigation-ui:2.0.0'
+    //noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    //noinspection GradleDependency,GradleDependency
     implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    //noinspection GradleDependency,GradleDependency
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    //noinspection GradleDependency
     implementation 'io.realm:android-adapters:2.1.1'
     implementation 'ca.antonious:materialdaypicker:0.6.0'
+    //noinspection GradleDependency
     testImplementation 'junit:junit:4.12'
+   //noinspection GradleDependency,GradleDependency,GradleDependency
     androidTestImplementation 'androidx.test:runner:1.1.1'
+    //noinspection GradleDependency,GradleDependency,GradleDependency,GradleDependency
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    //noinspection GradleDependency
     androidTestImplementation 'androidx.test:rules:1.2.0-beta01'
 }

@@ -34,19 +34,12 @@ class DataManager {
 
 
     /**
-     * Synchronously retrieves all objects of a given type from the database.
-     *
-     * @param classz A class representing the object type to retrieve
-     * @return a RealmResults containing all objects of the given type
-     */
-    fun getAllObjectsOfType(classz: Class<out RealmObject>) = realm.where(classz).findAll()
-
-    /**
      * Synchronously retrieves all hive logs from the database.
      *
-     * @return a RealmResults containing all [HiveLogRealmObject]s in the database
+     * @return a RealmResults containing all [InspectionRealmObject]s in the database
      */
-    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> = realm.where(InspectionRealmObject::class.java).findAll()
+    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> =
+        realm.where(InspectionRealmObject::class.java).findAll()
 
     /**
      * Synchronously retrieves all hivess from the database.
@@ -82,7 +75,9 @@ class DataManager {
      *
      * @return a list of reminder objects
      */
-    fun getAllReminders() = realm.where(ReminderRealmObject::class.java).findAll()
+    // reminders aren't stored in the database, so this method is irrelevant
+    // recommend removing it
+    //fun getAllReminders() = realm.where(ReminderRealmObject::class.java).findAll()
 
     /**
      * Saves the given RealmObject to the database.
@@ -99,31 +94,5 @@ class DataManager {
         // method as Realm will handle the changes we made (TODO: test to make sure this is true)
     }
 
-    /**
-     * Asynchronously removes a single RealmObject from the database.
-     *
-     * @param deleteMe RealmObject to delete
-     */
-    fun deleteObject(deleteMe: RealmObject){
-        // Similar to the method above; async block in which we call a delete operation.
-        realm.executeTransactionAsync { _ ->
-            deleteMe.deleteFromRealm()
-        }
-    }
-
-    /**
-     * Removes a series of RealmObject from the database.
-     *
-     * Asynchronously removes all objects contained in the given RealmResults set from the database.
-     *
-     * @param deleteUs RealmResults containing objects to delete
-     */
-    fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>){
-        // Similar, again, to the method above; pass in a RealmResults containing all the objects
-        // we want to delete, and we'll delete them all.
-        realm.executeTransactionAsync { _ ->
-            deleteUs.deleteAllFromRealm()
-        }
-    }
 
 }

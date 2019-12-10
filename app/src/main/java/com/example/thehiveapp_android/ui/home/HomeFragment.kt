@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.data.DataManager

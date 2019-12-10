@@ -1,5 +1,6 @@
 package com.example.thehiveapp_android.ui.notifications
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -38,6 +40,7 @@ class NotificationsFragment : Fragment() {
      * saved state as given here.
      * @return Return the View for the fragment's UI, or null.
      */
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -122,24 +125,22 @@ class NotificationsFragment : Fragment() {
 
     private var mNotified = false
 
-
     /**
      * Generates a new system notification based on the provided TimePicker.
      *
      * @param timePicker Time for the new notification to occur at
      * @param dayInt An int corresponding to a day of the week
      */
-    fun makeNotificationFromPicker(timePicker: TimePicker, dayInt : Int){
+    private fun makeNotificationFromPicker(timePicker: TimePicker, dayInt : Int){
         val calendar: Calendar = Calendar.getInstance().apply {
             set(Calendar.DAY_OF_WEEK, dayInt)
             set(Calendar.HOUR_OF_DAY, timePicker.hour)
             set(Calendar.MINUTE, timePicker.minute)
             this.set(Calendar.SECOND, 0)
         }
+        val mNotificationTime = calendar.timeInMillis
 
-        var mNotificationTime = calendar.timeInMillis
-
-        var act = this@NotificationsFragment.activity
+        val act = this@NotificationsFragment.activity as AppCompatActivity?
         if (!mNotified && act != null) {
             NotificationUtils.setNotification(mNotificationTime, act)
         }
@@ -147,12 +148,12 @@ class NotificationsFragment : Fragment() {
 
     /**
      * Clear out all notifications
-     **/
-    fun cancelNotifications(){
-        val calendar: Calendar = Calendar.getInstance();
-        var mNotificationTime = calendar.timeInMillis
+     */
+    private fun cancelNotifications(){
+        val calendar: Calendar = Calendar.getInstance()
+        val mNotificationTime = calendar.timeInMillis
 
-        var act = this@NotificationsFragment.activity
+        val act = this@NotificationsFragment.activity as AppCompatActivity?
         if (!mNotified && act != null) {
             NotificationUtils.deleteNotification(mNotificationTime, act)
         }

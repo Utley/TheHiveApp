@@ -40,7 +40,7 @@ class HiveListViewModel : ViewModel() {
     /**
      * The hive that is currently selected.
      */
-    var selectedHive: HiveRealmObject = DataManager.instance.getAllHives().get(0) ?: HiveRealmObject()
+    var selectedHive: HiveRealmObject = DataManager.instance.getAllHives()[0] ?: HiveRealmObject()
 
     /**
      * The log we're currently inspecting.

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <item
         android:id="@+id/navigation_yard_view"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="Yard View" />
+        android:title="Yard View"
+        tools:ignore="HardcodedText" />
 
     <item
         android:id="@+id/navigation_hive_list"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="List of Hives" />
+        android:title="List of Hives"
+        tools:ignore="HardcodedText" />
 
     <item
         android:id="@+id/navigation_home"

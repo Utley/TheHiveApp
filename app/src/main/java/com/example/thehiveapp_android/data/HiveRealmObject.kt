@@ -17,6 +17,8 @@ import java.util.*
  * @property createdAt Date the hive was created
  * @property queenedAt Date the current queen was bought/born, roughly
  * @property inspections List of objects representing this hive's inspection logs
+ * @property xPosition Hive's x coordinate position on the yard diagram
+ * @property yPosition Hive's y coordinate position on the yard diagram
  * @author Zac
  */
 //RealmObject() descendants must be open classes; Kotlin classes are final by default
@@ -32,7 +34,7 @@ open class HiveRealmObject : RealmObject() {
 
     var queenedAt: Date = Date()
 
-    private var inspectionList : RealmList<InspectionRealmObject> = RealmList<InspectionRealmObject>()
+    private var inspectionList : RealmList<InspectionRealmObject> = RealmList()
     val inspections : RealmList<InspectionRealmObject>
         get() = inspectionList
 
@@ -40,9 +42,9 @@ open class HiveRealmObject : RealmObject() {
     var yPosition: Int = 0
 
     /**
-     * Addes a new hive log to this hive's list.
+     * Adds a new hive inspection log to this hive's list.
      *
-     * @param newInspection log to add
+     * @param newInspection Inspection log to add
      */
     fun addInspection(newInspection : InspectionRealmObject) {
         val realm: Realm = Realm.getDefaultInstance()
@@ -51,6 +53,11 @@ open class HiveRealmObject : RealmObject() {
         realm.commitTransaction()
     }
 
+    /**
+     * Removes a hive inspection log to this hive's list.
+     *
+     * @param inspectionToDelete Inspection log to remove
+     */
     fun deleteInspection(inspectionToDelete: InspectionRealmObject) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()

@@ -29,7 +29,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/nameLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nameLabel"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/nameLabel"
@@ -40,7 +41,8 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/frameCountLabel"
@@ -52,10 +54,10 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/nameLabel"
+                tools:ignore="HardcodedText" />
 
             <EditText
-                android:id="@+id/frameCountInput"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:ems="10"
@@ -64,7 +66,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/frameCountLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/sizeLabel"
-                app:layout_constraintTop_toTopOf="@+id/frameCountLabel" />
+                app:layout_constraintTop_toTopOf="@+id/frameCountLabel"
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/sizeLabel"
@@ -78,7 +81,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toStartOf="@+id/hiveSizeInput"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frameCountLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/frameCountLabel"
+                tools:ignore="HardcodedText" />
 
             <Spinner
                 android:id="@+id/hiveSizeInput"
@@ -103,7 +107,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sizeLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/sizeLabel"
+                tools:ignore="HardcodedText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

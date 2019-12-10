@@ -1,6 +1,7 @@
 package com.example.thehiveapp_android.ui.notifications
 
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Intent
@@ -28,18 +29,17 @@ class NotificationUtils {
          * @return An int corresponding to the above weekday
          */
         fun getDayInt(day: MaterialDayPicker.Weekday): Int {
-            var dayInt = 1
-            when (day) {
-                MaterialDayPicker.Weekday.SUNDAY -> dayInt = 1
-                MaterialDayPicker.Weekday.MONDAY -> dayInt = 2
-                MaterialDayPicker.Weekday.TUESDAY -> dayInt = 3
-                MaterialDayPicker.Weekday.WEDNESDAY -> dayInt = 4
-                MaterialDayPicker.Weekday.THURSDAY -> dayInt = 5
-                MaterialDayPicker.Weekday.FRIDAY -> dayInt = 6
-                MaterialDayPicker.Weekday.SATURDAY -> dayInt = 7
+            return when (day) {
+                MaterialDayPicker.Weekday.SUNDAY -> 1
+                MaterialDayPicker.Weekday.MONDAY -> 2
+                MaterialDayPicker.Weekday.TUESDAY -> 3
+                MaterialDayPicker.Weekday.WEDNESDAY -> 4
+                MaterialDayPicker.Weekday.THURSDAY -> 5
+                MaterialDayPicker.Weekday.FRIDAY -> 6
+                MaterialDayPicker.Weekday.SATURDAY -> 7
             }
-            return dayInt
         }
+
 
         /**
          * Given a time, create a system notification using Android AlarmManager
@@ -50,7 +50,7 @@ class NotificationUtils {
         fun setNotification(timeInMilliSeconds: Long, activity: Activity) {
             // if time picker was set
             if (timeInMilliSeconds > 0) {
-                val alarmManager = activity.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
+                val alarmManager = activity.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
                 val alarmIntent = Intent(
                     activity.applicationContext,
                     AlarmReceiver::class.java
@@ -83,7 +83,7 @@ class NotificationUtils {
         fun deleteNotification(timeInMilliSeconds: Long, activity: Activity) {
             // if time is given
             if (timeInMilliSeconds > 0) {
-                val alarmManager = activity.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
+                val alarmManager = activity.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
                 val alarmIntent = Intent(
                     activity.applicationContext,
                     AlarmReceiver::class.java

@@ -17,7 +17,6 @@
             android:layout_height="60dp"
             android:clickable="false"
             android:contextClickable="false"
-            android:editable="false"
             android:ems="10"
             android:enabled="false"
             android:textAlignment="center"
@@ -25,7 +24,8 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor,TextFields" />
 
         <TextView
             android:id="@+id/broodCount"
@@ -41,7 +41,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/broodLabel"
             app:layout_constraintTop_toBottomOf="@+id/honeyCount"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/broodLabel"
@@ -60,41 +61,44 @@
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/horizontal_padding"
+            android:paddingStart="@dimen/horizontal_padding"
             android:text="New Eggs"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/honeyCount"
             app:layout_constraintStart_toEndOf="@+id/honeyCount"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toBottomOf="@+id/date"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/miteLabel"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/horizontal_padding"
+            android:paddingStart="@dimen/horizontal_padding"
             android:text="Mites"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/broodCount"
             app:layout_constraintEnd_toEndOf="@+id/eggLabel"
             app:layout_constraintStart_toEndOf="@+id/honeyCount"
-            app:layout_constraintTop_toBottomOf="@+id/eggLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/eggLabel"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/queenLabel"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/horizontal_padding"
+            android:paddingStart="@dimen/horizontal_padding"
             android:text="Queen"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/pollenCount"
             app:layout_constraintEnd_toEndOf="@+id/miteLabel"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/miteLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/miteLabel"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/honeyLabel"
@@ -130,7 +134,8 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toEndOf="@+id/honeyLabel"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toBottomOf="@+id/date"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/pollenCount"
@@ -145,7 +150,8 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toEndOf="@+id/polenLabel"
-            app:layout_constraintTop_toBottomOf="@+id/broodLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/broodLabel"
+            tools:ignore="HardcodedText" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -212,7 +218,6 @@
             android:background="@drawable/border"
             android:clickable="false"
             android:drawableTop="@android:drawable/divider_horizontal_dark"
-            android:editable="false"
             android:ems="10"
             android:gravity="start|top"
             android:lines="6"
@@ -225,6 +230,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notesLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/notesLabel"
+            tools:ignore="Autofill,LabelFor,TextFields" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

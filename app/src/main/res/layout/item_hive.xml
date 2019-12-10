@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.thehiveapp_android.ui.hive.HiveListItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -17,7 +18,8 @@
             android:gravity="center"
             android:text="Hive Name"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/hive_last_inspected_text"
@@ -25,7 +27,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Last Inspected: Date"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <!-- We can always change textSize if we need to... -->

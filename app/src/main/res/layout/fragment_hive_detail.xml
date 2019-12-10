@@ -22,7 +22,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/label_created"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/label_created"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/label_created"
@@ -35,7 +36,8 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="@+id/title"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/label_inspections"
@@ -48,7 +50,8 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/field_created"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_created" />
+            app:layout_constraintTop_toBottomOf="@+id/label_created"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/title"
@@ -83,7 +86,8 @@
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toTopOf="@+id/inspections"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/field_created" />
+            app:layout_constraintTop_toBottomOf="@+id/field_created"
+            tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

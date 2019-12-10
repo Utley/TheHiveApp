@@ -6,73 +6,58 @@ import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import io.realm.Realm
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.*
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
-import org.junit.*
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
-import java.text.DateFormat
-import java.util.*
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class InspectionTest {
+class AddHiveLogTest {
 
-    private var inspectionDate: Date = Date()
+    /*  You may need to go to the Gradle menu (in the bar on the right),
+        then go to app -> Tasks -> install -> installDebugAndroidTest,
+        run that (by double-clicking on it).
+        I mean, it still doesn't run for me, but it gives a different error now.
+        - Zac
+     */
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
-    companion object {
-        @AfterClass @JvmStatic fun teardown() {
-            // Reset data for test
-            val realm = Realm.getDefaultInstance()
-            realm.beginTransaction()
-            realm.deleteAll()
-            realm.commitTransaction()
-        }
-    }
-
-    @Before
-    fun setup() {
-        // Reset data for test
-        val realm = Realm.getDefaultInstance()
-        realm.beginTransaction()
-        realm.deleteAll()
-        realm.commitTransaction()
-
-        // Create hive with inspection
+    @Test
+    fun addHiveLogTest() {
         val bottomNavigationItemView = onView(
             allOf(
-                withId(R.id.navigation_home), withContentDescription("Home"),
+                withId(R.id.navigation_hive_list), withContentDescription("List of Hives"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.nav_view),
                         0
                     ),
-                    2
+                    1
                 ),
                 isDisplayed()
             )
         )
         bottomNavigationItemView.perform(click())
 
-        val appCompatEditText = onView(
+        val textView = onView(
             allOf(
-                withId(R.id.nameInput),
+                withId(R.id.inspections), withText("Test Hive"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
                         0
                     ),
                     0
@@ -80,37 +65,7 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        appCompatEditText.perform(replaceText("InspectionCreateTest"), closeSoftKeyboard())
-
-        val appCompatEditText2 = onView(
-            allOf(
-                withId(R.id.frameCountInput),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    ),
-                    3
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText2.perform(replaceText("1"), closeSoftKeyboard())
-
-        val appCompatButton = onView(
-            allOf(
-                withId(R.id.saveButton), withText("Save"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    ),
-                    6
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatButton.perform(click())
+        textView.check(matches(withText("Test Hive")))
 
         val hiveListItemView = onData(anything())
             .inAdapterView(
@@ -125,7 +80,22 @@ class InspectionTest {
             .atPosition(0)
         hiveListItemView.perform(click())
 
-        val appCompatButton2 = onView(
+        val textView2 = onView(
+            allOf(
+                withId(R.id.title), withText("Test Hive"),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textView2.check(matches(withText("Test Hive")))
+
+        val appCompatButton = onView(
             allOf(
                 withId(R.id.add_inspection), withText("+"),
                 childAtPosition(
@@ -138,11 +108,10 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        appCompatButton2.perform(click())
+        appCompatButton.perform(click())
 
         val appCompatRadioButton = onView(
             allOf(
-                withId(R.id.honey1),
                 childAtPosition(
                     allOf(
                         withId(R.id.honeyInput),
@@ -151,7 +120,7 @@ class InspectionTest {
                             7
                         )
                     ),
-                    0
+                    1
                 ),
                 isDisplayed()
             )
@@ -160,7 +129,6 @@ class InspectionTest {
 
         val appCompatRadioButton2 = onView(
             allOf(
-                withId(R.id.brood2),
                 childAtPosition(
                     allOf(
                         withId(R.id.broodInput),
@@ -178,7 +146,6 @@ class InspectionTest {
 
         val appCompatRadioButton3 = onView(
             allOf(
-                withId(R.id.pollen3),
                 childAtPosition(
                     allOf(
                         withId(R.id.pollenInput),
@@ -187,7 +154,7 @@ class InspectionTest {
                             11
                         )
                     ),
-                    2
+                    1
                 ),
                 isDisplayed()
             )
@@ -195,36 +162,6 @@ class InspectionTest {
         appCompatRadioButton3.perform(click())
 
         val switch = onView(
-            allOf(
-                withId(R.id.seen_eggs_switch), withText("Did you see new eggs?"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        switch.perform(click())
-
-        val switch2 = onView(
-            allOf(
-                withId(R.id.seen_mites_switch), withText("Did you see mites?"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        switch2.perform(click())
-
-        val switch3 = onView(
             allOf(
                 withId(R.id.seen_queen_switch), withText("Did you see the queen?"),
                 childAtPosition(
@@ -237,9 +174,9 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        switch3.perform(click())
+        switch.perform(click())
 
-        val appCompatEditText3 = onView(
+        val appCompatEditText = onView(
             allOf(
                 withId(R.id.notesInput),
                 childAtPosition(
@@ -252,24 +189,9 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        appCompatEditText3.perform(click())
+        appCompatEditText.perform(replaceText("Test"), closeSoftKeyboard())
 
-        val appCompatEditText4 = onView(
-            allOf(
-                withId(R.id.notesInput),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    ),
-                    12
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatEditText4.perform(replaceText("Notes"), closeSoftKeyboard())
-
-        val appCompatButton3 = onView(
+        val appCompatButton2 = onView(
             allOf(
                 withId(R.id.saveButton), withText("Save"),
                 childAtPosition(
@@ -282,54 +204,95 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        inspectionDate = Date()
-        appCompatButton3.perform(click())
-    }
+        appCompatButton2.perform(click())
 
-    @Test
-    fun inspectionCreatedTest() {
-        val appCompatTextView = onView(
+        val linearLayout = onView(
             allOf(
-                withId(R.id.inspectionDate), withText(DateFormat.getDateTimeInstance().format(inspectionDate)),
                 childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
+                    allOf(
+                        withId(R.id.inspections),
+                        childAtPosition(
+                            withClassName(`is`("androidx.constraintlayout.widget.ConstraintLayout")),
+                            4
+                        )
                     ),
-                    1
+                    0
                 ),
                 isDisplayed()
             )
         )
-        appCompatTextView.perform(click())
+        linearLayout.perform(click())
 
-        val textView = onView(
+        val editText = onView(
             allOf(
-                withId(R.id.honeyCount),
+                withId(R.id.notesText), withText("Test"),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    14
+                ),
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("1")))
-
-        val textView2 = onView(
-            allOf(
-                withId(R.id.broodCount),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("2")))
+        editText.check(matches(withText("Test")))
 
         val textView3 = onView(
             allOf(
-                withId(R.id.pollenCount),
+                withId(R.id.honeyCount), withText("2"),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    2
+                ),
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("3")))
+        textView3.check(matches(withText("2")))
+
+        val textView4 = onView(
+            allOf(
+                withId(R.id.broodCount), withText("2"),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    6
+                ),
+                isDisplayed()
+            )
+        )
+        textView4.check(matches(withText("2")))
+
+        val textView5 = onView(
+            allOf(
+                withId(R.id.pollenCount), withText("2"),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    10
+                ),
+                isDisplayed()
+            )
+        )
+        textView5.check(matches(withText("2")))
 
         val checkBox = onView(
             allOf(
                 withId(R.id.eggCheckbox),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    4
+                ),
                 isDisplayed()
             )
         )
@@ -338,6 +301,13 @@ class InspectionTest {
         val checkBox2 = onView(
             allOf(
                 withId(R.id.miteCheckbox),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    8
+                ),
                 isDisplayed()
             )
         )
@@ -346,79 +316,17 @@ class InspectionTest {
         val checkBox3 = onView(
             allOf(
                 withId(R.id.queenCheckbox),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        0
+                    ),
+                    12
+                ),
                 isDisplayed()
             )
         )
         checkBox3.check(matches(isDisplayed()))
-
-        val editText = onView(
-            allOf(
-                withId(R.id.notesText),
-                isDisplayed()
-            )
-        )
-        editText.check(matches(withText("Notes")))
-    }
-
-    @Test
-    fun deleteInspectionTest() {
-        val bottomNavigationItemView = onView(
-            allOf(
-                withId(R.id.navigation_hive_list), withContentDescription("List of Hives"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.nav_view),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        bottomNavigationItemView.perform(click())
-
-        val hiveListItemView = onData(anything())
-            .inAdapterView(
-                allOf(
-                    withId(R.id.hive_selection_list_view),
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    )
-                )
-            )
-            .atPosition(0)
-        hiveListItemView.perform(click())
-
-        val appCompatTextView = onView(
-            allOf(
-                withId(R.id.deleteInspection), withText("X"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatTextView.perform(click())
-
-        val textView = onView(
-            allOf(
-                withId(R.id.deleteInspection), withText("X"),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(ViewAssertions.doesNotExist())
     }
 
     private fun childAtPosition(
