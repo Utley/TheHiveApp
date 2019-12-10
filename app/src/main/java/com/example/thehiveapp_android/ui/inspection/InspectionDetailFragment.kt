@@ -15,7 +15,7 @@ import java.text.DateFormat
 /**
  * Fragment to manage displaying an inspection detail screen.
  *
- * @author Cole ??
+ * @author Cole
  */
 class InspectionDetailFragment : Fragment() {
     private lateinit var viewModel: HiveListViewModel

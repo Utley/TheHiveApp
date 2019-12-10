@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.TimePicker
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -152,7 +153,7 @@ class NotificationsFragment : Fragment() {
         println("Real time is ${Calendar.getInstance().time}")
 
 
-        val act = this@NotificationsFragment.activity
+        val act = this@NotificationsFragment.activity as AppCompatActivity
         if (!mNotified && act != null) {
             NotificationUtils.setNotification(mNotificationTime, act)
         }
@@ -175,7 +176,7 @@ class NotificationsFragment : Fragment() {
         println("Real time is ${Calendar.getInstance().time}")
 
 
-        val act = this@NotificationsFragment.activity
+        val act = this@NotificationsFragment.activity as AppCompatActivity
         if (!mNotified && act != null) {
             NotificationUtils.deleteNotification(mNotificationTime, act)
         }

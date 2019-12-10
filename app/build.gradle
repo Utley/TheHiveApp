@@ -45,14 +45,16 @@ dependencies {
     //noinspection GradleDependency,GradleDependency
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     //noinspection GradleDependency
     implementation 'io.realm:android-adapters:2.1.1'
     implementation 'ca.antonious:materialdaypicker:0.6.0'
     //noinspection GradleDependency
     testImplementation 'junit:junit:4.12'
-   //noinspection GradleDependency,GradleDependency
+   //noinspection GradleDependency,GradleDependency,GradleDependency
     androidTestImplementation 'androidx.test:runner:1.1.1'
+    //noinspection GradleDependency,GradleDependency,GradleDependency,GradleDependency
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     //noinspection GradleDependency
     androidTestImplementation 'androidx.test:rules:1.2.0-beta01'

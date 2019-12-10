@@ -1,41 +1,28 @@
 package com.example.thehiveapp_android.ui.yard
 
-//import android.content.ClipData
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-//import android.util.Half.toFloat
-//import android.util.Log
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginLeft
-import androidx.core.view.marginTop
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 
 import com.example.thehiveapp_android.R
-//import org.jetbrains.annotations.TestOnly
 
 import com.example.thehiveapp_android.data.DataManager
 import com.example.thehiveapp_android.data.HiveRealmObject
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
-import com.example.thehiveapp_android.ui.hive.HiveDetailFragment
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
-import kotlin.math.roundToLong
-
-//import kotlin.math.round
-//import kotlin.Float
 
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -110,19 +97,19 @@ class YardView : Fragment() {
         val myButtons = ArrayList<Button>()
         val hiveLayout: RelativeLayout = root.findViewById(R.id.hiveContainer)
 
-        viewModel.selectedHive = allHives.get(0) ?: HiveRealmObject()
+        viewModel.selectedHive = allHives[0] ?: HiveRealmObject()
 
-        for (i in 0..allHives.size-1) {
-            val realmObj: HiveRealmObject = allHives.get(i)!!
+        for (i in 0 until allHives.size) {
+            val realmObj: HiveRealmObject = allHives[i]!!
             val button = YardButton(this.context, realmObj)
-            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary))
+            button.setBackgroundColor(resources.getColor(R.color.colorPrimary))
             button.text = realmObj.name
             button.width = 50
             button.height = 50
 
             val columnCount = 3
-            var params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
-            if((realmObj?.xPosition == 0) and (realmObj.yPosition == 0)) {
+            val params: RelativeLayout.LayoutParams  = RelativeLayout.LayoutParams(buttonWidth, buttonHeight)
+            if((realmObj.xPosition == 0) and (realmObj.yPosition == 0)) {
                 params.leftMargin = buttonWidth * (i % columnCount) + 10
                 params.topMargin = buttonHeight * (i / columnCount) + 10
             }
@@ -148,8 +135,8 @@ class YardView : Fragment() {
                     view.y = newY
                     val realm: Realm = Realm.getDefaultInstance()
                     realm.beginTransaction()
-                    realmObj?.xPosition = newX.roundToInt()
-                    realmObj?.yPosition = newY.roundToInt()
+                    realmObj.xPosition = newX.roundToInt()
+                    realmObj.yPosition = newY.roundToInt()
                     realm.commitTransaction()
                 }
                 else if (motionEvent.action == MotionEvent.ACTION_UP) {
@@ -157,10 +144,9 @@ class YardView : Fragment() {
                         (button.downY - motionEvent.rawY).absoluteValue < tolerance){
 
                         val selectedHive = button.hive
-                        if (selectedHive != null) {
-                            viewModel.selectedHive = selectedHive
-                        }
-                        Log.d("YardView", "${selectedHive}")
+                        viewModel.selectedHive = selectedHive
+
+                        Log.d("YardView", "$selectedHive")
 
                         //Invalidate the existing navigation_hive_detail to force it to be redrawn when it appears.
 
@@ -178,14 +164,6 @@ class YardView : Fragment() {
             hiveLayout.addView(button)
         }
         return root
-    }
-
-    /**
-     * Probably default, remove/refactor later
-     */
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
     }
 
     /**

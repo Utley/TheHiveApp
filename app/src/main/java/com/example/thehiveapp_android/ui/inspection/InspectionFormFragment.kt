@@ -18,20 +18,12 @@ import java.util.*
 /**
  * Fragment to manage displaying an inspection form screen.
  *
- * @author Cole ??
+ * @author Cole
  */
 class InspectionFormFragment : Fragment() {
 
     private lateinit var viewModel: HiveListViewModel
 
-    companion object {
-        /**
-         * Retrieves a new instance of a InspectionFormFragment
-         *
-         * @return a new InspectionFormFragment
-         */
-        //fun newInstance() = InspectionFormFragment()
-    }
 
     /**
      * Called to have the fragment instantiate its user interface view. This will be called between

@@ -30,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/nameLabel"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="LabelFor" />
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/nameLabel"
@@ -67,7 +67,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/sizeLabel"
                 app:layout_constraintTop_toTopOf="@+id/frameCountLabel"
-                tools:ignore="LabelFor" />
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/sizeLabel"

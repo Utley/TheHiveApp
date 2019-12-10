@@ -7,20 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import android.widget.Button
-//import android.widget.TextView
 import androidx.lifecycle.ViewModelProviders
-//import androidx.navigation.findNavController
-//import androidx.recyclerview.widget.LinearLayoutManager
-//import androidx.recyclerview.widget.RecyclerView
 
 import com.example.thehiveapp_android.R
 import com.example.thehiveapp_android.ui.hive.HiveListViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//private const val ARG_PARAM1 = "param1"
-//private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -81,38 +72,6 @@ class YardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_yard, container, false)
 
-    // replaced by the abbreviated form, above
-    /*
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        //var root = inflater.inflate(R.layout.fragment_yard, container, false)
-
-//        val title: TextView = root.findViewById(R.id.title)
-//        title.text = viewModel.selectedHive.name
-
-//        val createdOn: TextView = root.findViewById(R.id.field_created)
-//        createdOn.text = viewModel.selectedHive.createdAt.toString()
-
-        // Clicking the '+' button opens the new inspection form
-//        val addInspectionButton = root.findViewById(R.id.add_inspection) as Button
-//        addInspectionButton.setOnClickListener {
-//            activity?.findNavController(R.id.nav_host_fragment)?.navigate(R.id.navigation_hive_form)
-//        }
-
-        //return root
-        return inflater.inflate(R.layout.fragment_yard, container, false)
-
-    }
-    */
-
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
     /**
      * Called when a fragment is first attached to its context. `onCreate(Bundle)` will be called
      * after this.
@@ -123,9 +82,7 @@ class YardFragment : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             listener = context
-        } //else {
-//            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        //}
+        }
     }
 
     /**
@@ -160,12 +117,9 @@ class YardFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
         fun newInstance() =
             YardFragment().apply {
                 arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
                 }
             }
     }

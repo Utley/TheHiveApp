@@ -161,7 +161,7 @@ class AddHiveLogTest {
         )
         appCompatRadioButton3.perform(click())
 
-        val switch_ = onView(
+        val switch = onView(
             allOf(
                 withId(R.id.seen_queen_switch), withText("Did you see the queen?"),
                 childAtPosition(
@@ -174,7 +174,7 @@ class AddHiveLogTest {
                 isDisplayed()
             )
         )
-        switch_.perform(click())
+        switch.perform(click())
 
         val appCompatEditText = onView(
             allOf(

@@ -33,21 +33,13 @@ class DataManager {
     private var realm : Realm = Realm.getDefaultInstance()
 
 
-    /* *
-     * Synchronously retrieves all objects of a given type from the database.
-     *
-     * @param classz A class representing the object type to retrieve
-     * @return a RealmResults containing all objects of the given type
-     */
-    // do we really need this? It's unused
-    //fun getAllObjectsOfType(classz: Class<out RealmObject>) : RealmResults<out RealmObject> = realm.where(classz).findAll()
-
     /**
      * Synchronously retrieves all hive logs from the database.
      *
      * @return a RealmResults containing all [InspectionRealmObject]s in the database
      */
-    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> = realm.where(InspectionRealmObject::class.java).findAll()
+    fun getAllHiveLogs() : RealmResults<InspectionRealmObject> =
+        realm.where(InspectionRealmObject::class.java).findAll()
 
     /**
      * Synchronously retrieves all hivess from the database.
@@ -102,31 +94,5 @@ class DataManager {
         // method as Realm will handle the changes we made (TODO: test to make sure this is true)
     }
 
-    /**
-     * Asynchronously removes a single RealmObject from the database.
-     *
-     * @param deleteMe RealmObject to delete
-     */
-    fun deleteObject(deleteMe: RealmObject){
-        // Similar to the method above; async block in which we call a delete operation.
-        realm.executeTransactionAsync {
-            deleteMe.deleteFromRealm()
-        }
-    }
-
-    /**
-     * Removes a series of RealmObject from the database.
-     *
-     * Asynchronously removes all objects contained in the given RealmResults set from the database.
-     *
-     * @param deleteUs RealmResults containing objects to delete
-     */
-    fun deleteObjectsInRealmResults(deleteUs: RealmResults<Any>){
-        // Similar, again, to the method above; pass in a RealmResults containing all the objects
-        // we want to delete, and we'll delete them all.
-        realm.executeTransactionAsync {
-            deleteUs.deleteAllFromRealm()
-        }
-    }
 
 }

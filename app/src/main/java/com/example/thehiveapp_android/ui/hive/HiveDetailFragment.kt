@@ -46,7 +46,7 @@ class HiveDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
+        val root = inflater.inflate(R.layout.fragment_hive_detail, container, false)
 
         val title: TextView = root.findViewById(R.id.title)
         title.text = viewModel.selectedHive.name

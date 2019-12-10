@@ -23,9 +23,7 @@ import io.realm.RealmResults
  */
 class HiveRealmListAdapter(
     context: Context,
-    private val realmResults: RealmResults<HiveRealmObject> //,
-    // removed because the linter was complaining; feel free to re-add if it causes issues
-    //automaticUpdate: Boolean
+    private val realmResults: RealmResults<HiveRealmObject>
 )
     : RealmBaseAdapter<HiveRealmObject>(realmResults), ListAdapter
 {

@@ -16,7 +16,7 @@ import io.realm.Realm
  * This class represents the main entrypoint for the app; it's similar in practice to the `main()`
  * method of a Java program.
  *
- * @author probably Zac?
+ * @author Zac
  */
 class MainActivity : AppCompatActivity() {
 

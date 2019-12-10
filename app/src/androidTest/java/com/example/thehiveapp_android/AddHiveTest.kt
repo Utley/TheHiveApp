@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule  // I'm getting an error on this import declaration;
                                             // maybe Gradle didn't update? Iunno.    ~David
-                                            // UPDATE: fucking around with gradle "fixed" it.
+                                            // UPDATE: screwing around with gradle "fixed" it.
                                             // Someone double-check that, please?
 import androidx.test.runner.AndroidJUnit4
 import org.hamcrest.Description

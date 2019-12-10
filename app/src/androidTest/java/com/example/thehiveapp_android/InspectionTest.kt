@@ -27,7 +27,7 @@ import java.util.*
 @RunWith(AndroidJUnit4::class)
 class InspectionTest {
 
-    var inspectionDate: Date = Date()
+    private var inspectionDate: Date = Date()
 
     @Rule
     @JvmField
@@ -194,7 +194,7 @@ class InspectionTest {
         )
         appCompatRadioButton3.perform(click())
 
-        val switch_ = onView(
+        val switch = onView(
             allOf(
                 withId(R.id.seen_eggs_switch), withText("Did you see new eggs?"),
                 childAtPosition(
@@ -207,9 +207,9 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        switch_.perform(click())
+        switch.perform(click())
 
-        val switch_2 = onView(
+        val switch2 = onView(
             allOf(
                 withId(R.id.seen_mites_switch), withText("Did you see mites?"),
                 childAtPosition(
@@ -222,9 +222,9 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        switch_2.perform(click())
+        switch2.perform(click())
 
-        val switch_3 = onView(
+        val switch3 = onView(
             allOf(
                 withId(R.id.seen_queen_switch), withText("Did you see the queen?"),
                 childAtPosition(
@@ -237,7 +237,7 @@ class InspectionTest {
                 isDisplayed()
             )
         )
-        switch_3.perform(click())
+        switch3.perform(click())
 
         val appCompatEditText3 = onView(
             allOf(

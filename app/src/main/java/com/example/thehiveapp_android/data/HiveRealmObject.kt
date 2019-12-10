@@ -56,7 +56,7 @@ open class HiveRealmObject : RealmObject() {
     /**
      * Removes a hive inspection log to this hive's list.
      *
-     * @param newInspection Inspection log to remove
+     * @param inspectionToDelete Inspection log to remove
      */
     fun deleteInspection(inspectionToDelete: InspectionRealmObject) {
         val realm: Realm = Realm.getDefaultInstance()
